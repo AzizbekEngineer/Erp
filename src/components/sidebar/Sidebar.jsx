@@ -36,8 +36,8 @@ function Sidebar() {
       <div>
         <div className="sidebar__top">
           <div className="sidebar__top__info">
-            <button onClick={() => setProfileHide((prev) => !prev)}>R</button>
-            <h2>RMZ Edu</h2>
+            <button onClick={() => setProfileHide((prev) => !prev)}>A</button>
+            <h2>Academy</h2>
           </div>
           <div className="sidebar__top__full">
             <button onClick={() => setProfileHide((prev) => !prev)}>
@@ -99,15 +99,15 @@ function Sidebar() {
             </NavLink>
           </li>
           <li className="sidebar__list">
-            <NavLink to={"createTeacher"} className={"sidebar__left__text"}>
-              <GiSilverBullet />
-              O'qituvchi yaratish
+            <NavLink to={"teachers"} className={"sidebar__left__text"}>
+              <FaRegUser />
+              O'qituvchilar
             </NavLink>
           </li>
           <li className="sidebar__list">
-            <NavLink to={"teachers"} className={"sidebar__left__text"}>
-              <GiSilverBullet />
-              O'qituvchilar
+            <NavLink to={"createTeacher"} className={"sidebar__left__text"}>
+              <LuUserPlus />
+              O'qituvchi yaratish
             </NavLink>
           </li>
         </ul>
