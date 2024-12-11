@@ -34,7 +34,7 @@ const PaymeForm = ({ id, close }) => {
 
   return (
     <div className="payme">
-      <h2>To'lov amalga oshirish</h2>
+      <h2>To'lov amalga oshirish Azizbek</h2>
       <form className="payme__form" onSubmit={handleSubmit} action="">
         <input
           placeholder="amount"
