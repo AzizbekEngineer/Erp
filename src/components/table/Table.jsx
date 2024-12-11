@@ -117,9 +117,9 @@ const Table = () => {
         </select>
 
         <select onChange={handleBudget} name="" id="">
-          <option value="0">Barchasi</option>
-          <option value="1">Des</option>
-          <option value="-1">Inc</option>
+          <option value="0">Guruhlar</option>
+          <option value="1">N5</option>
+          <option value="-1">N7</option>
         </select>
 
         <select onChange={handleCreatedAt} name="" id="">

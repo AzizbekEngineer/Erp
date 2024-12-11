@@ -12,7 +12,7 @@ import CreateStudents from "./pages/create/CreateStudents";
 import StudentsRank from "./pages/admin/studentsRank/StudentsRank";
 import Homework from "./pages/admin/homework/Homework";
 import CreateTeacher from "./pages/admin/createTeacher/CreateTeacher";
-import Teachers from "./components/teachers/Teachers";
+import Teachers from "./pages/admin/teachers/Teachers";
 
 const App = () => {
   return (
