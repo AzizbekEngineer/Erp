@@ -5,7 +5,7 @@ import { useGetSellerQuery } from "../../../context/api/sellerApi";
 import Module from "../../../components/Module/Module";
 import CreateExpens from "../../../components/createExpens/CreateExpens";
 
-const Seller = () => {
+const StudentsRank = () => {
   const [expens, setExpens] = useState(false);
   const { data } = useGetSellerQuery();
   console.log(data?.innerData);
@@ -52,4 +52,4 @@ const Seller = () => {
   );
 };
 
-export default Seller;
+export default StudentsRank;

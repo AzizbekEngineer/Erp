@@ -2,7 +2,7 @@ import React from "react";
 import Table from "../../../components/table/Table";
 import { STORE } from "../../../static";
 
-const Store = () => {
+const Homework = () => {
   const customerTbody = STORE?.map((el, index) => (
     <tr key={el?._id}>
       <td>{index + 1}</td>
@@ -35,4 +35,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default Homework;

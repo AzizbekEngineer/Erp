@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useGetSellerSearchQuery } from "../../../context/api/sellerApi";
-import { useCreateProductMutation } from "../../../context/api/productApi";
+import { useGetSellerSearchQuery } from "../../../context/api/sellerApi.js";
+import { useCreateProductMutation } from "../../../context/api/productApi.js";
 import Module from "../../../components/Module/Module.jsx";
-import "./createProduct.scss";
+import "./createTeacher.scss";
 
 const initialState = {
   title: "",
@@ -13,7 +13,7 @@ const initialState = {
   comment: "",
 };
 
-const CreateProduct = () => {
+const CreateTeacher = () => {
   const [value, setValue] = useState("");
   const [seller, setSeller] = useState(null);
   const [product, setProduct] = useState(initialState);
@@ -141,4 +141,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default CreateTeacher;
