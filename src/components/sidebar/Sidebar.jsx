@@ -75,37 +75,37 @@ function Sidebar() {
 
         <ul className="sidebar__item">
           <li className="sidebar__list">
-            <NavLink to={"customer"} className={"sidebar__left__text"}>
+            <NavLink to={"students"} className={"sidebar__left__text"}>
               <FaRegUser />
               O'quvchilar
             </NavLink>
           </li>
           <li className="sidebar__list">
-            <NavLink to={"create"} className={"sidebar__left__text"}>
+            <NavLink to={"createStudents"} className={"sidebar__left__text"}>
               <LuUserPlus />
               O'quvchi Yaratish
             </NavLink>
           </li>
           <li className="sidebar__list">
-            <NavLink to={"seller"} className={"sidebar__left__text"}>
+            <NavLink to={"studentsRank"} className={"sidebar__left__text"}>
               <GiSilverBullet />
               O'quvchilar reytingi
             </NavLink>
           </li>
           <li className="sidebar__list">
-            <NavLink to={"store"} className={"sidebar__left__text"}>
+            <NavLink to={"homework"} className={"sidebar__left__text"}>
               <LiaWarehouseSolid />
               Vazifalar
             </NavLink>
           </li>
           <li className="sidebar__list">
-            <NavLink to={"createProduct"} className={"sidebar__left__text"}>
+            <NavLink to={"createTeacher"} className={"sidebar__left__text"}>
               <GiSilverBullet />
               O'qituvchi yaratish
             </NavLink>
           </li>
           <li className="sidebar__list">
-            <NavLink to={"createProduct"} className={"sidebar__left__text"}>
+            <NavLink to={"teachers"} className={"sidebar__left__text"}>
               <GiSilverBullet />
               O'qituvchilar
             </NavLink>

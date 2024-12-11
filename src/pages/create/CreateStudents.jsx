@@ -10,7 +10,7 @@ let initialState = {
   budget: "",
 };
 
-const Create = () => {
+const CreateStudents = () => {
   const [value, setValue] = useState(initialState);
   const [createCustom, { data, isLoading }] = useCreateCustomerMutation();
 
@@ -27,7 +27,7 @@ const Create = () => {
 
   return (
     <div className="form container">
-      <h2>Mijoz yaratish</h2>
+      <h2>O'quvchi yaratish</h2>
       <form className="form__page" onSubmit={handleSubmit} action="">
         <div className="form__page__customer">
           <label htmlFor="">
@@ -92,4 +92,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default CreateStudents;

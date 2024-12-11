@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "../../../components/table/Table";
 
-const Customer = () => {
+const Students = () => {
   return (
     <div>
       <Table />
@@ -9,4 +9,4 @@ const Customer = () => {
   );
 };
 
-export default Customer;
+export default Students;
