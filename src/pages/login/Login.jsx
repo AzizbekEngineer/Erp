@@ -6,8 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.scss";
 
 let initialState = {
-  email: "ramziddin",
-  password: "12345677",
+  email: "ramziddindeveloper7@gmail.com",
+  password: "12345678",
 };
 
 const Login = () => {
