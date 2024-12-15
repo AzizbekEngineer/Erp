@@ -26,11 +26,6 @@ function Sidebar() {
 
   const dispatch = useDispatch();
 
-  const { data: prifile } = useGetAdminsQuery();
-  console.log(prifile?.innerData?.user);
-
-  let prifileData = prifile?.innerData?.user;
-
   return (
     <section className="sidebar">
       <div>
