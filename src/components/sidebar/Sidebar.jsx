@@ -93,6 +93,12 @@ function Sidebar() {
             </NavLink>
           </li>
           <li className="sidebar__list">
+            <NavLink to={"ranking"} className={"sidebar__left__text"}>
+              <GiSilverBullet />
+              O'quvchilar kunlik ball
+            </NavLink>
+          </li>
+          <li className="sidebar__list">
             <NavLink to={"homework"} className={"sidebar__left__text"}>
               <LiaWarehouseSolid />
               Vazifalar
