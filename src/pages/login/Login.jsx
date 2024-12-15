@@ -6,8 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.scss";
 
 let initialState = {
-  email: "azizbektolipov777@gmail.com",
-  password: "123456",
+  username: "vadli",
+  password: "1234",
 };
 
 const Login = () => {
@@ -51,10 +51,10 @@ const Login = () => {
         <label htmlFor="">
           Foydalanuvchi shaxs
           <input
-            value={value.email}
-            name="email"
+            value={value.username}
+            name="username"
             onChange={handleChange}
-            placeholder="email"
+            placeholder="username"
             type="text"
           />
         </label>
