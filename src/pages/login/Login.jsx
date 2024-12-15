@@ -27,8 +27,8 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      localStorage.setItem("x-auth-token", data?.innerData?.token);
-      dispatch(setToken(data?.innerData?.token));
+      localStorage.setItem("x-auth-token", data?.accessToken);
+      dispatch(setToken(data?.accessToken));
       navigate("/admin/students");
     }
   }, [isSuccess]);
