@@ -21,7 +21,7 @@ function Sidebar() {
 
   // const handleLogout = () => {
   //   localStorage.clear();
-  //   navigate("/");
+  //   navigate("/"); sidebarr
   // };
 
   const dispatch = useDispatch();
