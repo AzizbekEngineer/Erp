@@ -1,6 +1,6 @@
 .login {
   background: url(../../assets/image/bg.png);
-  background-color: #4880ff;
+  background-color: #2980b9;
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -55,6 +55,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       span {
         color: gray;
       }
@@ -67,7 +68,7 @@
     }
 
     &__link {
-      color: #4880ff;
+      color: #2980b9;
       padding-left: 10px;
     }
 
@@ -82,7 +83,7 @@
     }
 
     button {
-      background-color: #4880ff;
+      background-color: #2980b9;
       color: white;
       margin-top: 15px;
     }
