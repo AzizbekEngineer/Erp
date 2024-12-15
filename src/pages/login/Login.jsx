@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.scss";
 
 let initialState = {
-  username: "ramziddin",
+  email: "ramziddin",
   password: "12345677",
 };
 
@@ -29,7 +29,7 @@ const Login = () => {
     if (isSuccess) {
       localStorage.setItem("x-auth-token", data?.innerData?.token);
       dispatch(setToken(data?.innerData?.token));
-      navigate("/admin/customer");
+      navigate("/admin/students");
     }
   }, [isSuccess]);
 
@@ -51,10 +51,10 @@ const Login = () => {
         <label htmlFor="">
           Foydalanuvchi shaxs
           <input
-            value={value.username}
-            name="username"
+            value={value.email}
+            name="email"
             onChange={handleChange}
-            placeholder="username"
+            placeholder="email"
             type="text"
           />
         </label>
