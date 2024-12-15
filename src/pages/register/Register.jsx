@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./register.scss";
 import { Link } from "react-router-dom";
+import { useRegisterUserMutation } from "../../context/api/userApi";
+
+let initialState = {
+  username: "",
+  email: "",
+  password: "",
+};
 
 const Register = () => {
+  const [live, setLive] = useState(initialState);
+  const [register, { data }] = useRegisterUserMutation();
+
+  let handleChange = (e) => {
+    let { value, name } = e.target;
+    setLive((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    register(live);
+    console.log("ok");
+  };
+
   return (
     <div className="register">
-      <form className="register__form" action="">
+      <form onSubmit={handleSubmit} className="register__form" action="">
         <div>
           <h3 className="register__form__title">Hisob ochish</h3>
           <p className="register__form__text">
@@ -13,19 +34,38 @@ const Register = () => {
           </p>
         </div>
         <label htmlFor="">
-          Electron pochta
-          <input placeholder="esteban_schiller@gmail.com" type="text" />
+          Foydalanuvchi Shaxs
+          <input
+            value={live.username}
+            name="username"
+            onChange={handleChange}
+            placeholder="Foydalanuvchi shaxs"
+            type="text"
+          />
         </label>
         <label htmlFor="">
-          Foydalanuvchi Shaxs
-          <input placeholder="Foydalanuvchi shaxs" type="text" />
+          Electron pochta
+          <input
+            value={live.email}
+            name="email"
+            onChange={handleChange}
+            placeholder="esteban_schiller@gmail.com"
+            type="text"
+          />
         </label>
+
         <label htmlFor="">
           <div className="register__form__info">
             <p>parol</p>
             <span>parol unitdingizmi?</span>
           </div>
-          <input placeholder="parol" type="text" />
+          <input
+            value={live.password}
+            name="password"
+            onChange={handleChange}
+            placeholder="parol"
+            type="text"
+          />
           <div className="register__form__check">
             <input type="checkbox" />
             Men shart va shartlarni qabul qilaman

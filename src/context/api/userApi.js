@@ -19,7 +19,7 @@ export const userApi = api.injectEndpoints({
     }),
     registerUser: build.mutation({
       query: (body) => ({
-        url: "/trade.namtech.uz/admin/sign-up",
+        url: "/auth/register/user",
         method: "POST",
         body,
       }),
