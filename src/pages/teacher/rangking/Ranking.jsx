@@ -8,13 +8,22 @@ const students = [
   { id: 4, name: "Ziyoda Usmonova" },
 ];
 
-const lessons = Array.from({ length: 20 }, (_, index) => {
-  const date = new Date(2024, 11, index + 1);
-  return date.toLocaleDateString("uz-UZ", { day: "2-digit", month: "2-digit" });
-});
+// Funksiya: Oy uchun 20 kunlik sanalarni yaratish
+const generateLessons = (month, year) => {
+  return Array.from({ length: 20 }, (_, index) => {
+    const date = new Date(year, month, index + 1);
+    return date.toLocaleDateString("uz-UZ", {
+      day: "2-digit",
+      month: "2-digit",
+    });
+  });
+};
 
 const Ranking = () => {
+  const [selectedMonth, setSelectedMonth] = useState(11); // Boshlang'ich oy: dekabr (11)
   const [grades, setGrades] = useState({});
+
+  const lessons = generateLessons(selectedMonth, 2024); // Tanlangan oyni jadvali
 
   const handleGradeChange = (studentId, day, value) => {
     setGrades((prevGrades) => ({
@@ -26,9 +35,28 @@ const Ranking = () => {
     }));
   };
 
+  const handleMonthChange = (event) => {
+    setSelectedMonth(parseInt(event.target.value));
+  };
+
   return (
     <div className="ranking-container">
-      <h1 className="ranking-title">Kunlik Baholar Jadvali</h1>
+      <div className="ranking-top">
+        <h1 className="ranking-title">Kunlik Baholar Jadvali</h1>
+        <select
+          className="ranking-month-select"
+          value={selectedMonth}
+          onChange={handleMonthChange}
+        >
+          {Array.from({ length: 12 }, (_, index) => (
+            <option key={index} value={index}>
+              {new Date(2024, index).toLocaleDateString("uz-UZ", {
+                month: "long",
+              })}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="ranking-table-wrapper">
         <table className="ranking-table">
           <thead>

@@ -6,6 +6,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
 
+    .ranking-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
     .ranking-title {
         text-align: center;
         margin-bottom: 20px;
@@ -13,6 +20,23 @@
         font-size: 24px;
         font-weight: bold;
     }
+
+    select,
+    option {
+        outline: none;
+        border: 2px solid #2980b9;
+        color: white;
+        padding: 6px 15px;
+        border-radius: 5px;
+        width: 150px;
+        background: #2980b9;
+    }
+
+    option:hover {
+        background: red;
+    }
+
+
 
     .ranking-table {
         width: 100%;
