@@ -40,7 +40,7 @@ export const SellerAPi = api.injectEndpoints({
     updateSeller: build.mutation({
       query: ({ id, body }) => ({
         url: `/update/seller/${id}`,
-        method: "PUT", // or "PATCH"
+        method: "PUT",
         body,
       }),
       invalidatesTags: ["Seller"],

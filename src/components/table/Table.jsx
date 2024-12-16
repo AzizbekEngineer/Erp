@@ -57,19 +57,7 @@ const Table = () => {
       <td data-cell="nomer">
         {el?.phone_primary ? el?.phone_primary : "+998123531282"}
       </td>
-      <td data-cell="budget">
-        {el?.budget}
-        {/* <div
-          className={`table__budget ${
-            el?.budget > 0
-              ? "table__budget__blue"
-              : el?.budget === 0
-              ? "table__budget__green"
-              : "table__budget__red"
-          }`}
-        > */}
-        {/* </div> */}
-      </td>
+      <td data-cell="budget">{el?.budget}</td>
 
       <td data-cell="info" className="table__btns">
         <button onClick={() => setTableClose(el)} className="table__btns-price">
@@ -121,11 +109,6 @@ const Table = () => {
           <option value="1">N5</option>
           <option value="-1">N7</option>
         </select>
-
-        <select onChange={handleCreatedAt} name="" id="">
-          <option value="1">Old</option>
-          <option value="-1">Lat</option>
-        </select>
       </div>
 
       <table className="table__row">
@@ -133,9 +116,9 @@ const Table = () => {
           <tr style={{ textAlign: "center" }}>
             <th>id</th>
             <th>Ism</th>
+            <th>Familiya</th>
             <th>Manzil</th>
             <th>Telefon nomer</th>
-            <th>Pul</th>
             <th style={{ paddingLeft: "100px" }}>/</th>
           </tr>
         </thead>

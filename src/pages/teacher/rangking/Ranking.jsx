@@ -6,9 +6,12 @@ const students = [
   { id: 2, name: "Malika Karimova" },
   { id: 3, name: "Jasur Yuldashev" },
   { id: 4, name: "Ziyoda Usmonova" },
+  { id: 5, name: "Ali Ahmedov" },
+  { id: 6, name: "Malika Karimova" },
+  { id: 7, name: "Jasur Yuldashev" },
+  { id: 8, name: "Ziyoda Usmonova" },
 ];
 
-// Funksiya: Oy uchun 20 kunlik sanalarni yaratish
 const generateLessons = (month, year) => {
   return Array.from({ length: 20 }, (_, index) => {
     const date = new Date(year, month, index + 1);
@@ -20,10 +23,10 @@ const generateLessons = (month, year) => {
 };
 
 const Ranking = () => {
-  const [selectedMonth, setSelectedMonth] = useState(11); // Boshlang'ich oy: dekabr (11)
+  const [selectedMonth, setSelectedMonth] = useState(11);
   const [grades, setGrades] = useState({});
 
-  const lessons = generateLessons(selectedMonth, 2024); // Tanlangan oyni jadvali
+  const lessons = generateLessons(selectedMonth, 2024);
 
   const handleGradeChange = (studentId, day, value) => {
     setGrades((prevGrades) => ({
