@@ -64,7 +64,7 @@ const Ranking = () => {
         <table className="ranking-table">
           <thead>
             <tr>
-              <th className="sticky-col">O'quvchi</th>
+              <th className="sticky-col ">O'quvchi</th>
               {lessons.map((date, index) => (
                 <th key={index}>{date}</th>
               ))}

@@ -14,6 +14,7 @@ import Homework from "./pages/admin/homework/Homework";
 import CreateTeacher from "./pages/admin/createTeacher/CreateTeacher";
 import Teachers from "./pages/admin/teachers/Teachers";
 import Ranking from "./pages/teacher/rangking/Ranking";
+import Course from "./pages/courses/Course";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="ranking" element={<Ranking />} />
             <Route path="profile" element={<Profile />} />
             <Route path="createTeacher" element={<CreateTeacher />} />
+            <Route path="course" element={<Course />} />
           </Route>
         </Route>
       </Routes>

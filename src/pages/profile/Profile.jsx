@@ -11,7 +11,6 @@ const Profile = () => {
   // const profile = data?.payload || {};
 
   return (
-    <div></div>
     // <div className="profile">
     //   <div className="profile__container">
     //     <div className="profile__header">
@@ -67,6 +66,7 @@ const Profile = () => {
     //     </div>
     //   </div>
     // </div>
+    <div>Profile</div>
   );
 };
 
