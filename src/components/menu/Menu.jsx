@@ -22,14 +22,9 @@ function Menu({ setClose }) {
         <FaBell />
         <select name="" id="">
           <option value="Uzb">Uzb</option>
-          <option value="Eng">Eng</option>
           <option value="Rus">Rus</option>
         </select>
-        <div className="products__top__right__acc">
-          {/* <FaRegCircleUser />
-          <p className="products__top__title">John doe</p> */}
-          {/* <button>ER</button> */}
-        </div>
+        <div className="products__top__right__acc"></div>
       </div>
     </div>
   );

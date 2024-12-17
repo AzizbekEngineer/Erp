@@ -46,12 +46,7 @@ const Table = () => {
 
   const customerTbody = CUSTOM.map((el, index) => (
     <tr key={el?._id}>
-      <td data-cell="id">
-        {/* <button className="table__pin" onClick={() => handlePinClick(el)}>
-          {el?.pin === true ? <ImPushpin /> : <GrPin />}
-        </button> */}
-        00{index + 1}
-      </td>
+      <td data-cell="id">00{index + 1}</td>
       <td data-cell="name">{el?.fname}</td>
       <td data-cell="budget">{el?.lname}</td>
       <td data-cell="manzil">{el?.address}</td>

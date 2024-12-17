@@ -62,16 +62,21 @@
       font-size: 24px;
     }
 
-
     select {
       height: 28px;
       width: 80px;
       padding: 2px 4px;
       outline: none;
+      background-color: #2980b9;
       border: 1px solid #2980b9;
       border-radius: 5px;
-      color: #2980b9;
+      color: #fff;
       cursor: pointer;
+    }
+
+    option {
+      background-color: white;
+      color: #2980b9;
     }
 
     &__title {
