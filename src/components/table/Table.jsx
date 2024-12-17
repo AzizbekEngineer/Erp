@@ -44,25 +44,22 @@ const Table = () => {
     pinCustom({ id: el._id, body: pinData });
   };
 
-  const customerTbody = data?.innerData?.map((el, index) => (
+  const customerTbody = CUSTOM.map((el, index) => (
     <tr key={el?._id}>
       <td data-cell="id">
-        <button className="table__pin" onClick={() => handlePinClick(el)}>
+        {/* <button className="table__pin" onClick={() => handlePinClick(el)}>
           {el?.pin === true ? <ImPushpin /> : <GrPin />}
-        </button>
+        </button> */}
         00{index + 1}
       </td>
       <td data-cell="name">{el?.fname}</td>
+      <td data-cell="budget">{el?.lname}</td>
       <td data-cell="manzil">{el?.address}</td>
       <td data-cell="nomer">
         {el?.phone_primary ? el?.phone_primary : "+998123531282"}
       </td>
-      <td data-cell="budget">{el?.budget}</td>
 
       <td data-cell="info" className="table__btns">
-        <button onClick={() => setTableClose(el)} className="table__btns-price">
-          Tolov
-        </button>
         <Link to={`/admin/customer/${el?._id}`}>
           <button className="table__btns-view">batafsil</button>
         </Link>

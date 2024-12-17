@@ -15,6 +15,7 @@ import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logout } from "../../context/slices/authSlice";
 import img from "../../assets/icons/curse.png";
+import { PiRanking } from "react-icons/pi";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -84,7 +85,7 @@ function Sidebar() {
           </li>
           <li className="sidebar__list">
             <NavLink to={"studentsRank"} className={"sidebar__left__text"}>
-              <GiSilverBullet />
+              <PiRanking />
               O'quvchilar reytingi
             </NavLink>
           </li>
