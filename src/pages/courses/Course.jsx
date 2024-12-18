@@ -97,48 +97,48 @@ const Course = () => {
     <>
       <div className="course">
         <div className="course__top">
-          <h2>Create Course</h2>
+          <h2>Kurs Royxati</h2>
           <button
             onClick={() => setCreateHide(true)}
             className="course__create-btn"
           >
-            Create Course
+            Kurs yaratish
           </button>
         </div>
         <ul>
           <li>
             <span>Rus tili</span>
             <div className="course__btn">
-              <button onClick={() => setCourseHide(true)}>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => setCourseHide(true)}>Tahrirlash</button>
+              <button>O'chirish</button>
             </div>
           </li>
           <li>
             <span>Ingliz tili</span>
             <div className="course__btn">
-              <button onClick={() => setCourseHide(true)}>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => setCourseHide(true)}>Tahrirlash</button>
+              <button>O'chirish</button>
             </div>
           </li>
           <li>
             <span>Matematika</span>
             <div className="course__btn">
-              <button onClick={() => setCourseHide(true)}>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => setCourseHide(true)}>Tahrirlash</button>
+              <button>O'chirish</button>
             </div>
           </li>
           <li>
             <span>Fizika</span>
             <div className="course__btn">
-              <button onClick={() => setCourseHide(true)}>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => setCourseHide(true)}>Tahrirlash</button>
+              <button>O'chirish</button>
             </div>
           </li>
           <li>
             <span>Informatika</span>
             <div className="course__btn">
-              <button onClick={() => setCourseHide(true)}>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => setCourseHide(true)}>Tahrirlash</button>
+              <button>O'chirish</button>
             </div>
           </li>
         </ul>
@@ -147,7 +147,7 @@ const Course = () => {
         <Module close={setCourseHide} width={500} bg={"#aaa6"}>
           <form className="course__edit" action="">
             <input type="text" placeholder="Edit course name" />
-            <button>Save</button>
+            <button>Saqlash</button>
           </form>
         </Module>
       ) : (
@@ -156,10 +156,10 @@ const Course = () => {
       {createHide ? (
         <Module close={setCreateHide} width={500} bg={"#aaa6"}>
           <div className="course__create">
-            <h3>Create New Course</h3>
+            <h3>Yangi kurs yaratish</h3>
             <form className="course__edit" action="">
               <input type="text" placeholder="Enter course name" />
-              <button>Create</button>
+              <button>Yaratish</button>
             </form>
           </div>
         </Module>

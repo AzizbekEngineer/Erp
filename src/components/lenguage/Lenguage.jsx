@@ -1,6 +1,7 @@
 import { memo, useState } from "react";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import { FlagIcon } from "react-flag-kit";
+import { useTranslation } from "react-i18next";
 
 const languages = [
   { code: "uz", name: "O'zbek", flag: "UZ" },
@@ -8,8 +9,11 @@ const languages = [
 ];
 
 const Language = () => {
+  const { i18n } = useTranslation(); // Tilni o'zgartirish uchun hook
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    languages.find((lang) => lang.code === i18n.language) || languages[0]
+  );
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,6 +25,7 @@ const Language = () => {
 
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
+    i18n.changeLanguage(language.code); // Tilni o'zgartirish
     handleClose();
   };
 

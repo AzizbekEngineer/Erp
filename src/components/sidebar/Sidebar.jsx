@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
 import "./sidebar.scss";
 import { GiSilverBullet } from "react-icons/gi";
 import { IoMdSettings } from "react-icons/io";
-import { FaRegUser } from "react-icons/fa6";
+import { FaRegUser } from "react-icons/fa";
 import { LuUserPlus } from "react-icons/lu";
 import { useGetAdminsQuery } from "../../context/api/adminApi";
 import { CiMenuKebab } from "react-icons/ci";
@@ -18,6 +20,8 @@ import img from "../../assets/icons/curse.png";
 import { PiRanking } from "react-icons/pi";
 
 function Sidebar() {
+  const { t, i18n } = useTranslation();
+
   const navigate = useNavigate();
   const [profileHide, setProfileHide] = useState(null);
 
@@ -74,7 +78,7 @@ function Sidebar() {
           <li className="sidebar__list">
             <NavLink to={"students"} className={"sidebar__left__text"}>
               <FaRegUser />
-              O'quvchilar
+              {t("student")}
             </NavLink>
           </li>
           <li className="sidebar__list">

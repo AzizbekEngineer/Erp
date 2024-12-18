@@ -3,10 +3,11 @@ import { TfiMenu } from "react-icons/tfi";
 import { FaBell } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 import "./menu.scss";
-import Lenguage from "../lenguage/Lenguage";
 
 function Menu({ setClose }) {
+  const { t, i18n } = useTranslation();
   return (
     <div className="products__top">
       <div className="products__top__left">
@@ -21,7 +22,14 @@ function Menu({ setClose }) {
 
       <div className="products__top__right">
         <FaBell />
-        <Lenguage />
+        <select
+          onChange={(e) => i18n.changeLanguage(e.target.value)}
+          name=""
+          id=""
+        >
+          <option value="uzb">Uzbek</option>
+          <option value="rus">Rus</option>
+        </select>
       </div>
     </div>
   );
