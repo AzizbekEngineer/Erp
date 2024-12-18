@@ -15,6 +15,7 @@ import Teachers from "./pages/admin/teachers/Teachers";
 import Ranking from "./pages/teacher/rangking/Ranking";
 import Course from "./pages/courses/Course";
 import StudentRating from "./pages/admin/studentsRank/StudentsRank";
+import Group from "./pages/group/Group";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="createStudents" element={<CreateStudents />} />
             <Route path="customer/:id" element={<SingleCustomer />} />
             <Route path="teachers" element={<Teachers />} />
+            <Route path="group" element={<Group />} />
             <Route path="ranking" element={<Ranking />} />
             <Route path="profile" element={<Profile />} />
             <Route path="createTeacher" element={<CreateTeacher />} />

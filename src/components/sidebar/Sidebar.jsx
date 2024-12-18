@@ -84,6 +84,12 @@ function Sidebar() {
             </NavLink>
           </li>
           <li className="sidebar__list">
+            <NavLink to={"group"} className={"sidebar__left__text"}>
+              <LuUserPlus />
+              Gruhlar
+            </NavLink>
+          </li>
+          <li className="sidebar__list">
             <NavLink to={"StudentRating"} className={"sidebar__left__text"}>
               <PiRanking />
               O'quvchilar reytingi
