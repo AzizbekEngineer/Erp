@@ -21,13 +21,12 @@ const tasks = [
     deadline: "2024-12-25",
     status: "Jarayonda",
   },
-  // Qo'shimcha vazifalarni kiriting
 ];
 
 const Homework = () => {
   return (
     <div className="tasks">
-      <h1 className="title">Vazifalar Bo'limi</h1>
+      {/* <h1 className="title">Vazifalar Bo'limi</h1> */}
       <table className="tasks-table">
         <thead>
           <tr>
