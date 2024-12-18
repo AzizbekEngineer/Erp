@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import "./createTeacher.scss";
 
 const CreateTeacher = () => {
+  const [phone, setPhone] = useState("");
+
   return (
     <div className="createTeacher container">
       <h2 className="createTeacher__title">O'qituvchi yaratish</h2>
@@ -27,16 +31,26 @@ const CreateTeacher = () => {
           />
         </label>
         <label htmlFor="phone">
-          Telefon raqami
-          <input
-            type="text"
-            id="phone"
-            name="phone"
-            placeholder="Telefon raqamingizni kiriting"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            required
-          />
-          <small>Format: +998 93 612 34 34</small>
+          Telefon raqam
+          <div>
+            <PhoneInput
+              country={"uz"}
+              value={phone}
+              onChange={(phone) => setPhone(phone)}
+              placeholder="Telefon raqamini kiriting"
+              inputStyle={{
+                width: "100%",
+                padding: "20px 45px",
+                fontSize: "14px",
+                border: "1px solid #dcdfe3",
+                borderRadius: "8px",
+              }}
+              buttonStyle={{
+                background: "#f9fafe",
+              }}
+            />
+            {/* <p className="phone-display">Telefon raqam: {phone}</p> */}
+          </div>
         </label>
         <label htmlFor="address">
           Manzil
