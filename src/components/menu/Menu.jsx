@@ -4,6 +4,7 @@ import { FaBell } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { FaRegCircleUser } from "react-icons/fa6";
 import "./menu.scss";
+import Lenguage from "../lenguage/Lenguage";
 
 function Menu({ setClose }) {
   return (
@@ -20,11 +21,7 @@ function Menu({ setClose }) {
 
       <div className="products__top__right">
         <FaBell />
-        <select name="" id="">
-          <option value="Uzb">Uzb</option>
-          <option value="Rus">Rus</option>
-        </select>
-        <div className="products__top__right__acc"></div>
+        <Lenguage />
       </div>
     </div>
   );
