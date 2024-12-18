@@ -9,12 +9,12 @@ import Register from "./pages/register/Register";
 import Profile from "./pages/profile/Profile";
 import Students from "./pages/admin/students/Students";
 import CreateStudents from "./pages/create/CreateStudents";
-import StudentsRank from "./pages/admin/studentsRank/StudentsRank";
 import Homework from "./pages/admin/homework/Homework";
 import CreateTeacher from "./pages/admin/createTeacher/CreateTeacher";
 import Teachers from "./pages/admin/teachers/Teachers";
 import Ranking from "./pages/teacher/rangking/Ranking";
 import Course from "./pages/courses/Course";
+import StudentRating from "./pages/admin/studentsRank/StudentsRank";
 
 const App = () => {
   return (
@@ -26,7 +26,7 @@ const App = () => {
         <Route path="/" element={<Auth />}>
           <Route path="admin/" element={<Admin />}>
             <Route path="students" element={<Students />} />
-            <Route path="studentsRank" element={<StudentsRank />} />
+            <Route path="StudentRating" element={<StudentRating />} />
             <Route path="homework" element={<Homework />} />
             <Route path="createStudents" element={<CreateStudents />} />
             <Route path="customer/:id" element={<SingleCustomer />} />

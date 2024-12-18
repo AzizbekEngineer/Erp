@@ -84,7 +84,7 @@ function Sidebar() {
             </NavLink>
           </li>
           <li className="sidebar__list">
-            <NavLink to={"studentsRank"} className={"sidebar__left__text"}>
+            <NavLink to={"StudentRating"} className={"sidebar__left__text"}>
               <PiRanking />
               O'quvchilar reytingi
             </NavLink>

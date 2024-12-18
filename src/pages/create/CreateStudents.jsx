@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import "./createStudents.scss";
 
 const CreateStudents = () => {
+  const [phone, setPhone] = useState("");
   return (
     <div className="createStudents container">
       <h2 className="createStudents__title">O'quvchi yaratish</h2>
@@ -27,16 +30,26 @@ const CreateStudents = () => {
           />
         </label>
         <label htmlFor="phone">
-          Telefon raqami
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Telefon raqamingizni kiriting"
-            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-            required
-          />
-          <small>Format: +998 93 612 34 34</small>
+          Telefon raqam
+          <div>
+            <PhoneInput
+              country={"uz"}
+              value={phone}
+              onChange={(phone) => setPhone(phone)}
+              placeholder="Telefon raqamini kiriting"
+              inputStyle={{
+                width: "100%",
+                padding: "20px 45px",
+                fontSize: "14px",
+                border: "1px solid #dcdfe3",
+                borderRadius: "8px",
+              }}
+              buttonStyle={{
+                background: "#f9fafe",
+              }}
+            />
+            {/* <p className="phone-display">Telefon raqam: {phone}</p> */}
+          </div>
         </label>
         <label htmlFor="address">
           Manzil
@@ -50,13 +63,22 @@ const CreateStudents = () => {
         </label>
         <label htmlFor="course">
           Kurs
-          <input
-            type="text"
-            id="course"
-            name="course"
-            placeholder="Qaysi kursga yozilmoqdasiz?"
-            required
-          />
+          <select name="" id="">
+            <option value="">Kursni tanlang</option>
+            <option value="">Rus tili</option>
+            <option value="">Inglis tili</option>
+            <option value="">Matem</option>
+            <option value="">Informatika</option>
+          </select>
+        </label>
+        <label htmlFor="teacher">
+          Teacher
+          <select name="" id="">
+            <option value="">O'qituvchi tanlash</option>
+            <option value="">Azizbek</option>
+            <option value="">Ramziddin</option>
+            <option value="">Vali</option>
+          </select>
         </label>
         <button type="submit">Yaratish</button>
       </form>
