@@ -90,7 +90,7 @@ function Sidebar() {
           <li className="sidebar__list">
             <NavLink to={"group"} className={"sidebar__left__text"}>
               <LuUserPlus />
-              Gruhlar
+              {t("groups")}
             </NavLink>
           </li>
           <li className="sidebar__list">
@@ -120,7 +120,7 @@ function Sidebar() {
           <li className="sidebar__list">
             <NavLink to={"teachers"} className={"sidebar__left__text"}>
               <FaRegUser />
-              O'qituvchilar
+              {t("teacher")}
             </NavLink>
           </li>
           <li className="sidebar__list">
