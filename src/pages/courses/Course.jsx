@@ -24,7 +24,7 @@ const Course = () => {
     createCourse(formData);
     console.log(formData);
     setFormData(initialState);
-    // navigate("/admin/manageCategory");
+    setCreateHide(false);
   };
 
   console.log(courseData);
@@ -44,7 +44,10 @@ const Course = () => {
         <ul>
           {courseData?.map((course) => (
             <li key={course.id}>
-              <span>{course.name}</span>
+              <div>
+                <h3>{course?.name}</h3>
+                <span>{course?.description}</span>
+              </div>
               <div className="course__btn">
                 <button onClick={() => setCourseHide(true)}>Tahrirlash</button>
                 <button>O'chirish</button>
