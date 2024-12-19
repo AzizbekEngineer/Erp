@@ -42,7 +42,6 @@ const Teachers = () => {
 
   return (
     <div className="teachers">
-      {/* <h2>O'qituvchilar ro'yxati</h2> */}
       <div className="teacher-list">
         {teachers.map((teacher) => (
           <div key={teacher.id} className="teacher-card">

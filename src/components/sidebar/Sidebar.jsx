@@ -78,55 +78,55 @@ function Sidebar() {
           <li className="sidebar__list">
             <NavLink to={"students"} className={"sidebar__left__text"}>
               <FaRegUser />
-              {t("student")}
+              {t("O'quvchilar")}
             </NavLink>
           </li>
           <li className="sidebar__list">
             <NavLink to={"createStudents"} className={"sidebar__left__text"}>
               <LuUserPlus />
-              O'quvchi Yaratish
+              {t("O'quvchi Yaratish")}
             </NavLink>
           </li>
           <li className="sidebar__list">
             <NavLink to={"group"} className={"sidebar__left__text"}>
               <LuUserPlus />
-              {t("groups")}
+              {t("Gruhlar")}
             </NavLink>
           </li>
           <li className="sidebar__list">
             <NavLink to={"StudentRating"} className={"sidebar__left__text"}>
               <PiRanking />
-              O'quvchilar reytingi
+              {t("O'quvchilar reytingi")}
             </NavLink>
           </li>
           <li className="sidebar__list">
             <NavLink to={"ranking"} className={"sidebar__left__text"}>
               <GiSilverBullet />
-              O'quvchilar kunlik ball
+              {t("O'quvchilar kunlik ball")}
             </NavLink>
           </li>
           <li className="sidebar__list">
             <NavLink to={"course"} className={"sidebar__left__text"}>
               <img src={img} alt="" width={27} height={30} />
-              Kurslar royxati
+              {t("Kurslar royxati")}
             </NavLink>
           </li>
           <li className="sidebar__list">
             <NavLink to={"homework"} className={"sidebar__left__text"}>
               <LiaWarehouseSolid />
-              Vazifalar
+              {t("Vazifalar")}
             </NavLink>
           </li>
           <li className="sidebar__list">
             <NavLink to={"teachers"} className={"sidebar__left__text"}>
               <FaRegUser />
-              {t("teacher")}
+              {t("O'qituvchilar")}
             </NavLink>
           </li>
           <li className="sidebar__list">
             <NavLink to={"createTeacher"} className={"sidebar__left__text"}>
               <LuUserPlus />
-              O'qituvchi yaratish
+              {t("O'qituvchi yaratish")}
             </NavLink>
           </li>
         </ul>
@@ -134,14 +134,14 @@ function Sidebar() {
       <div className="sidebar__btns">
         <div className="sidebar__btns__title">
           <IoMdSettings />
-          <p>Sozlamalar</p>
+          <p>{t("Sozlamalar")}</p>
         </div>
         <div
           className="sidebar__btns__title"
           onClick={() => dispatch(logout())}
         >
           <CiLogout />
-          <p>Chiqish</p>
+          <p>{t("Chiqish")}</p>
         </div>
       </div>
     </section>

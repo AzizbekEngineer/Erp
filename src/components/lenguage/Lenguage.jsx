@@ -9,7 +9,7 @@ const languages = [
 ];
 
 const Language = () => {
-  const { i18n } = useTranslation(); // Tilni o'zgartirish uchun hook
+  const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(
     languages.find((lang) => lang.code === i18n.language) || languages[0]
