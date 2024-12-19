@@ -1,8 +1,4 @@
 import React, { useEffect, useState } from "react";
-import {
-  useGetCustomerByIdQuery,
-  useUpdateCustomerMutation,
-} from "../../context/api/customerApi";
 import { useParams } from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 
