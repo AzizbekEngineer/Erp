@@ -1,21 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./createTeacher.scss";
+import { useCreateCourseMutation } from "../../../context/api/courseApi";
+import { useGetValue } from "../../../hooks/useGetValue";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  phone: "",
+  address: "",
+  specialty: "",
+};
 
 const CreateTeacher = () => {
-  const [phone, setPhone] = useState("");
+  const [createTeacher, { data }] = useCreateCourseMutation();
+  const { formData, setFormData, handleChange } = useGetValue(initialState);
+
+  const handleCreateTeacher = (e) => {
+    e.preventDefault();
+    createTeacher(formData);
+    console.log(formData);
+    setFormData(initialState);
+  };
+
+  const handlePhoneChange = (phone) => {
+    setFormData({ ...formData, phone });
+  };
 
   return (
     <div className="createTeacher container">
       <h2 className="createTeacher__title">O'qituvchi yaratish</h2>
-      <form action="#">
+      <form onSubmit={handleCreateTeacher} action="#">
         <label htmlFor="fname">
           Ism
           <input
             type="text"
-            id="fname"
-            name="fname"
+            value={formData.firstName}
+            name="firstName"
+            onChange={handleChange}
             placeholder="Ismingizni kiriting"
             required
           />
@@ -24,8 +47,9 @@ const CreateTeacher = () => {
           Familiya
           <input
             type="text"
-            id="lname"
-            name="lname"
+            value={formData.lastName}
+            name="lastName"
+            onChange={handleChange}
             placeholder="Familiyangizni kiriting"
             required
           />
@@ -35,8 +59,8 @@ const CreateTeacher = () => {
           <div>
             <PhoneInput
               country={"uz"}
-              value={phone}
-              onChange={(phone) => setPhone(phone)}
+              value={formData.phone}
+              onChange={handlePhoneChange}
               placeholder="Telefon raqamini kiriting"
               inputStyle={{
                 width: "100%",
@@ -49,16 +73,27 @@ const CreateTeacher = () => {
                 background: "#f9fafe",
               }}
             />
-            {/* <p className="phone-display">Telefon raqam: {phone}</p> */}
           </div>
         </label>
         <label htmlFor="address">
           Manzil
           <input
             type="text"
-            id="address"
+            value={formData.address}
             name="address"
+            onChange={handleChange}
             placeholder="Manzilingizni kiriting"
+            required
+          />
+        </label>
+        <label htmlFor="specialty">
+          Mutaxassislik
+          <input
+            type="text"
+            value={formData.specialty}
+            name="specialty"
+            onChange={handleChange}
+            placeholder="Mutaxassislikni kiriting"
             required
           />
         </label>

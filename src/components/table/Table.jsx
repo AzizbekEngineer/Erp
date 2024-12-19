@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-import {
-  useGetCustomerByIdQuery,
-  useGetCustomersQuery,
-  useUpdateCustomerMutation,
-} from "../../context/api/customerApi";
 import "./table.scss";
 import { CUSTOM } from "../../static";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,32 +12,11 @@ import Stack from "@mui/material/Stack";
 
 const Table = () => {
   const [tableClose, setTableClose] = useState(false);
-  const [pinCustom, {}] = useUpdateCustomerMutation();
   const [budget, setBudget] = useState(2);
   const [budgetDebt, setBudgetDebt] = useState(2);
   const [filter, setFilter] = useState(0);
   const [createdAt, setCreatedAt] = useState(-1);
   const [page, setPage] = useState(1);
-  const handleChange = (event, value) => {
-    setPage(value);
-  };
-
-  const { data, isLoading, isSuccess } = useGetCustomersQuery({
-    page: page - 1,
-    budget,
-    budgetDebt,
-    filter,
-    createdAt,
-  });
-  let pageLength = Math.ceil(data?.totalCount / 10);
-
-  const handlePinClick = (el) => {
-    const pinData = {
-      ...el,
-      pin: !el.pin,
-    };
-    pinCustom({ id: el._id, body: pinData });
-  };
 
   const customerTbody = CUSTOM.map((el, index) => (
     <tr key={el?._id}>
@@ -82,7 +56,7 @@ const Table = () => {
   return (
     <div className="table">
       <div className="table__select">
-        <button>Jami: {data?.totalCount}</button>
+        <button>Jami:</button>
         <select onChange={handleSelect} name="" id="">
           <option value="2">Barchasi</option>
           <option value="1">To'lov qilgan</option>
@@ -125,7 +99,7 @@ const Table = () => {
       </table>
       <div className="table__pagenation">
         <Stack spacing={2}>
-          <Pagination count={pageLength} page={page} onChange={handleChange} />
+          <Pagination />
         </Stack>
       </div>
     </div>

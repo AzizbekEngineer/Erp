@@ -3,21 +3,21 @@ import { api } from ".";
 export const courseApi = api.injectEndpoints({
   endpoints: (build) => ({
     getCourses: build.query({
-      query: ({ params }) => ({
-        url: ``,
+      query: (params) => ({
+        url: `/courses`,
         params,
       }),
       providesTags: ["Course"],
     }),
     getCourseById: build.query({
       query: (id) => ({
-        url: `/get/Course/${id}`,
+        url: `/courses/${id}`,
       }),
       providesTags: ["Course"],
     }),
     createCourse: build.mutation({
       query: (body) => ({
-        url: "/create/Course",
+        url: "/courses",
         method: "POST",
         body,
       }),
