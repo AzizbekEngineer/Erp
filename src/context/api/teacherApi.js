@@ -7,7 +7,7 @@ export const teacherApi = api.injectEndpoints({
         url: "/teachers",
         params,
       }),
-      providesTags: ["Admin", "Customer"],
+      providesTags: ["Teacher", "Customer"],
     }),
     createTeacher: build.mutation({
       query: (body) => ({
@@ -15,14 +15,14 @@ export const teacherApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["Admin", "Customer"],
+      invalidatesTags: ["Teacher", "Customer"],
     }),
     deleteTeacher: build.mutation({
       query: (id) => ({
         url: `/teachers/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Admin", "Customer"],
+      invalidatesTags: ["Teacher", "Customer"],
     }),
     updateTeacher: build.mutation({
       query: ({ id, body }) => ({
@@ -30,7 +30,7 @@ export const teacherApi = api.injectEndpoints({
         method: "PATCH", // or "PATCH"
         body,
       }),
-      invalidatesTags: ["Admin", "Customer"],
+      invalidatesTags: ["Teacher", "Customer"],
     }),
   }),
 });
