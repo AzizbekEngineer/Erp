@@ -27,7 +27,7 @@ export const teacherApi = api.injectEndpoints({
     updateTeacher: build.mutation({
       query: ({ id, body }) => ({
         url: `/teachers/${id}`,
-        method: "PATCH", // or "PATCH"
+        method: "PUT", // or "PATCH"
         body,
       }),
       invalidatesTags: ["Teacher", "Customer"],

@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./createStudents.scss";
-import { useGetGroupsQuery } from "../../context/api/groupApi";
+import { useGetGroupsCourseIdQuery } from "../../context/api/groupApi";
 import { useGetCoursesQuery } from "../../context/api/courseApi";
 
 const CreateStudents = () => {
   const [phone, setPhone] = useState("");
   const { data: courseData } = useGetCoursesQuery();
-  const { data: groupData } = useGetGroupsQuery();
+  const { data: groupData } = useGetGroupsCourseIdQuery();
+  console.log(groupData);
+
   return (
     <div className="createStudents container">
       <h2 className="createStudents__title">O'quvchi yaratish</h2>

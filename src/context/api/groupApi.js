@@ -9,6 +9,13 @@ export const groupApi = api.injectEndpoints({
       }),
       providesTags: ["Group"],
     }),
+    getGroupsCourseId: build.query({
+      query: (params) => ({
+        url: `/groups/course${id}`,
+        params,
+      }),
+      providesTags: ["Group"],
+    }),
     getGroupById: build.query({
       query: (id) => ({
         url: `/groups/${id}`,
@@ -43,6 +50,7 @@ export const groupApi = api.injectEndpoints({
 
 export const {
   useGetGroupsQuery,
+  useGetGroupsCourseIdQuery,
   useGetGroupByIdQuery,
   useCreateGroupMutation,
   useDeleteGroupMutation,

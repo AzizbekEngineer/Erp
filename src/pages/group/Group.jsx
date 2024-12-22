@@ -93,6 +93,7 @@
 // };
 
 // export default Group;import React, { useState } from "react";
+
 import "./group.scss";
 import Module from "../../components/Module/Module";
 import {
@@ -118,6 +119,8 @@ const Group = () => {
   const { data: courseData } = useGetCoursesQuery();
   const { formData, setFormData, handleChange } = useGetValue(initialState);
   const [createGroup] = useCreateGroupMutation();
+
+  console.log(groups);
 
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
@@ -153,10 +156,14 @@ const Group = () => {
       </div>
       <ul className="group__list">
         {groups?.map((group) => (
-          <li key={group.id} className="group__item">
-            <h3 className="group__name">{group.name}</h3>
-            <p className="group__details">Teacher: {group.teacher}</p>
-            <p className="group__details">Course: {group.course}</p>
+          <li key={group?.id} className="group__item">
+            <h3 className="group__name">{group?.name}</h3>
+            <p className="group__details">
+              Teacher: {group?.teacher?.firstName || "Not Assigned"}
+            </p>
+            <p className="group__details">
+              Course: {group?.course?.name || "Not Assigned"}
+            </p>
           </li>
         ))}
       </ul>
@@ -177,8 +184,8 @@ const Group = () => {
                   Select a teacher
                 </option>
                 {teacherData?.map((teacher) => (
-                  <option key={teacher.id} value={teacher.id}>
-                    {teacher.firstName}
+                  <option key={teacher?.id} value={teacher?.id}>
+                    {teacher?.firstName}
                   </option>
                 ))}
               </select>
@@ -195,8 +202,8 @@ const Group = () => {
                   Select a course
                 </option>
                 {courseData?.map((course) => (
-                  <option key={course.id} value={course.id}>
-                    {course.name}
+                  <option key={course?.id} value={course?.id}>
+                    {course?.name}
                   </option>
                 ))}
               </select>

@@ -8,7 +8,6 @@ import { GiSilverBullet } from "react-icons/gi";
 import { IoMdSettings } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { LuUserPlus } from "react-icons/lu";
-import { useGetAdminsQuery } from "../../context/api/adminApi";
 import { CiMenuKebab } from "react-icons/ci";
 import { LiaWarehouseSolid } from "react-icons/lia";
 import { AiOutlineProfile } from "react-icons/ai";
