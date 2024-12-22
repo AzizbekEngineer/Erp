@@ -4,16 +4,6 @@ import "react-phone-input-2/lib/style.css";
 import "./createStudents.scss";
 import { useGetGroupsCourseIdQuery } from "../../context/api/groupApi";
 import { useGetCoursesQuery } from "../../context/api/courseApi";
-<<<<<<< HEAD
-import { useCreateStudentMutation } from "../../context/api/studentApi";
-import { useGetValue } from "../../hooks/useGetValue";
-
-const initialState = {
-  firstName: "Sardor",
-  lastName: "Toirov",
-  phone: "+998994374718",
-  address: "qashqadaryo",
-=======
 import {
   useCreateStudentMutation,
   useUpdateStudentMutation,
@@ -25,48 +15,11 @@ const initialState = {
   lastName: "",
   phone: "",
   address: "",
->>>>>>> origin/ramziddin
   courseId: "",
   groupId: "",
 };
 
 const CreateStudents = () => {
-<<<<<<< HEAD
-  const { formData, setFormData, handleChange } = useGetValue(initialState);
-
-  const [selectedCourseId, setSelectedCourseId] = useState(""); // Kurs id saqlash uchun state
-  const { data: courseData } = useGetCoursesQuery();
-  const [createStudent] = useCreateStudentMutation();
-  const { data: groupData } = useGetGroupsCourseIdQuery(selectedCourseId);
-
-  const handleCourseChange = (e) => {
-    const selectedId = parseInt(e.target.value, 10); // Convert to integer
-    setSelectedCourseId(selectedId);
-    setFormData((prev) => ({ ...prev, courseId: +selectedId }));
-  };
-
-  const handleGroupChange = (e) => {
-    const groupId = parseInt(e.target.value, 10); // Convert to integer
-    setFormData((prev) => ({ ...prev, groupId }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!/^\+\d{10,15}$/.test(formData.phone)) {
-      alert(
-        "Telefon raqam noto'g'ri formatda. Iltimos, to'g'ri raqam kiriting."
-      );
-      return;
-    }
-
-    createStudent(formData);
-    console.log(formData);
-    setFormData(initialState);
-  };
-
-  const handlePhoneChange = (phone) => {
-    setFormData({ ...formData, phone: `+${phone}` });
-=======
   const [selectedCourse, setSelectedCourse] = useState("");
   const [createStudent] = useCreateStudentMutation();
   const { formData, setFormData, handleChange } = useGetValue(initialState);
@@ -118,26 +71,17 @@ const CreateStudents = () => {
             (error?.data?.message || "Noma'lum xatolik")
         );
       });
->>>>>>> origin/ramziddin
   };
 
   return (
     <div className="createStudents container">
       <h2 className="createStudents__title">O'quvchi yaratish</h2>
       <form onSubmit={handleSubmit}>
-<<<<<<< HEAD
-        <label htmlFor="fname">
-          Ism
-          <input
-            type="text"
-            id="fname"
-=======
         <label htmlFor="firstName">
           Ism
           <input
             type="text"
             id="firstName"
->>>>>>> origin/ramziddin
             name="firstName"
             placeholder="Ismingizni kiriting"
             value={formData.firstName}
@@ -149,11 +93,7 @@ const CreateStudents = () => {
           Familiya
           <input
             type="text"
-<<<<<<< HEAD
-            id="lname"
-=======
             id="lastName"
->>>>>>> origin/ramziddin
             name="lastName"
             placeholder="Familiyangizni kiriting"
             value={formData.lastName}
@@ -166,11 +106,7 @@ const CreateStudents = () => {
           <div>
             <PhoneInput
               country={"uz"}
-<<<<<<< HEAD
-              value={formData.phone.replace("+", "")}
-=======
               value={formData.phone.replace(/^\+/, "")} // Remove "+" for PhoneInput display
->>>>>>> origin/ramziddin
               onChange={handlePhoneChange}
               placeholder="Telefon raqamini kiriting"
               inputStyle={{
@@ -200,44 +136,6 @@ const CreateStudents = () => {
         </label>
         <label htmlFor="course">
           Kurs
-<<<<<<< HEAD
-          <select
-            name="courseId"
-            id="course"
-            value={formData.courseId}
-            onChange={handleCourseChange}
-            required
-          >
-            <option value="" disabled>
-              Kursni tanlang
-            </option>
-            {courseData?.map((course) => (
-              <option key={course?.id} value={course?.id}>
-                {course?.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="group">
-          Gruh
-          <select
-            name="groupId"
-            id="group"
-            value={formData.groupId}
-            onChange={handleGroupChange}
-            disabled={!selectedCourseId}
-            required
-          >
-            <option value="" disabled>
-              Gruhni tanlang
-            </option>
-            {groupData?.map((group) => (
-              <option key={group?.id} value={group?.id}>
-                {group?.name}
-              </option>
-            ))}
-          </select>
-=======
           {isCourseLoading ? (
             <p>Kurslar yuklanmoqda...</p>
           ) : (
@@ -282,11 +180,11 @@ const CreateStudents = () => {
               )}
             </select>
           )}
->>>>>>> origin/ramziddin
         </label>
         <button type="submit">Yaratish</button>
       </form>
     </div>
   );
 };
+
 export default CreateStudents;
