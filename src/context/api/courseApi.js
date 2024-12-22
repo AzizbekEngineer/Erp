@@ -25,14 +25,14 @@ export const courseApi = api.injectEndpoints({
     }),
     deleteCourse: build.mutation({
       query: (id) => ({
-        url: `/delete/Course/${id}`,
+        url: `/courses/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Course"],
     }),
     updateCourse: build.mutation({
       query: ({ id, body }) => ({
-        url: `/update/Course/${id}`,
+        url: `/courses/${id}`,
         method: "PATCH", // or "PATCH"
         body,
       }),

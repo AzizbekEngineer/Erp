@@ -72,7 +72,7 @@ const CreateStudents = () => {
           </select>
         </label>
         <label htmlFor="teacher">
-          Teacher
+          Gruh
           <select name="" id="">
             <option value="">O'qituvchi tanlash</option>
             <option value="">Azizbek</option>

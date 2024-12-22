@@ -3,7 +3,9 @@ import "./course.scss";
 import Module from "../../components/Module/Module";
 import {
   useCreateCourseMutation,
+  useDeleteCourseMutation,
   useGetCoursesQuery,
+  useUpdateCourseMutation,
 } from "../../context/api/courseApi";
 import { useGetValue } from "../../hooks/useGetValue";
 
@@ -16,8 +18,10 @@ const Course = () => {
   const [courseHide, setCourseHide] = useState(false);
   const [createHide, setCreateHide] = useState(false);
   const { data: courseData } = useGetCoursesQuery();
+  const [deleteCourse] = useDeleteCourseMutation();
   const { formData, setFormData, handleChange } = useGetValue(initialState);
   const [createCourse, { data, isSuccess }] = useCreateCourseMutation();
+  const [updateCourse] = useUpdateCourseMutation();
 
   const createHandleCourse = (e) => {
     e.preventDefault();
@@ -25,6 +29,12 @@ const Course = () => {
     console.log(formData);
     setFormData(initialState);
     setCreateHide(false);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      deleteCourse(id);
+    }
   };
 
   console.log(courseData);
@@ -50,7 +60,9 @@ const Course = () => {
               </div>
               <div className="course__btn">
                 <button onClick={() => setCourseHide(true)}>Tahrirlash</button>
-                <button>O'chirish</button>
+                <button onClick={() => handleDelete(course?.id)}>
+                  O'chirish
+                </button>
               </div>
             </li>
           ))}
@@ -59,6 +71,7 @@ const Course = () => {
       {courseHide ? (
         <Module close={setCourseHide} width={500} bg={"#aaa6"}>
           <form className="course__edit" action="">
+            <input type="text" placeholder="Edit course name" />
             <input type="text" placeholder="Edit course name" />
             <button>Saqlash</button>
           </form>
