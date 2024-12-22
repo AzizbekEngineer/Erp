@@ -1,61 +1,50 @@
 import React from "react";
 import "./teacher.scss";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai"; // React Icons
+import {
+  useDeleteTeacherMutation,
+  useGetTeacherQuery,
+} from "../../../context/api/teacherApi";
 
 const Teachers = () => {
-  const teachers = [
-    {
-      id: 1,
-      name: "Yunus Tursunov",
-      address: "Manzil 1",
-      phone: "+998 90 123 45 67",
-      fan: "Nemis Tili",
-    },
-    {
-      id: 2,
-      name: "Ikrom Sharipov",
-      address: "Manzil 2",
-      phone: "+998 91 987 65 43",
-      fan: "Rus Tili",
-    },
-    {
-      id: 3,
-      name: "Yunus Tursunov",
-      address: "Manzil 1",
-      phone: "+998 90 123 45 67",
-      fan: "Ingliz Tili",
-    },
-    {
-      id: 4,
-      name: "Ikrom Sharipov",
-      address: "Manzil 2",
-      phone: "+998 91 987 65 43",
-      fan: "Matematika",
-    },
-    {
-      id: 5,
-      name: "Yunus Tursunov",
-      address: "Manzil 1",
-      phone: "+998 90 123 45 67",
-      fan: "Tarix",
-    },
-  ];
+  const { data } = useGetTeacherQuery();
+  const [deleteTeacher] = useDeleteTeacherMutation();
+
+  const handleDelete = (id) => {
+    if (window.confirm("O'qituvchi o'chirilsinmi?")) {
+      deleteTeacher(id);
+    }
+  };
 
   return (
     <div className="teachers">
       <div className="teacher-list">
-        {teachers.map((teacher) => (
+        {data?.map((teacher) => (
           <div key={teacher.id} className="teacher-card">
-            <h3>{teacher.name}</h3>
+            <h3>
+              {teacher?.firstName} {teacher?.lastName}
+            </h3>
             <p>
-              <strong>Manzil:</strong> {teacher.address}
+              <strong>Manzil:</strong> {teacher?.address}
             </p>
             <p>
-              <strong>Telefon:</strong> {teacher.phone}
+              <strong>Telefon:</strong> {teacher?.phone}
             </p>
             <p>
-              <strong>Fan:</strong> {teacher.fan}
+              <strong>Fan:</strong> {teacher?.specialty}
             </p>
-            <button className="details-button">Batafsil</button>
+            <div className="teacher-card-btns">
+              <button className="details-button">Batafsil</button>
+              <button className="details-button edit-button">
+                <AiOutlineEdit className="icon" /> Tahrirlash
+              </button>
+              <button
+                onClick={() => handleDelete(teacher?.id)}
+                className="details-button delete-button"
+              >
+                <AiOutlineDelete className="icon" /> O'chirish
+              </button>
+            </div>
           </div>
         ))}
       </div>
