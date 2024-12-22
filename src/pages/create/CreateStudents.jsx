@@ -4,24 +4,69 @@ import "react-phone-input-2/lib/style.css";
 import "./createStudents.scss";
 import { useGetGroupsCourseIdQuery } from "../../context/api/groupApi";
 import { useGetCoursesQuery } from "../../context/api/courseApi";
+import { useCreateStudentMutation } from "../../context/api/studentApi";
+import { useGetValue } from "../../hooks/useGetValue";
+
+const initialState = {
+  firstName: "Sardor",
+  lastName: "Toirov",
+  phone: "+998994374718",
+  address: "qashqadaryo",
+  courseId: "",
+  groupId: "",
+};
 
 const CreateStudents = () => {
-  const [phone, setPhone] = useState("");
+  const { formData, setFormData, handleChange } = useGetValue(initialState);
+
+  const [selectedCourseId, setSelectedCourseId] = useState(""); // Kurs id saqlash uchun state
   const { data: courseData } = useGetCoursesQuery();
-  const { data: groupData } = useGetGroupsCourseIdQuery();
-  console.log(groupData);
+  const [createStudent] = useCreateStudentMutation();
+  const { data: groupData } = useGetGroupsCourseIdQuery(selectedCourseId);
+
+  const handleCourseChange = (e) => {
+    const selectedId = parseInt(e.target.value, 10); // Convert to integer
+    setSelectedCourseId(selectedId);
+    setFormData((prev) => ({ ...prev, courseId: selectedId }));
+  };
+
+  const handleGroupChange = (e) => {
+    const groupId = parseInt(e.target.value, 10); // Convert to integer
+    setFormData((prev) => ({ ...prev, groupId }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!/^\+\d{10,15}$/.test(formData.phone)) {
+      alert(
+        "Telefon raqam noto'g'ri formatda. Iltimos, to'g'ri raqam kiriting."
+      );
+      return;
+    }
+
+    createStudent(formData);
+    console.log(formData);
+    setFormData(initialState);
+  };
+
+  const handlePhoneChange = (phone) => {
+    // Telefon raqamni +998 formatida saqlash
+    setFormData({ ...formData, phone: `+${phone}` });
+  };
 
   return (
     <div className="createStudents container">
       <h2 className="createStudents__title">O'quvchi yaratish</h2>
-      <form action="#">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="fname">
           Ism
           <input
             type="text"
             id="fname"
-            name="fname"
+            name="firstName"
             placeholder="Ismingizni kiriting"
+            value={formData.firstName}
+            onChange={handleChange}
             required
           />
         </label>
@@ -30,8 +75,10 @@ const CreateStudents = () => {
           <input
             type="text"
             id="lname"
-            name="lname"
+            name="lastName"
             placeholder="Familiyangizni kiriting"
+            value={formData.lastName}
+            onChange={handleChange}
             required
           />
         </label>
@@ -40,8 +87,8 @@ const CreateStudents = () => {
           <div>
             <PhoneInput
               country={"uz"}
-              value={phone}
-              onChange={(phone) => setPhone(phone)}
+              value={formData.phone.replace("+", "")}
+              onChange={handlePhoneChange}
               placeholder="Telefon raqamini kiriting"
               inputStyle={{
                 width: "100%",
@@ -54,7 +101,6 @@ const CreateStudents = () => {
                 background: "#f9fafe",
               }}
             />
-            {/* <p className="phone-display">Telefon raqam: {phone}</p> */}
           </div>
         </label>
         <label htmlFor="address">
@@ -64,22 +110,43 @@ const CreateStudents = () => {
             id="address"
             name="address"
             placeholder="Manzilingizni kiriting"
+            value={formData.address}
+            onChange={handleChange}
             required
           />
         </label>
         <label htmlFor="course">
           Kurs
-          <select name="" id="">
-            {courseData?.map((courseData) => (
-              <option key={courseData?.id} value={courseData?.id}>
-                {courseData?.name}
+          <select
+            name="courseId"
+            id="course"
+            value={formData.courseId}
+            onChange={handleCourseChange}
+            required
+          >
+            <option value="" disabled>
+              Kursni tanlang
+            </option>
+            {courseData?.map((course) => (
+              <option key={course?.id} value={course?.id}>
+                {course?.name}
               </option>
             ))}
           </select>
         </label>
-        <label htmlFor="teacher">
+        <label htmlFor="group">
           Gruh
-          <select name="" id="">
+          <select
+            name="groupId"
+            id="group"
+            value={formData.groupId}
+            onChange={handleGroupChange}
+            disabled={!selectedCourseId}
+            required
+          >
+            <option value="" disabled>
+              Gruhni tanlang
+            </option>
             {groupData?.map((group) => (
               <option key={group?.id} value={group?.id}>
                 {group?.name}

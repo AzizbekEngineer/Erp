@@ -10,9 +10,8 @@ export const groupApi = api.injectEndpoints({
       providesTags: ["Group"],
     }),
     getGroupsCourseId: build.query({
-      query: (params) => ({
-        url: `/groups/course${id}`,
-        params,
+      query: (id) => ({
+        url: `/groups/course/${id}`,
       }),
       providesTags: ["Group"],
     }),
