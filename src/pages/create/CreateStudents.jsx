@@ -4,34 +4,100 @@ import "react-phone-input-2/lib/style.css";
 import "./createStudents.scss";
 import { useGetGroupsCourseIdQuery } from "../../context/api/groupApi";
 import { useGetCoursesQuery } from "../../context/api/courseApi";
+import {
+  useCreateStudentMutation,
+  useUpdateStudentMutation,
+} from "../../context/api/studentApi";
+import { useGetValue } from "../../hooks/useGetValue";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  phone: "",
+  address: "",
+  courseId: "",
+  groupId: "",
+};
 
 const CreateStudents = () => {
-  const [phone, setPhone] = useState("");
-  const { data: courseData } = useGetCoursesQuery();
-  const { data: groupData } = useGetGroupsCourseIdQuery();
-  console.log(groupData);
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [createStudent] = useCreateStudentMutation();
+  const { formData, setFormData, handleChange } = useGetValue(initialState);
+
+  const { data: courseData, isLoading: isCourseLoading } = useGetCoursesQuery();
+  const { data: groupData, isLoading: isGroupLoading } =
+    useGetGroupsCourseIdQuery(selectedCourse, {
+      skip: !selectedCourse,
+    });
+
+  const handleCourseChange = (e) => {
+    const courseId = parseInt(e.target.value, 10);
+    setSelectedCourse(courseId);
+    setFormData({ ...formData, courseId, groupId: "" });
+  };
+
+  const handleGroupChange = (e) => {
+    const groupId = parseInt(e.target.value, 10);
+    setFormData({ ...formData, groupId });
+  };
+
+  const handlePhoneChange = (phone) => {
+    // Ensure the phone number is in E.164 format
+    const sanitizedPhone = `+${phone.replace(/[^0-9]/g, "").trim()}`;
+    setFormData({ ...formData, phone: sanitizedPhone });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Log the phone number for debugging purposes
+    console.log("Formatted Phone:", formData.phone);
+
+    // Validate phone
+    if (!/^\+\d{11,15}$/.test(formData.phone)) {
+      alert("Telefon raqam noto‘g‘ri formatda. Iltimos, qayta tekshiring.");
+      return;
+    }
+
+    createStudent(formData)
+      .unwrap()
+      .then(() => {
+        alert("O'quvchi muvaffaqiyatli yaratildi!");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(
+          "O'quvchini yaratishda xatolik yuz berdi:\n" +
+            (error?.data?.message || "Noma'lum xatolik")
+        );
+      });
+  };
 
   return (
     <div className="createStudents container">
       <h2 className="createStudents__title">O'quvchi yaratish</h2>
-      <form action="#">
-        <label htmlFor="fname">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="firstName">
           Ism
           <input
             type="text"
-            id="fname"
-            name="fname"
+            id="firstName"
+            name="firstName"
             placeholder="Ismingizni kiriting"
+            value={formData.firstName}
+            onChange={handleChange}
             required
           />
         </label>
-        <label htmlFor="lname">
+        <label htmlFor="lastName">
           Familiya
           <input
             type="text"
-            id="lname"
-            name="lname"
+            id="lastName"
+            name="lastName"
             placeholder="Familiyangizni kiriting"
+            value={formData.lastName}
+            onChange={handleChange}
             required
           />
         </label>
@@ -40,8 +106,8 @@ const CreateStudents = () => {
           <div>
             <PhoneInput
               country={"uz"}
-              value={phone}
-              onChange={(phone) => setPhone(phone)}
+              value={formData.phone.replace(/^\+/, "")} // Remove "+" for PhoneInput display
+              onChange={handlePhoneChange}
               placeholder="Telefon raqamini kiriting"
               inputStyle={{
                 width: "100%",
@@ -54,7 +120,6 @@ const CreateStudents = () => {
                 background: "#f9fafe",
               }}
             />
-            {/* <p className="phone-display">Telefon raqam: {phone}</p> */}
           </div>
         </label>
         <label htmlFor="address">
@@ -64,28 +129,57 @@ const CreateStudents = () => {
             id="address"
             name="address"
             placeholder="Manzilingizni kiriting"
+            value={formData.address}
+            onChange={handleChange}
             required
           />
         </label>
         <label htmlFor="course">
           Kurs
-          <select name="" id="">
-            {courseData?.map((courseData) => (
-              <option key={courseData?.id} value={courseData?.id}>
-                {courseData?.name}
-              </option>
-            ))}
-          </select>
+          {isCourseLoading ? (
+            <p>Kurslar yuklanmoqda...</p>
+          ) : (
+            <select
+              name="courseId"
+              id="course"
+              value={formData.courseId}
+              onChange={handleCourseChange}
+              required
+            >
+              <option value="">Kursni tanlang</option>
+              {courseData?.map((course) => (
+                <option key={course.id} value={course.id}>
+                  {course.name}
+                </option>
+              ))}
+            </select>
+          )}
         </label>
-        <label htmlFor="teacher">
+        <label htmlFor="group">
           Gruh
-          <select name="" id="">
-            {groupData?.map((group) => (
-              <option key={group?.id} value={group?.id}>
-                {group?.name}
-              </option>
-            ))}
-          </select>
+          {isGroupLoading ? (
+            <p>Gruhlar yuklanmoqda...</p>
+          ) : (
+            <select
+              name="groupId"
+              id="group"
+              value={formData.groupId}
+              onChange={handleGroupChange}
+              required
+              disabled={!formData.courseId}
+            >
+              <option value="">Gruhni tanlang</option>
+              {groupData?.length > 0 ? (
+                groupData.map((group) => (
+                  <option key={group.id} value={group.id}>
+                    {group.name}
+                  </option>
+                ))
+              ) : (
+                <option disabled>Gruhlar topilmadi</option>
+              )}
+            </select>
+          )}
         </label>
         <button type="submit">Yaratish</button>
       </form>
