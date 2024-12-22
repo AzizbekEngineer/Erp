@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./createStudents.scss";
+import { useGetGroupsQuery } from "../../context/api/groupApi";
+import { useGetCoursesQuery } from "../../context/api/courseApi";
 
 const CreateStudents = () => {
   const [phone, setPhone] = useState("");
+  const { data: courseData } = useGetCoursesQuery();
+  const { data: groupData } = useGetGroupsQuery();
   return (
     <div className="createStudents container">
       <h2 className="createStudents__title">O'quvchi yaratish</h2>
@@ -64,20 +68,21 @@ const CreateStudents = () => {
         <label htmlFor="course">
           Kurs
           <select name="" id="">
-            <option value="">Kursni tanlang</option>
-            <option value="">Rus tili</option>
-            <option value="">Inglis tili</option>
-            <option value="">Matem</option>
-            <option value="">Informatika</option>
+            {courseData?.map((courseData) => (
+              <option key={courseData?.id} value={courseData?.id}>
+                {courseData?.name}
+              </option>
+            ))}
           </select>
         </label>
         <label htmlFor="teacher">
           Gruh
           <select name="" id="">
-            <option value="">O'qituvchi tanlash</option>
-            <option value="">Azizbek</option>
-            <option value="">Ramziddin</option>
-            <option value="">Vali</option>
+            {groupData?.map((group) => (
+              <option key={group?.id} value={group?.id}>
+                {group?.name}
+              </option>
+            ))}
           </select>
         </label>
         <button type="submit">Yaratish</button>

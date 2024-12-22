@@ -9,6 +9,7 @@ import { GrPin } from "react-icons/gr";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { useGetStudentQuery } from "../../context/api/studentApi";
 
 const Table = () => {
   const [tableClose, setTableClose] = useState(false);
@@ -17,19 +18,19 @@ const Table = () => {
   const [filter, setFilter] = useState(0);
   const [createdAt, setCreatedAt] = useState(-1);
   const [page, setPage] = useState(1);
+  const { data: studentData } = useGetStudentQuery();
+  console.log(studentData);
 
-  const customerTbody = CUSTOM.map((el, index) => (
-    <tr key={el?._id}>
+  const customerTbody = studentData?.map((el, index) => (
+    <tr key={el?.id}>
       <td data-cell="id">00{index + 1}</td>
-      <td data-cell="name">{el?.fname}</td>
-      <td data-cell="budget">{el?.lname}</td>
+      <td data-cell="name">{el?.firstName}</td>
+      <td data-cell="budget">{el?.lastName}</td>
       <td data-cell="manzil">{el?.address}</td>
-      <td data-cell="nomer">
-        {el?.phone_primary ? el?.phone_primary : "+998123531282"}
-      </td>
+      <td data-cell="nomer">{el?.phone ? el?.phone : "+998123531282"}</td>
 
       <td data-cell="info" className="table__btns">
-        <Link to={`/admin/customer/${el?._id}`}>
+        <Link to={`/admin/customer/${el?.id}`}>
           <button className="table__btns-view">batafsil</button>
         </Link>
       </td>
@@ -85,7 +86,7 @@ const Table = () => {
             <th>Familiya</th>
             <th>Manzil</th>
             <th>Telefon nomer</th>
-            <th style={{ paddingLeft: "100px" }}>/</th>
+            <th>Toliq malumot</th>
           </tr>
         </thead>
         <tbody>{customerTbody}</tbody>
