@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./register.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../../context/api/userApi";
 
 let initialState = {
@@ -11,7 +11,8 @@ let initialState = {
 
 const Register = () => {
   const [live, setLive] = useState(initialState);
-  const [register, { data }] = useRegisterUserMutation();
+  const [register, { data, isSuccess }] = useRegisterUserMutation();
+  const navigate = useNavigate();
 
   let handleChange = (e) => {
     let { value, name } = e.target;
@@ -21,8 +22,15 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     register(live);
+    setLive(initialState);
     console.log("ok");
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/login");
+    }
+  });
 
   return (
     <div className="register">

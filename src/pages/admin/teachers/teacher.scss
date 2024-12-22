@@ -69,4 +69,34 @@
       }
     }
   }
+
+  &__edit {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    &-title {
+      text-align: center;
+      font-size: 24px;
+      color: rgb(70, 67, 67);
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      input {
+        padding: 10px;
+        border: 1px solid #aaa7;
+        border-radius: 4px;
+        outline: none;
+      }
+    }
+    &-btn {
+      padding: 10px;
+      background-color: #2980b9;
+      color: white;
+      border-radius: 4px;
+      border: 1px solid transparent;
+    }
+  }
 }
