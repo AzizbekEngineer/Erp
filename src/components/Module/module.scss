@@ -9,11 +9,13 @@
   animation: overlay 0.3s forwards;
   z-index: 110;
 }
+
 @keyframes overlay {
   to {
     opacity: 1;
   }
 }
+
 .model {
   position: relative;
   width: 500px;
@@ -28,7 +30,7 @@
   opacity: 1;
   animation: model 0.3s forwards;
   overflow: auto;
-  z-index: 200;
+  z-index: 2000;
 
   &__btn {
     position: absolute;

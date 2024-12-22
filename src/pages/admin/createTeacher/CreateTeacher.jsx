@@ -68,7 +68,7 @@ const CreateTeacher = () => {
           <div>
             <PhoneInput
               country={"uz"}
-              value={formData.phone.replace("+", "")} // `PhoneInput` uchun raqamni tozalash
+              value={formData.phone.replace("+", "")}
               onChange={handlePhoneChange}
               placeholder="Telefon raqamini kiriting"
               inputStyle={{
