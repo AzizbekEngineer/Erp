@@ -27,7 +27,7 @@ const CreateStudents = () => {
   const handleCourseChange = (e) => {
     const selectedId = parseInt(e.target.value, 10); // Convert to integer
     setSelectedCourseId(selectedId);
-    setFormData((prev) => ({ ...prev, courseId: selectedId }));
+    setFormData((prev) => ({ ...prev, courseId: +selectedId }));
   };
 
   const handleGroupChange = (e) => {
@@ -50,7 +50,6 @@ const CreateStudents = () => {
   };
 
   const handlePhoneChange = (phone) => {
-    // Telefon raqamni +998 formatida saqlash
     setFormData({ ...formData, phone: `+${phone}` });
   };
 
@@ -159,5 +158,4 @@ const CreateStudents = () => {
     </div>
   );
 };
-
 export default CreateStudents;
