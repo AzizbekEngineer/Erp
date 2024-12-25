@@ -22,7 +22,7 @@ const generateLessons = (month, year) => {
   });
 };
 
-const Ranking = () => {
+const Ranking = ({ data, id }) => {
   const [selectedMonth, setSelectedMonth] = useState(11);
   const [grades, setGrades] = useState({});
 
@@ -37,6 +37,8 @@ const Ranking = () => {
       },
     }));
   };
+
+  console.log(data);
 
   const handleMonthChange = (event) => {
     setSelectedMonth(parseInt(event.target.value));
@@ -71,9 +73,13 @@ const Ranking = () => {
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => (
+            {data?.[0]?.students?.map((student) => (
               <tr key={student.id}>
-                <td className="sticky-col student-name">{student.name}</td>
+                <td className="sticky-col student-name">
+                  <span>
+                    {student?.lastName} {student?.firstName}
+                  </span>
+                </td>
                 {lessons.map((day, index) => (
                   <td key={index}>
                     <input

@@ -10,6 +10,7 @@ import { useGetTeacherQuery } from "../../context/api/teacherApi";
 import { useGetCoursesQuery } from "../../context/api/courseApi";
 import { useGetValue } from "../../hooks/useGetValue";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -83,6 +84,7 @@ const Group = () => {
     setIsEditing(false);
     setCurrentGroupId(null);
   };
+  console.log(groups);
 
   return (
     <div className="group">
@@ -98,15 +100,17 @@ const Group = () => {
       <ul className="group__list">
         {groups?.map((group) => (
           <li key={group.id} className="group__item">
-            <div className="group__item-info">
-              <h3 className="group__name">{group.name}</h3>
-              <p className="group__details">
-                Teacher: {group.teacher?.firstName || "Not Assigned"}
-              </p>
-              <p className="group__details">
-                Course: {group.course?.name || "Not Assigned"}
-              </p>
-            </div>
+            <Link to={`/admin/groups/${group?.course?.id}`}>
+              <div className="group__item-info">
+                <h3 className="group__name">{group.name}</h3>
+                <p className="group__details">
+                  Teacher: {group.teacher?.firstName || "Not Assigned"}
+                </p>
+                <p className="group__details">
+                  Course: {group.course?.name || "Not Assigned"}
+                </p>
+              </div>
+            </Link>
             <div className="group__actions">
               <button onClick={() => handleEdit(group)}>Edit</button>
               <button onClick={() => handleDelete(group.id)}>Delete</button>

@@ -12,6 +12,8 @@
     margin-bottom: 10px;
   }
 
+
+
   .ranking-title {
     text-align: center;
     margin-bottom: 20px;
@@ -49,7 +51,7 @@
     }
 
     td {
-      text-align: center;
+      text-align: start;
       padding: 8px;
       border: 1px solid #ddd;
     }
@@ -73,6 +75,10 @@
         border-color: #2980b9;
       }
     }
+  }
+
+  .student-name {
+    text-align: start;
   }
 
   .save-button {

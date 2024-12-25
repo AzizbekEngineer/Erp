@@ -55,19 +55,40 @@
       margin: 3px 0;
     }
 
-    &__btns {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
 
-      button {
-        width: 90px;
-        padding: 6px;
-        border-radius: 4px;
-        outline: none;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    button {
+      padding: 5px 10px;
+      width: 80px;
+      font-size: 14px;
+      color: white;
+      background-color: #e74c3c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+
+      &:nth-child(1) {
         background-color: #2980b9;
-        color: white;
-        border: 1px solid transparent;
+
+        &:hover {
+          background-color: #1c99ec;
+        }
+      }
+
+      &:hover {
+        background-color: #c0392b;
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.95);
       }
     }
   }
