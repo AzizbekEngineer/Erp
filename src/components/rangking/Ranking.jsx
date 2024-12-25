@@ -47,7 +47,7 @@ const Ranking = ({ data, id }) => {
   return (
     <div className="ranking-container">
       <div className="ranking-top">
-        <h1 className="ranking-title">Kunlik Baholar Jadvali</h1>
+        <h1 className="ranking-title">Baholar Jadvali</h1>
         <select
           className="ranking-month-select"
           value={selectedMonth}
