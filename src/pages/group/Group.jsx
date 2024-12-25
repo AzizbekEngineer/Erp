@@ -101,8 +101,8 @@ const Group = () => {
       <ul className="group__list">
         {groups?.map((group) => (
           <>
-            <Link to={`/admin/groups/${group?.id}`}>
-              <li key={group?.id} className="group__item">
+            <li key={group?.id} className="group__item">
+              <Link to={`/admin/groups/${group?.id}`}>
                 <div className="group__item-info">
                   <h3 className="group__name">{group?.name}</h3>
                   <p className="group__details">
@@ -112,12 +112,12 @@ const Group = () => {
                     Course: {group?.course?.name || "Not Assigned"}
                   </p>
                 </div>
-                <div className="group__list__btns">
-                  <button>edit</button>
-                  <button>delete</button>
-                </div>
-              </li>
-            </Link>
+              </Link>
+              <div className="group__list__btns">
+                <button>edit</button>
+                <button>delete</button>
+              </div>
+            </li>
           </>
         ))}
       </ul>
