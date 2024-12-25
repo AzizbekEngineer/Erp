@@ -16,6 +16,7 @@ import Ranking from "./pages/teacher/rangking/Ranking";
 import Course from "./pages/courses/Course";
 import StudentRating from "./pages/admin/studentsRank/StudentsRank";
 import Group from "./pages/group/Group";
+import SingleGroup from "./pages/group/singleGroup/SingleGroup";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="group" element={<Group />} />
             <Route path="ranking" element={<Ranking />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="groups/:id" element={<SingleGroup />} />
             <Route path="createTeacher" element={<CreateTeacher />} />
             <Route path="course" element={<Course />} />
           </Route>
