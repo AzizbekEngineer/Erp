@@ -149,8 +149,8 @@ function Sidebar() {
       <div>
         <div className="sidebar__top">
           <div className="sidebar__top__info">
-            <button onClick={() => setProfileHide((prev) => !prev)}>A</button>
-            <h2>Academy</h2>
+            <button onClick={() => setProfileHide((prev) => !prev)}>R</button>
+            <h2>RMZ</h2>
           </div>
           <div className="sidebar__top__full">
             <button onClick={() => setProfileHide((prev) => !prev)}>

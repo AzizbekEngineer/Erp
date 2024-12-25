@@ -39,7 +39,7 @@ export const groupApi = api.injectEndpoints({
     updateGroup: build.mutation({
       query: ({ id, body }) => ({
         url: `/groups/${id}`,
-        method: "PATCH", // or "PATCH"
+        method: "PUT", // or "PATCH"
         body,
       }),
       invalidatesTags: ["Group"],

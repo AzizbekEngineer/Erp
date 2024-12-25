@@ -3,7 +3,9 @@ import Module from "../../components/Module/Module";
 import {
   useCreateGroupMutation,
   useGetGroupsCourseIdQuery,
+  useDeleteGroupMutation,
   useGetGroupsQuery,
+  useUpdateGroupMutation,
 } from "../../context/api/groupApi";
 import { useGetTeacherQuery } from "../../context/api/teacherApi";
 import { useGetCoursesQuery } from "../../context/api/courseApi";
@@ -20,44 +22,80 @@ const initialState = {
 
 const Group = () => {
   const { data: groups } = useGetGroupsQuery();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: teacherData } = useGetTeacherQuery();
   const { data: courseData } = useGetCoursesQuery();
   const { formData, setFormData, handleChange } = useGetValue(initialState);
   const [createGroup] = useCreateGroupMutation();
+  const [deleteGroup] = useDeleteGroupMutation();
+  const [updateGroup] = useUpdateGroupMutation();
 
   // console.log(groups);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentGroupId, setCurrentGroupId] = useState(null);
 
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: Number(value),
-    }));
+    setFormData((prev) => ({ ...prev, [name]: Number(value) }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createGroup(formData).unwrap();
-      alert("Group created successfully!");
-      setIsModalOpen(false);
-      setFormData(initialState);
+      if (isEditing) {
+        await updateGroup({ id: currentGroupId, ...formData }).unwrap();
+        alert("Group updated successfully!");
+      } else {
+        await createGroup(formData).unwrap();
+        alert("Group created successfully!");
+      }
+      resetForm();
     } catch (error) {
-      console.error("Error creating group:", error);
-      alert("Failed to create group!");
+      console.error("Error managing group:", error);
+      alert("Failed to manage group!");
     }
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this group?")) {
+      try {
+        await deleteGroup(id).unwrap();
+        alert("Group deleted successfully!");
+      } catch (error) {
+        console.error("Error deleting group:", error);
+        alert("Failed to delete group!");
+      }
+    }
+  };
+
+  const handleEdit = (group) => {
+    setFormData({
+      name: group.name,
+      courseId: group.course?.id || "",
+      teacherId: group.teacher?.id || "",
+      students: group.students || [],
+    });
+    setCurrentGroupId(group.id);
+    setIsEditing(true);
+    setIsModalOpen(true);
+  };
+
+  const resetForm = () => {
+    setFormData(initialState);
+    setIsModalOpen(false);
+    setIsEditing(false);
+    setCurrentGroupId(null);
   };
 
   return (
     <div className="group">
       <div className="group__top">
-        <h2 className="group__title">Gruhlar</h2>
+        <h2 className="group__title">Groups</h2>
         <button
           className="group__create-btn"
           onClick={() => setIsModalOpen(true)}
         >
-          Gruh yaratish
+          Create Group
         </button>
       </div>
       <ul className="group__list">
@@ -85,9 +123,9 @@ const Group = () => {
       </ul>
 
       {isModalOpen && (
-        <Module bg={"#aaa4"} close={setIsModalOpen}>
+        <Module bg="#aaa4" close={resetForm}>
           <form className="group__form" onSubmit={handleSubmit}>
-            <h3>Gurux yaratish</h3>
+            <h3>{isEditing ? "Edit Group" : "Create Group"}</h3>
             <div className="group__field">
               <label htmlFor="teacher">Teacher:</label>
               <select
@@ -100,8 +138,8 @@ const Group = () => {
                   Select a teacher
                 </option>
                 {teacherData?.map((teacher) => (
-                  <option key={teacher?.id} value={teacher?.id}>
-                    {teacher?.firstName}
+                  <option key={teacher.id} value={teacher.id}>
+                    {teacher.firstName}
                   </option>
                 ))}
               </select>
@@ -118,8 +156,8 @@ const Group = () => {
                   Select a course
                 </option>
                 {courseData?.map((course) => (
-                  <option key={course?.id} value={course?.id}>
-                    {course?.name}
+                  <option key={course.id} value={course.id}>
+                    {course.name}
                   </option>
                 ))}
               </select>
@@ -136,7 +174,7 @@ const Group = () => {
               />
             </div>
             <button className="group__submit" type="submit">
-              Submit
+              {isEditing ? "Update" : "Create"}
             </button>
           </form>
         </Module>
