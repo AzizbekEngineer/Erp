@@ -46,7 +46,7 @@ const Table = () => {
 
   const customerTbody = studentData?.map((el, index) => (
     <tr key={el?.id}>
-      <td data-cell="id">00{index + 1}</td>
+      <td data-cell="id">{index + 1}</td>
       <td data-cell="name">{el?.firstName}</td>
       <td data-cell="budget">{el?.lastName}</td>
       <td data-cell="manzil">{el?.address}</td>
@@ -96,7 +96,7 @@ const Table = () => {
       <table className="table__row">
         <thead>
           <tr style={{ textAlign: "center" }}>
-            <th>id</th>
+            <td>№</td>
             <th>Ism</th>
             <th>Familiya</th>
             <th>Manzil</th>

@@ -86,12 +86,6 @@ function Sidebar() {
               </NavLink>
             </li>
             <li className="sidebar__list">
-              <NavLink to={"ranking"} className={"sidebar__left__text"}>
-                <GiSilverBullet />
-                {t("O'quvchilar kunlik ball")}
-              </NavLink>
-            </li>
-            <li className="sidebar__list">
               <NavLink to={"course"} className={"sidebar__left__text"}>
                 <img src={img} alt="" width={27} height={30} />
                 {t("Kurslar royxati")}

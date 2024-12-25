@@ -66,6 +66,7 @@ const Ranking = ({ data, id }) => {
         <table className="ranking-table">
           <thead>
             <tr>
+              <th>№</th>
               <th className="sticky-col ">O'quvchi</th>
               {lessons.map((date, index) => (
                 <th key={index}>{date}</th>
@@ -73,8 +74,9 @@ const Ranking = ({ data, id }) => {
             </tr>
           </thead>
           <tbody>
-            {data?.[0]?.students?.map((student) => (
+            {data?.[0]?.students?.map((student, inx) => (
               <tr key={student.id}>
+                <td>{inx + 1} </td>
                 <td className="sticky-col student-name">
                   <span>
                     {student?.lastName} {student?.firstName}

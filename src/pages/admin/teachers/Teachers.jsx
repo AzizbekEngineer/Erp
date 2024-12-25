@@ -54,18 +54,20 @@ const Teachers = () => {
       <div className="teacher-list">
         {data?.map((teacher) => (
           <div key={teacher.id} className="teacher-card">
-            <h3>
-              {teacher.firstName} {teacher.lastName}
-            </h3>
-            <p>
-              <strong>Manzil:</strong> {teacher.address}
-            </p>
-            <p>
-              <strong>Telefon:</strong> {teacher.phone}
-            </p>
-            <p>
-              <strong>Fan:</strong> {teacher.specialty}
-            </p>
+            <div>
+              <h3>
+                {teacher.firstName} {teacher.lastName}
+              </h3>
+              <p>
+                <strong>Manzil:</strong> {teacher.address}
+              </p>
+              <p>
+                <strong>Telefon:</strong> {teacher.phone}
+              </p>
+              <p>
+                <strong>Fan:</strong> {teacher.specialty}
+              </p>
+            </div>
             <div className="teacher-card-btns">
               <button className="details-button">Batafsil</button>
               <button
