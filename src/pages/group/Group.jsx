@@ -56,13 +56,7 @@ const Group = () => {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this group?")) {
-      try {
-        await deleteGroup(id).unwrap();
-        alert("Group deleted successfully!");
-      } catch (error) {
-        console.error("Error deleting group:", error);
-        alert("Failed to delete group!");
-      }
+      deleteGroup(id);
     }
   };
 

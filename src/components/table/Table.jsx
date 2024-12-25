@@ -13,14 +13,13 @@ import {
   useUpdateStudentMutation,
 } from "../../context/api/studentApi";
 
-const Table = () => {
+const Table = ({ data }) => {
   const [tableClose, setTableClose] = useState(false);
   const [budget, setBudget] = useState(2);
   const [budgetDebt, setBudgetDebt] = useState(2);
   const [filter, setFilter] = useState(0);
   const [createdAt, setCreatedAt] = useState(-1);
   const [page, setPage] = useState(1);
-  const { data: studentData } = useGetStudentQuery();
   const [deleteStudent] = useDeleteStudentMutation();
   const [updateStudent] = useUpdateStudentMutation();
   const [studentEdit, setStudentEdit] = useState(null);
@@ -44,7 +43,7 @@ const Table = () => {
     setStudentEdit(null);
   };
 
-  const customerTbody = studentData?.map((el, index) => (
+  const customerTbody = data?.map((el, index) => (
     <tr key={el?.id}>
       <td data-cell="id">{index + 1}</td>
       <td data-cell="name">{el?.firstName}</td>
