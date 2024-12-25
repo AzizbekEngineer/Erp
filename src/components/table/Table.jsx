@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import "./table.scss";
-import { CUSTOM } from "../../static";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Module from "../Module/Module";
 import PaymeForm from "../paymeForm/PaymeForm";
-import { ImPushpin } from "react-icons/im";
-import { GrPin } from "react-icons/gr";
-import Typography from "@mui/material/Typography";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { useGetStudentQuery } from "../../context/api/studentApi";
+import {
+  useDeleteStudentMutation,
+  useGetStudentQuery,
+  useUpdateStudentMutation,
+} from "../../context/api/studentApi";
 
 const Table = () => {
   const [tableClose, setTableClose] = useState(false);
@@ -19,7 +21,28 @@ const Table = () => {
   const [createdAt, setCreatedAt] = useState(-1);
   const [page, setPage] = useState(1);
   const { data: studentData } = useGetStudentQuery();
-  console.log(studentData);
+  const [deleteStudent] = useDeleteStudentMutation();
+  const [updateStudent] = useUpdateStudentMutation();
+  const [studentEdit, setStudentEdit] = useState(null);
+
+  const handleDelete = (id) => {
+    if (window.confirm("O'quvchi o'chirilsinmi?")) {
+      deleteStudent(id);
+    }
+  };
+
+  const handleEdit = (student) => {
+    setStudentEdit(student);
+  };
+
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
+    const updatedStudent = {
+      ...studentEdit,
+    };
+    updateStudent(updatedStudent);
+    setStudentEdit(null);
+  };
 
   const customerTbody = studentData?.map((el, index) => (
     <tr key={el?.id}>
@@ -30,6 +53,15 @@ const Table = () => {
       <td data-cell="nomer">{el?.phone ? el?.phone : "+998123531282"}</td>
 
       <td data-cell="info" className="table__btns">
+        <button
+          onClick={() => handleDelete(el?.id)}
+          className="table__btns-view"
+        >
+          delete
+        </button>
+        <button onClick={() => handleEdit(el)} className="table__btns-view">
+          edit
+        </button>
         <Link to={`/admin/customer/${el?.id}`}>
           <button className="table__btns-view">batafsil</button>
         </Link>
@@ -37,41 +69,24 @@ const Table = () => {
     </tr>
   ));
 
-  const handleSelect = (e) => {
-    setPage(1);
-    setBudget(e.target.value);
-  };
-  const handleSelectDebt = (e) => {
-    setPage(1);
-    setBudgetDebt(e.target.value);
-  };
-
-  const handleBudget = (e) => {
-    setFilter(e.target.value);
-  };
-
-  const handleCreatedAt = (e) => {
-    setCreatedAt(e.target.value);
-  };
-
   return (
     <div className="table">
       <div className="table__select">
         <button>Jami:</button>
-        <select onChange={handleSelect} name="" id="">
+        <select onChange={(e) => setBudget(e.target.value)}>
           <option value="2">Barchasi</option>
           <option value="1">To'lov qilgan</option>
           <option value="-1">To'lov qilmagan</option>
         </select>
 
-        <select onChange={handleSelectDebt} name="" id="">
+        <select onChange={(e) => setBudgetDebt(e.target.value)}>
           <option value="2">Barchasi</option>
           <option value="-1">Qarzdorlar</option>
           <option value="1">Haqdorlar</option>
           <option value="0">Nollar</option>
         </select>
 
-        <select onChange={handleBudget} name="" id="">
+        <select onChange={(e) => setFilter(e.target.value)}>
           <option value="0">Guruhlar</option>
           <option value="1">N5</option>
           <option value="-1">N7</option>
@@ -90,12 +105,10 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>{customerTbody}</tbody>
-        {tableClose ? (
+        {tableClose && (
           <Module bg={"#aaa8"} width={400} close={setTableClose}>
             <PaymeForm close={setTableClose} id={tableClose?._id} />
           </Module>
-        ) : (
-          <></>
         )}
       </table>
       <div className="table__pagenation">
@@ -103,6 +116,67 @@ const Table = () => {
           <Pagination />
         </Stack>
       </div>
+
+      {studentEdit && (
+        <Module close={() => setStudentEdit(null)}>
+          <form className="teachers__edit" onSubmit={handleEditSubmit}>
+            <h3 className="teachers__edit-title">O'quvchinis taxrirlash</h3>
+            <label>
+              Ism
+              <input
+                type="text"
+                value={studentEdit.firstName}
+                onChange={(e) =>
+                  setStudentEdit({ ...studentEdit, firstName: e.target.value })
+                }
+                required
+              />
+            </label>
+            <label>
+              Familiya
+              <input
+                type="text"
+                value={studentEdit.lastName}
+                onChange={(e) =>
+                  setStudentEdit({ ...studentEdit, lastName: e.target.value })
+                }
+                required
+              />
+            </label>
+            <label>
+              Telefon raqam
+              <PhoneInput
+                country={"uz"}
+                value={studentEdit.phone}
+                onChange={(phone) => setStudentEdit({ ...studentEdit, phone })}
+                inputStyle={{
+                  width: "100%",
+                  padding: "20px 45px",
+                  fontSize: "14px",
+                  border: "1px solid #dcdfe3",
+                  borderRadius: "8px",
+                }}
+                buttonStyle={{ background: "#f9fafe" }}
+              />
+            </label>
+            <label>
+              Manzil
+              <input
+                type="text"
+                value={studentEdit.address}
+                onChange={(e) =>
+                  setStudentEdit({ ...studentEdit, address: e.target.value })
+                }
+                required
+              />
+            </label>
+
+            <button className="teachers__edit-btn" type="submit">
+              O'zgartirish
+            </button>
+          </form>
+        </Module>
+      )}
     </div>
   );
 };
