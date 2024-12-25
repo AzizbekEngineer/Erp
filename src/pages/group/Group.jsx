@@ -2,7 +2,6 @@ import "./group.scss";
 import Module from "../../components/Module/Module";
 import {
   useCreateGroupMutation,
-  useGetGroupsCourseIdQuery,
   useDeleteGroupMutation,
   useGetGroupsQuery,
   useUpdateGroupMutation,
@@ -11,7 +10,6 @@ import { useGetTeacherQuery } from "../../context/api/teacherApi";
 import { useGetCoursesQuery } from "../../context/api/courseApi";
 import { useGetValue } from "../../hooks/useGetValue";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const initialState = {
   name: "",
@@ -29,7 +27,6 @@ const Group = () => {
   const [deleteGroup] = useDeleteGroupMutation();
   const [updateGroup] = useUpdateGroupMutation();
 
-  // console.log(groups);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentGroupId, setCurrentGroupId] = useState(null);
@@ -100,25 +97,21 @@ const Group = () => {
       </div>
       <ul className="group__list">
         {groups?.map((group) => (
-          <>
-            <Link to={`/admin/groups/${group?.id}`}>
-              <li key={group?.id} className="group__item">
-                <div className="group__item-info">
-                  <h3 className="group__name">{group?.name}</h3>
-                  <p className="group__details">
-                    Teacher: {group?.teacher?.firstName || "Not Assigned"}
-                  </p>
-                  <p className="group__details">
-                    Course: {group?.course?.name || "Not Assigned"}
-                  </p>
-                </div>
-                <div className="group__list__btns">
-                  <button>edit</button>
-                  <button>delete</button>
-                </div>
-              </li>
-            </Link>
-          </>
+          <li key={group.id} className="group__item">
+            <div className="group__item-info">
+              <h3 className="group__name">{group.name}</h3>
+              <p className="group__details">
+                Teacher: {group.teacher?.firstName || "Not Assigned"}
+              </p>
+              <p className="group__details">
+                Course: {group.course?.name || "Not Assigned"}
+              </p>
+            </div>
+            <div className="group__actions">
+              <button onClick={() => handleEdit(group)}>Edit</button>
+              <button onClick={() => handleDelete(group.id)}>Delete</button>
+            </div>
+          </li>
         ))}
       </ul>
 
