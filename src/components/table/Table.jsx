@@ -118,7 +118,7 @@ const Table = () => {
       </div>
 
       {studentEdit && (
-        <Module close={() => setStudentEdit(null)}>
+        <Module close={setStudentEdit} bg={"#aaa6"}>
           <form className="teachers__edit" onSubmit={handleEditSubmit}>
             <h3 className="teachers__edit-title">O'quvchinis taxrirlash</h3>
             <label>
