@@ -9,20 +9,20 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import {
   useDeleteStudentMutation,
-  useGetStudentQuery,
   useUpdateStudentMutation,
 } from "../../context/api/studentApi";
+import { CiMenuKebab } from "react-icons/ci";
 
 const Table = ({ data }) => {
   const [tableClose, setTableClose] = useState(false);
   const [budget, setBudget] = useState(2);
   const [budgetDebt, setBudgetDebt] = useState(2);
   const [filter, setFilter] = useState(0);
-  const [createdAt, setCreatedAt] = useState(-1);
   const [page, setPage] = useState(1);
   const [deleteStudent] = useDeleteStudentMutation();
   const [updateStudent] = useUpdateStudentMutation();
   const [studentEdit, setStudentEdit] = useState(null);
+  const [activeStudentId, setActiveStudentId] = useState(null); // Track active menu
 
   const handleDelete = (id) => {
     if (window.confirm("O'quvchi o'chirilsinmi?")) {
@@ -43,6 +43,10 @@ const Table = ({ data }) => {
     setStudentEdit(null);
   };
 
+  const toggleMenu = (id) => {
+    setActiveStudentId(activeStudentId === id ? null : id);
+  };
+
   const customerTbody = data?.map((el, index) => (
     <tr key={el?.id}>
       <td data-cell="id">{index + 1}</td>
@@ -50,21 +54,27 @@ const Table = ({ data }) => {
       <td data-cell="budget">{el?.lastName}</td>
       <td data-cell="manzil">{el?.address}</td>
       <td data-cell="nomer">{el?.phone ? el?.phone : "+998123531282"}</td>
-
-      <td data-cell="info" className="table__btns">
-        <button
-          onClick={() => handleDelete(el?.id)}
-          className="table__btns-view"
-        >
-          delete
-        </button>
-        <button onClick={() => handleEdit(el)} className="table__btns-view">
-          edit
-        </button>
-        <Link to={`/admin/customer/${el?.id}`}>
-          <button className="table__btns-view">batafsil</button>
-        </Link>
+      <td data-cell="group">{el?.groups[0]?.course?.name}</td>
+      <td onClick={() => toggleMenu(el?.id)} data-cell="info">
+        <CiMenuKebab />
       </td>
+
+      {activeStudentId === el?.id && (
+        <div className="table__hide">
+          <button
+            onClick={() => handleDelete(el?.id)}
+            className="table__btns-view"
+          >
+            delete
+          </button>
+          <button onClick={() => handleEdit(el)} className="table__btns-view">
+            edit
+          </button>
+          <Link to={`/admin/customer/${el?.id}`}>
+            <button className="table__btns-view">batafsil</button>
+          </Link>
+        </div>
+      )}
     </tr>
   ));
 
@@ -100,7 +110,8 @@ const Table = ({ data }) => {
             <th>Familiya</th>
             <th>Manzil</th>
             <th>Telefon nomer</th>
-            <th>Toliq malumot</th>
+            <th>Kurs</th>
+            <th>/</th>
           </tr>
         </thead>
         <tbody>{customerTbody}</tbody>

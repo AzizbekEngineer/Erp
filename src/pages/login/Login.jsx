@@ -3,6 +3,7 @@ import { useSignInMutation } from "../../context/api/userApi";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../context/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import "./login.scss";
 
 let initialState = {
@@ -12,7 +13,7 @@ let initialState = {
 
 const Login = () => {
   const [value, setValue] = useState(initialState);
-  const [signIn, { data, isSuccess }] = useSignInMutation();
+  const [signIn, { data, isSuccess, isError }] = useSignInMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -29,9 +30,16 @@ const Login = () => {
     if (isSuccess) {
       localStorage.setItem("x-auth-token", data?.accessToken);
       dispatch(setToken(data?.accessToken));
+      toast.success("Ro'yhatdan o'tdingiz");
       navigate("/admin/students");
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("Qaytadan urunib ko'ring");
+    }
+  }, [isError]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

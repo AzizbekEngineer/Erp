@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./course.scss";
 import Module from "../../components/Module/Module";
 import {
@@ -8,6 +8,7 @@ import {
   useUpdateCourseMutation,
 } from "../../context/api/courseApi";
 import { useGetValue } from "../../hooks/useGetValue";
+import { toast } from "react-toastify";
 
 const initialState = {
   name: "",
@@ -18,7 +19,8 @@ const Course = () => {
   const [courseHide, setCourseHide] = useState(false);
   const [createHide, setCreateHide] = useState(false);
   const { data: courseData } = useGetCoursesQuery();
-  const [deleteCourse] = useDeleteCourseMutation();
+  const [deleteCourse, { isSuccess: deleteSuccess }] =
+    useDeleteCourseMutation();
   const { formData, setFormData, handleChange } = useGetValue(initialState);
   const [createCourse, { data, isSuccess }] = useCreateCourseMutation();
   const [updateCourse] = useUpdateCourseMutation();
@@ -31,8 +33,20 @@ const Course = () => {
     setCreateHide(false);
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Kurs muoffaqiyatli yaratildi");
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (deleteSuccess) {
+      toast.success("Kurs muoffaqiyatli o'chirildi");
+    }
+  }, [deleteSuccess]);
+
   const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete?")) {
+    if (window.confirm("Kursni o'chirmoqchimisz ?")) {
       deleteCourse(id);
     }
   };

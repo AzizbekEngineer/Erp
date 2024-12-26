@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "./group.scss";
 import Module from "../../components/Module/Module";
 import {
@@ -11,6 +12,7 @@ import { useGetCoursesQuery } from "../../context/api/courseApi";
 import { useGetValue } from "../../hooks/useGetValue";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const initialState = {
   name: "",
@@ -25,7 +27,7 @@ const Group = () => {
   const { data: courseData } = useGetCoursesQuery();
   const { formData, setFormData, handleChange } = useGetValue(initialState);
   const [createGroup] = useCreateGroupMutation();
-  const [deleteGroup] = useDeleteGroupMutation();
+  const [deleteGroup, { data, isSuccess }] = useDeleteGroupMutation();
   const [updateGroup] = useUpdateGroupMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -42,23 +44,28 @@ const Group = () => {
     try {
       if (isEditing) {
         await updateGroup({ id: currentGroupId, ...formData }).unwrap();
-        alert("Group updated successfully!");
+        toast.success("Grux muoffaqiyatli o'zgartirildi");
       } else {
         await createGroup(formData).unwrap();
-        alert("Group created successfully!");
+        toast.success("Grux muoffaqiyatli yaratildi");
       }
       resetForm();
     } catch (error) {
-      console.error("Error managing group:", error);
-      alert("Failed to manage group!");
+      toast.error("Grux malumotlarida xatolik");
     }
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this group?")) {
+    if (window.confirm("Grux o'chirilsinmi")) {
       deleteGroup(id);
     }
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Grux o'chirildi");
+    }
+  }, [isSuccess]);
 
   const handleEdit = (group) => {
     setFormData({
@@ -83,12 +90,12 @@ const Group = () => {
   return (
     <div className="group">
       <div className="group__top">
-        <h2 className="group__title">Groups</h2>
+        <h2 className="group__title">Gruhlar</h2>
         <button
           className="group__create-btn"
           onClick={() => setIsModalOpen(true)}
         >
-          Create Group
+          Gruh yaratish
         </button>
       </div>
       <ul className="group__list">
@@ -98,16 +105,16 @@ const Group = () => {
               <div className="group__item-info">
                 <h3 className="group__name">{group.name}</h3>
                 <p className="group__details">
-                  Teacher: {group.teacher?.firstName || "Not Assigned"}
+                  O'qituvchi: {group.teacher?.firstName || "Not Assigned"}
                 </p>
                 <p className="group__details">
-                  Course: {group.course?.name || "Not Assigned"}
+                  Kurs: {group.course?.name || "Not Assigned"}
                 </p>
               </div>
             </Link>
             <div className="group__actions">
-              <button onClick={() => handleEdit(group)}>Edit</button>
-              <button onClick={() => handleDelete(group.id)}>Delete</button>
+              <button onClick={() => handleEdit(group)}>Tahrirlash</button>
+              <button onClick={() => handleDelete(group.id)}>O'chirish</button>
             </div>
           </li>
         ))}
@@ -116,9 +123,9 @@ const Group = () => {
       {isModalOpen && (
         <Module bg="#aaa4" close={resetForm}>
           <form className="group__form" onSubmit={handleSubmit}>
-            <h3>{isEditing ? "Edit Group" : "Create Group"}</h3>
+            <h3>{isEditing ? "Grux o'zgartirish" : "Grux yaratish"}</h3>
             <div className="group__field">
-              <label htmlFor="teacher">Teacher:</label>
+              <label htmlFor="teacher">O'qituvchi:</label>
               <select
                 id="teacher"
                 name="teacherId"
@@ -126,7 +133,7 @@ const Group = () => {
                 onChange={handleSelectChange}
               >
                 <option value="" disabled>
-                  Select a teacher
+                  O'qituvchi tanlash
                 </option>
                 {teacherData?.map((teacher) => (
                   <option key={teacher.id} value={teacher.id}>
@@ -136,7 +143,7 @@ const Group = () => {
               </select>
             </div>
             <div className="group__field">
-              <label htmlFor="course">Course:</label>
+              <label htmlFor="course">Kurs:</label>
               <select
                 id="course"
                 name="courseId"
@@ -144,7 +151,7 @@ const Group = () => {
                 onChange={handleSelectChange}
               >
                 <option value="" disabled>
-                  Select a course
+                  Kurs tanlash
                 </option>
                 {courseData?.map((course) => (
                   <option key={course.id} value={course.id}>
@@ -154,7 +161,7 @@ const Group = () => {
               </select>
             </div>
             <div className="group__field">
-              <label htmlFor="groupName">Group Name:</label>
+              <label htmlFor="groupName">Grux nomi:</label>
               <input
                 id="groupName"
                 name="name"
@@ -165,7 +172,7 @@ const Group = () => {
               />
             </div>
             <button className="group__submit" type="submit">
-              {isEditing ? "Update" : "Create"}
+              {isEditing ? "Yangilash" : "Yaratish"}
             </button>
           </form>
         </Module>

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./createTeacher.scss";
 import { useGetValue } from "../../../hooks/useGetValue";
 import { useCreateTeacherMutation } from "../../../context/api/teacherApi";
+import { toast } from "react-toastify";
 
 const initialState = {
   firstName: "",
@@ -14,26 +15,29 @@ const initialState = {
 };
 
 const CreateTeacher = () => {
-  const [createTeacher, { data }] = useCreateTeacherMutation();
+  const [createTeacher, { data, isSuccess }] = useCreateTeacherMutation();
   const { formData, setFormData, handleChange } = useGetValue(initialState);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("O'qituvchi yaratildi");
+    }
+  }, [isSuccess]);
 
   const handleCreateTeacher = (e) => {
     e.preventDefault();
-
     if (!/^\+\d{10,15}$/.test(formData.phone)) {
-      alert(
+      toast.error(
         "Telefon raqam noto'g'ri formatda. Iltimos, to'g'ri raqam kiriting."
       );
       return;
     }
 
     createTeacher(formData);
-    console.log(formData);
     setFormData(initialState);
   };
 
   const handlePhoneChange = (phone) => {
-    // Telefon raqamni +998 formatida saqlash
     setFormData({ ...formData, phone: `+${phone}` });
   };
 

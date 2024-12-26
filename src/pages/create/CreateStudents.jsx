@@ -9,6 +9,7 @@ import {
   useUpdateStudentMutation,
 } from "../../context/api/studentApi";
 import { useGetValue } from "../../hooks/useGetValue";
+import { toast } from "react-toastify";
 
 const initialState = {
   firstName: "",
@@ -42,7 +43,6 @@ const CreateStudents = () => {
   };
 
   const handlePhoneChange = (phone) => {
-    // Ensure the phone number is in E.164 format
     const sanitizedPhone = `+${phone.replace(/[^0-9]/g, "").trim()}`;
     setFormData({ ...formData, phone: sanitizedPhone });
   };
@@ -50,23 +50,21 @@ const CreateStudents = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Log the phone number for debugging purposes
-    console.log("Formatted Phone:", formData.phone);
-
-    // Validate phone
     if (!/^\+\d{11,15}$/.test(formData.phone)) {
-      alert("Telefon raqam noto‘g‘ri formatda. Iltimos, qayta tekshiring.");
+      toast.error(
+        "Telefon raqam noto‘g‘ri formatda. Iltimos, qayta tekshiring."
+      );
       return;
     }
 
     createStudent(formData)
       .unwrap()
       .then(() => {
-        alert("O'quvchi muvaffaqiyatli yaratildi!");
+        toast.success("O'quvchi muvaffaqiyatli yaratildi!");
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert(
+        toast.error(
           "O'quvchini yaratishda xatolik yuz berdi:\n" +
             (error?.data?.message || "Noma'lum xatolik")
         );

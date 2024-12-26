@@ -1,21 +1,66 @@
 .table {
   padding: 0px 20px;
+
   &__row {
     font-family: Arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
     background-color: #ffffff;
+    th,
+    td {
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-family: Nunito Sans, sans-serif;
+      font-size: 16px;
+      line-height: 19.1px;
+      padding: 10px 20px;
+      min-width: 70px;
+    }
+    tr {
+      position: relative;
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+    th {
+      background-color: #f3f4f6;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    tr:nth-child(odd) {
+      background-color: #fcfcfc;
+    }
   }
-  th,
-  td {
-    border-bottom: 1px solid #aaa5;
-    text-align: left;
-    font-family: Nunito Sans;
-    font-size: 16px;
-    line-height: 19.1px;
-    text-align: left;
-    padding: 10px 20px;
-    min-width: 70px;
+
+  &__hide {
+    position: absolute;
+    top: 70px;
+    right: 100px;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    button {
+      background-color: #f8f8f8;
+      color: #333;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      width: 80px;
+      // padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      &:hover {
+        background-color: #ff6b6b;
+        color: #fff;
+      }
+    }
   }
 
   &__select {
@@ -24,80 +69,22 @@
     flex-wrap: wrap;
     gap: 10px;
     padding: 20px 0px;
+
     button,
     select {
       width: 180px;
-      padding: 15px;
+      padding: 12px;
+      font-size: 14px;
       outline: none;
-      border: 1px solid #aaa4;
+      border: 1px solid #d1d5db;
       border-radius: 6px;
-      background-color: white;
-    }
-  }
+      background-color: #f9fafb;
+      transition: all 0.3s ease;
 
-  td {
-    position: relative;
-  }
-  &__pin {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: none;
-    background-color: transparent;
-    padding: 2px;
-    svg {
-      font-size: 15px;
-    }
-  }
-
-  &__budget {
-    width: 80px;
-    border-radius: 4px;
-    color: white;
-    text-align: center;
-    padding: 4px 10px;
-    color: #00b69b;
-    overflow: hidden;
-
-    &__green {
-      color: #6226ef;
-    }
-
-    &__red {
-      color: #ef3826;
-    }
-  }
-
-  th {
-    background-color: #ffffff;
-  }
-
-  tr:nth-child(odd) {
-    background-color: #fcfdfd;
-  }
-
-  tr:hover {
-    background-color: didSelectRowAtIndexPath ad th;
-  }
-
-  &__btns {
-    display: flex;
-    // align-items: center;
-    // justify-content: center;
-    gap: 8px;
-    button {
-      padding: 4px 10px;
-      border-radius: 4px;
-      border: 1px solid transparent;
-    }
-    &-price {
-      background-color: rgb(204, 64, 92);
-      color: white;
-    }
-
-    &-view {
-      background-color: #2980b9;
-      color: white;
+      &:hover {
+        background-color: #e5e7eb;
+        border-color: #9ca3af;
+      }
     }
   }
 
@@ -106,66 +93,35 @@
     align-items: center;
     justify-content: flex-end;
     margin: 30px auto;
-  }
 
-  @media (max-width: 1200px) {
-    &__row {
-      width: 100%;
+    .MuiPagination-root {
+      display: flex;
+      gap: 5px;
     }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 1200px) {
+  .table__row {
     td {
       display: grid;
     }
   }
-  @media (max-width: 1150px) {
-    th {
-      display: none;
-    }
-    td {
-      display: block;
-      gap: 10px;
-      padding: 14px 8px;
-    }
+}
 
-    td::before {
+@media (max-width: 1150px) {
+  th {
+    display: none;
+  }
+  td {
+    display: block;
+    padding: 14px 8px;
+
+    &::before {
       content: attr(data-cell) ":  ";
       font-weight: 700;
       text-transform: capitalize;
-    }
-
-    &__budget {
-      display: flex !important;
-      align-items: center;
-      gap: 10px;
-    }
-
-    &__btns {
-      display: flex !important;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
-    }
-    &__select {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 20px 0px;
-      button,
-      select {
-        width: calc(50% - 5px);
-        padding: 10px;
-        outline: none;
-        border: 1px solid #aaa4;
-        border-radius: 6px;
-        background-color: white;
-      }
-    }
-
-    &__pagenation {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      font-size: 14px;
     }
   }
 }
