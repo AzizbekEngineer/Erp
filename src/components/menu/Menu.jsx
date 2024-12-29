@@ -27,8 +27,8 @@ function Menu({ setClose }) {
           name=""
           id=""
         >
-          <option value="uzb">Uzbek</option>
-          <option value="rus">Rus</option>
+          <option value="uzb"> {t("Uzbek")}</option>
+          <option value="rus">{t("Rus")}</option>
         </select>
       </div>
     </div>
