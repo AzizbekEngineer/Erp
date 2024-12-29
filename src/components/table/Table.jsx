@@ -54,7 +54,7 @@ const Table = ({ data }) => {
       <td data-cell="budget">{el?.lastName}</td>
       <td data-cell="manzil">{el?.address}</td>
       <td data-cell="nomer">{el?.phone ? el?.phone : "+998123531282"}</td>
-      <td data-cell="group">{el?.groups[0]?.course?.name}</td>
+      {/* <td data-cell="group">{el?.groups[0]?.course?.name}</td> */}
       <td onClick={() => toggleMenu(el?.id)} data-cell="info">
         <CiMenuKebab />
       </td>
@@ -123,7 +123,7 @@ const Table = ({ data }) => {
       </table>
       <div className="table__pagenation">
         <Stack spacing={2}>
-          <Pagination />
+          <Pagination count={count} />
         </Stack>
       </div>
 
