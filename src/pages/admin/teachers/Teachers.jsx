@@ -17,13 +17,16 @@ const Teachers = () => {
 
   const [isEditVisible, setIsEditVisible] = useState(false);
   const [editFormData, setEditFormData] = useState({
-    id: "",
+    id:"",
     firstName: "",
     lastName: "",
     phone: "",
     address: "",
     specialty: "",
   });
+
+  console.log("edit", editFormData);
+  
 
   const handleDelete = (id) => {
     if (window.confirm("O'qituvchi o'chirilsinmi?")) {
@@ -45,7 +48,16 @@ const Teachers = () => {
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    updateTeacher(editFormData);
+    let updatedUser = {
+        firstName: editFormData.firstName,
+        lastName: editFormData.lastName,
+        phone: "+" + editFormData.phone,
+        address: editFormData.address,
+        specialty: editFormData.specialty
+    };
+    updateTeacher({body:updatedUser, id:editFormData.id});
+    console.log("up",editFormData);
+    
     setIsEditVisible(false);
   };
 
@@ -115,7 +127,7 @@ const Teachers = () => {
               <PhoneInput
                 country={"uz"}
                 value={editFormData.phone}
-                onChange={(phone) => handleEditChange("phone", phone)}
+                onChange={(value) => handleEditChange("phone", value)}
                 placeholder="Telefon raqamini kiriting"
                 inputStyle={{
                   width: "100%",
