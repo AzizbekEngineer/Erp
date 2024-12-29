@@ -51,7 +51,7 @@ const Teachers = () => {
     let updatedUser = {
         firstName: editFormData.firstName,
         lastName: editFormData.lastName,
-        phone: "+" + editFormData.phone,
+        phone: editFormData.phone.length === 12 ? "+" + editFormData.phone : editFormData.phone,
         address: editFormData.address,
         specialty: editFormData.specialty
     };
