@@ -23,6 +23,7 @@ const Table = ({ data }) => {
   const [updateStudent] = useUpdateStudentMutation();
   const [studentEdit, setStudentEdit] = useState(null);
   const [activeStudentId, setActiveStudentId] = useState(null); // Track active menu
+  console.log("as", studentEdit);
 
   const handleDelete = (id) => {
     if (window.confirm("O'quvchi o'chirilsinmi?")) {
@@ -37,10 +38,15 @@ const Table = ({ data }) => {
   const handleEditSubmit = (e) => {
     e.preventDefault();
     const updatedStudent = {
-      ...studentEdit,
+      firstName: studentEdit.firstName,
+      lastName: studentEdit.lastName,
+      address: studentEdit.address,
     };
-    updateStudent(updatedStudent);
+    console.log(updatedStudent);
+
+    updateStudent({ body: updatedStudent, id: studentEdit.id });
     setStudentEdit(null);
+    setActiveStudentId(null);
   };
 
   const toggleMenu = (id) => {
@@ -54,7 +60,7 @@ const Table = ({ data }) => {
       <td data-cell="budget">{el?.lastName}</td>
       <td data-cell="manzil">{el?.address}</td>
       <td data-cell="nomer">{el?.phone ? el?.phone : "+998123531282"}</td>
-      {/* <td data-cell="group">{el?.groups[0]?.course?.name}</td> */}
+      <td data-cell="group">{el?.groups[0]?.course?.name}</td>
       <td onClick={() => toggleMenu(el?.id)} data-cell="info">
         <CiMenuKebab />
       </td>
@@ -123,7 +129,7 @@ const Table = ({ data }) => {
       </table>
       <div className="table__pagenation">
         <Stack spacing={2}>
-          <Pagination count={count} />
+          <Pagination />
         </Stack>
       </div>
 
@@ -137,7 +143,10 @@ const Table = ({ data }) => {
                 type="text"
                 value={studentEdit.firstName}
                 onChange={(e) =>
-                  setStudentEdit({ ...studentEdit, firstName: e.target.value })
+                  setStudentEdit((prev) => ({
+                    ...prev,
+                    firstName: e.target.value,
+                  }))
                 }
                 required
               />
@@ -148,7 +157,10 @@ const Table = ({ data }) => {
                 type="text"
                 value={studentEdit.lastName}
                 onChange={(e) =>
-                  setStudentEdit({ ...studentEdit, lastName: e.target.value })
+                  setStudentEdit((prev) => ({
+                    ...prev,
+                    lastName: e.target.value,
+                  }))
                 }
                 required
               />
@@ -158,7 +170,12 @@ const Table = ({ data }) => {
               <PhoneInput
                 country={"uz"}
                 value={studentEdit.phone}
-                onChange={(phone) => setStudentEdit({ ...studentEdit, phone })}
+                onChange={(phone) =>
+                  setStudentEdit((prev) => ({
+                    ...prev,
+                    phone,
+                  }))
+                }
                 inputStyle={{
                   width: "100%",
                   padding: "20px 45px",
@@ -175,7 +192,10 @@ const Table = ({ data }) => {
                 type="text"
                 value={studentEdit.address}
                 onChange={(e) =>
-                  setStudentEdit({ ...studentEdit, address: e.target.value })
+                  setStudentEdit((prev) => ({
+                    ...prev,
+                    address: e.target.value,
+                  }))
                 }
                 required
               />

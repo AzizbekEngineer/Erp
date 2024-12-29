@@ -102,26 +102,26 @@
 }
 
 // Responsive adjustments
-@media (max-width: 1200px) {
-  .table__row {
-    td {
-      display: grid;
-    }
-  }
-}
+// @media (max-width: 1200px) {
+//   .table__row {
+//     td {
+//       display: grid;
+//     }
+//   }
+// }
 
-@media (max-width: 1150px) {
-  th {
-    display: none;
-  }
-  td {
-    display: block;
-    padding: 14px 8px;
+// @media (max-width: 1150px) {
+//   th {
+//     display: none;
+//   }
+//   td {
+//     display: block;
+//     padding: 14px 8px;
 
-    &::before {
-      content: attr(data-cell) ":  ";
-      font-weight: 700;
-      text-transform: capitalize;
-    }
-  }
-}
+//     &::before {
+//       content: attr(data-cell) ":  ";
+//       font-weight: 700;
+//       text-transform: capitalize;
+//     }
+//   }
+// }
