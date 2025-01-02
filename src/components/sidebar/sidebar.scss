@@ -71,7 +71,7 @@
     gap: 15px;
     padding: 20px 5px 10px 14px;
 
-    h1 {
+    h2 {
       color: black;
     }
 
@@ -82,12 +82,13 @@
     }
 
     button {
-      padding: 6px 12px;
+      padding: 8px 14px;
       border-radius: 50%;
       border: none;
       background-color: #2980b9;
       color: white;
       font-size: 16px;
+      font-weight: 900;
     }
 
     &__full {

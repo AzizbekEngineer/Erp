@@ -4,7 +4,7 @@ export const productApi = api.injectEndpoints({
   endpoints: (build) => ({
     getAdmins: build.query({
       query: (params) => ({
-        url: "/profiles/me",
+        url: "/profiles",
         params,
       }),
       providesTags: ["Admin", "Customer"],

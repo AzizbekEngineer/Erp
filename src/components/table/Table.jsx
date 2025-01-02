@@ -13,7 +13,7 @@ import {
 } from "../../context/api/studentApi";
 import { CiMenuKebab } from "react-icons/ci";
 
-const Table = ({ data }) => {
+const Table = ({ data, loc }) => {
   const [tableClose, setTableClose] = useState(false);
   const [budget, setBudget] = useState(2);
   const [budgetDebt, setBudgetDebt] = useState(2);
@@ -23,7 +23,6 @@ const Table = ({ data }) => {
   const [updateStudent] = useUpdateStudentMutation();
   const [studentEdit, setStudentEdit] = useState(null);
   const [activeStudentId, setActiveStudentId] = useState(null); // Track active menu
-  console.log("as", studentEdit);
 
   const handleDelete = (id) => {
     if (window.confirm("O'quvchi o'chirilsinmi?")) {
@@ -60,7 +59,7 @@ const Table = ({ data }) => {
       <td data-cell="budget">{el?.lastName}</td>
       <td data-cell="manzil">{el?.address}</td>
       <td data-cell="nomer">{el?.phone ? el?.phone : "+998123531282"}</td>
-      <td data-cell="group">{el?.groups[0]?.course?.name}</td>
+      <td data-cell="group">{loc ? "Student" : el?.groups[0]?.course?.name}</td>
       <td onClick={() => toggleMenu(el?.id)} data-cell="info">
         <CiMenuKebab />
       </td>
@@ -116,7 +115,7 @@ const Table = ({ data }) => {
             <th>Familiya</th>
             <th>Manzil</th>
             <th>Telefon nomer</th>
-            <th>Kurs</th>
+            <th>{loc ? "Active" : "Kurs"}</th>
             <th>/</th>
           </tr>
         </thead>

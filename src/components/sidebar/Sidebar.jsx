@@ -142,42 +142,14 @@ function Sidebar() {
     <section className="sidebar">
       <div>
         <div className="sidebar__top">
-          <div className="sidebar__top__info">
-            <button onClick={() => setProfileHide((prev) => !prev)}>R</button>
-            <h2>RMZ</h2>
-          </div>
-          <div className="sidebar__top__full">
-            <button onClick={() => setProfileHide((prev) => !prev)}>
-              <CiMenuKebab />
-            </button>
-          </div>
-        </div>
-        <div
-          className={`sidebar__profile ${
-            profileHide ? "sidebar__profile__hide" : ""
-          }`}
-        >
-          <div className="sidebar__profile__info">
-            <Link
-              onClick={() => setProfileHide(false)}
-              className="sidebar__profile__title"
-              to={"profile"}
-            >
-              <AiOutlineProfile />
-              Profile
-            </Link>
-            <p className="sidebar__profile__title">
-              <FaRegEdit />
-              O'zgartirish
-            </p>
-            <p
-              className="sidebar__profile__title"
-              onClick={() => dispatch(logout())}
-            >
-              <CiLogout />
-              Chiqish
-            </p>
-          </div>
+          <Link
+            onClick={() => setProfileHide(false)}
+            className="sidebar__top__info"
+            to={"profile"}
+          >
+            <button>A</button>
+            <h2>AKE FOREX</h2>
+          </Link>
         </div>
 
         <ul className="sidebar__item">{renderMenuByRole()}</ul>

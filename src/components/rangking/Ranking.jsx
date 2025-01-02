@@ -134,6 +134,7 @@
 import React, { useState } from "react";
 import "./ranking.scss";
 import Table from "../table/Table";
+import { useLocation } from "react-router-dom";
 
 const generateLessons = (month, year) => {
   return Array.from({ length: 20 }, (_, index) => {
@@ -151,6 +152,9 @@ const Ranking = ({ data, title }) => {
   const [activeTab, setActiveTab] = useState("home");
 
   const lessons = generateLessons(selectedMonth, 2024);
+  const location = useLocation();
+  const loc = location.pathname.split("/")[2];
+  console.log(loc);
 
   const handleGradeChange = (studentId, day, value) => {
     setGrades((prevGrades) => ({
@@ -179,7 +183,7 @@ const Ranking = ({ data, title }) => {
               className={`ranking-tab ${activeTab === "home" ? "active" : ""}`}
               onClick={() => handleTabChange("home")}
             >
-              Baholar Jadvali
+              {data?.[0].name}
             </li>
             <li
               className={`ranking-tab ${
@@ -258,7 +262,7 @@ const Ranking = ({ data, title }) => {
         )}
         {activeTab === "students" && (
           <section id="students" className="app-section">
-            <Table data={data?.[0]?.students} />
+            <Table loc={loc} data={data?.[0]?.students} />
           </section>
         )}
       </main>
