@@ -113,3 +113,57 @@
     }
   }
 }
+
+.custom-dropdown {
+  width: 140px;
+  position: relative;
+  display: inline-block;
+
+  .custom-dropdown-selected {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    .lang-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .custom-dropdown-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 100%;
+    border-radius: 4px;
+
+    &.show {
+      display: block;
+    }
+
+    .custom-dropdown-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
+
+      .lang-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}

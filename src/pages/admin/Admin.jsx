@@ -11,7 +11,7 @@ const Admin = () => {
       <div className="admin__sidebar">
         <Sidebar />
       </div>
-      <div className="admin__bg">
+      <div className="admin__bg ">
         <div className="admin__bg-top">
           <Menu setClose={setClose} />
         </div>

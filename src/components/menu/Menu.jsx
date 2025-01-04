@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { TfiMenu } from "react-icons/tfi";
 import { FaBell } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useTranslation } from "react-i18next";
+import uzb from "../../assets/icons/uzb.webp";
+import rus from "../../assets/icons/rus.png";
 import "./menu.scss";
 
 function Menu({ setClose }) {
   const { t, i18n } = useTranslation();
+  const [selectedLang, setSelectedLang] = useState("uzb");
+
+  const handleLanguageChange = (lang) => {
+    setSelectedLang(lang);
+    i18n.changeLanguage(lang);
+
+    // Dropdown menyuni yopish
+    const dropdown = document.querySelector(".custom-dropdown-options");
+    if (dropdown.classList.contains("show")) {
+      dropdown.classList.remove("show");
+    }
+  };
+
   return (
     <div className="products__top">
       <div className="products__top__left">
@@ -21,25 +35,49 @@ function Menu({ setClose }) {
       </div>
 
       <div className="products__top__right">
-        <NotificationsIcon />
-        <select
-          onChange={(e) => i18n.changeLanguage(e.target.value)}
-          name=""
-          id=""
-        >
-          <option value="uzb"> {t("Uzbek")}</option>
-          <option value="rus">{t("Rus")}</option>
-        </select>
         <FaBell />
-        <div className="products__top__right__custom-select">
-          <select
-            onChange={(e) => i18n.changeLanguage(e.target.value)}
-            name="lang"
-            id="lang"
+        <div className="custom-dropdown">
+          <div
+            className="custom-dropdown-selected"
+            onClick={() =>
+              document
+                .querySelector(".custom-dropdown-options")
+                .classList.toggle("show")
+            }
           >
-            <option value="uzb">{t("Uzbek")}</option>
-            <option value="rus">{t("Rus")}</option>
-          </select>
+            <img
+              src={selectedLang === "uzb" ? uzb : rus}
+              alt={selectedLang}
+              className="lang-icon"
+            />
+            <span>{t(selectedLang === "uzb" ? "Uzbek" : "Rus")}</span>
+          </div>
+          <div className="custom-dropdown-options">
+            <div
+              className="custom-dropdown-option"
+              onClick={() => handleLanguageChange("uzb")}
+            >
+              <img
+                src={uzb}
+                style={{ width: "30px", height: "30px" }}
+                alt="Uzbek"
+                className="lang-icon"
+              />
+              {t("Uzbek")}
+            </div>
+            <div
+              className="custom-dropdown-option"
+              onClick={() => handleLanguageChange("rus")}
+            >
+              <img
+                src={rus}
+                style={{ width: "30px", height: "30px" }}
+                alt="Russian"
+                className="lang-icon"
+              />
+              {t("Rus")}
+            </div>
+          </div>
         </div>
       </div>
     </div>
