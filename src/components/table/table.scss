@@ -21,7 +21,9 @@
     tr {
       position: relative;
 
-
+      &:hover {
+        background-color: #f9f9f9;
+      }
     }
 
     th {
@@ -30,8 +32,8 @@
       text-transform: uppercase;
     }
 
-    tr:nth-child(even) {
-      background-color: #aaa1;
+    tr:nth-child(odd) {
+      background-color: #fcfcfc;
     }
   }
 

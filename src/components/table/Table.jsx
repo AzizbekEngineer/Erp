@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./table.scss";
 import { Link } from "react-router-dom";
 import Module from "../Module/Module";
@@ -11,7 +11,10 @@ import {
   useDeleteStudentMutation,
   useUpdateStudentMutation,
 } from "../../context/api/studentApi";
-import { CiMenuKebab } from "react-icons/ci";
+import { AiOutlineDelete } from "react-icons/ai";
+import { CiEdit } from "react-icons/ci";
+import { IoMdMore } from "react-icons/io";
+import { VscCodeReview } from "react-icons/vsc";
 
 const Table = ({ data, loc }) => {
   const [tableClose, setTableClose] = useState(false);
@@ -22,7 +25,22 @@ const Table = ({ data, loc }) => {
   const [deleteStudent] = useDeleteStudentMutation();
   const [updateStudent] = useUpdateStudentMutation();
   const [studentEdit, setStudentEdit] = useState(null);
-  const [activeStudentId, setActiveStudentId] = useState(null); // Track active menu
+  const [activeStudentId, setActiveStudentId] = useState(null);
+
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setActiveStudentId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleDelete = (id) => {
     if (window.confirm("O'quvchi o'chirilsinmi?")) {
@@ -40,7 +58,6 @@ const Table = ({ data, loc }) => {
       firstName: studentEdit.firstName,
       lastName: studentEdit.lastName,
       address: studentEdit.address,
-      phone: studentEdit.phone, // Add phone to the updated student object
     };
 
     updateStudent({ body: updatedStudent, id: studentEdit.id });
@@ -60,23 +77,32 @@ const Table = ({ data, loc }) => {
       <td data-cell="manzil">{el?.address}</td>
       <td data-cell="nomer">{el?.phone ? el?.phone : "+998123531282"}</td>
       <td data-cell="group">{loc ? "Student" : el?.groups[0]?.course?.name}</td>
-      <td onClick={() => toggleMenu(el?.id)} data-cell="info">
-        <CiMenuKebab />
+      <td
+        style={{ cursor: "pointer" }}
+        onClick={() => toggleMenu(el?.id)}
+        data-cell="info"
+      >
+        <IoMdMore />
       </td>
 
       {activeStudentId === el?.id && (
-        <div className="table__hide">
+        <div className="table__hide" ref={menuRef}>
           <button
             onClick={() => handleDelete(el?.id)}
             className="table__btns-view"
           >
+            <AiOutlineDelete />
             delete
           </button>
           <button onClick={() => handleEdit(el)} className="table__btns-view">
+            <CiEdit />
             edit
           </button>
           <Link to={`/admin/customer/${el?.id}`}>
-            <button className="table__btns-view">batafsil</button>
+            <button className="table__btns-view">
+              <VscCodeReview />
+              batafsill
+            </button>
           </Link>
         </div>
       )}
@@ -84,22 +110,20 @@ const Table = ({ data, loc }) => {
   ));
 
   return (
-    <div className="table" ref={tableRef}>
+    <div className="table">
       <div className="table__select">
         <button>Jami:</button>
-        <select onChange={(e) => setBudget(e.target.value)} value={budget}>
+        <select onChange={(e) => setBudget(e.target.value)}>
           <option value="2">Barchasi</option>
           <option value="1">To'lov qilgan</option>
           <option value="-1">To'lov qilmagan</option>
         </select>
-
         <select onChange={(e) => setBudgetDebt(e.target.value)}>
           <option value="2">Barchasi</option>
           <option value="-1">Qarzdorlar</option>
           <option value="1">Haqdorlar</option>
           <option value="0">Nollar</option>
         </select>
-
         <select onChange={(e) => setFilter(e.target.value)}>
           <option value="0">Guruhlar</option>
           <option value="1">N5</option>
@@ -127,13 +151,11 @@ const Table = ({ data, loc }) => {
           </Module>
         )}
       </table>
+
+      {/* Pagination */}
       <div className="table__pagenation">
         <Stack spacing={2}>
-          <Pagination
-            count={Math.ceil(data?.length / 10)}
-            page={page}
-            onChange={(e, value) => setPage(value)}
-          />
+          <Pagination />
         </Stack>
       </div>
 
