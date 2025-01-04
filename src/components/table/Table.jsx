@@ -101,7 +101,7 @@ const Table = ({ data, loc }) => {
           <Link to={`/admin/customer/${el?.id}`}>
             <button className="table__btns-view">
               <VscCodeReview />
-              batafsil
+              batafsill
             </button>
           </Link>
         </div>
