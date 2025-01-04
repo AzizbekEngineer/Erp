@@ -9,7 +9,7 @@ import {
   useUpdateStudentMutation,
 } from "../../context/api/studentApi";
 import { useGetValue } from "../../hooks/useGetValue";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const initialState = {
   firstName: "",

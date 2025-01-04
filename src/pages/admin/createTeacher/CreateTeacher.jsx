@@ -4,7 +4,7 @@ import "react-phone-input-2/lib/style.css";
 import "./createTeacher.scss";
 import { useGetValue } from "../../../hooks/useGetValue";
 import { useCreateTeacherMutation } from "../../../context/api/teacherApi";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const initialState = {
   firstName: "",

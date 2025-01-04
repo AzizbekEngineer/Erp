@@ -17,7 +17,7 @@ import Course from "./pages/courses/Course";
 import StudentRating from "./pages/admin/studentsRank/StudentsRank";
 import Group from "./pages/group/Group";
 import SingleGroup from "./pages/group/singleGroup/SingleGroup";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -43,7 +43,7 @@ const App = () => {
           </Route>
         </Route>
       </Routes>
-      <ToastContainer />
+      <Toaster />
     </div>
   );
 };
