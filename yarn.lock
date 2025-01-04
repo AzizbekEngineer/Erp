@@ -316,7 +316,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-<<<<<<< HEAD
 "@mui/core-downloads-tracker@^6.3.1":
   version "6.3.1"
   resolved "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-6.3.1.tgz"
@@ -339,23 +338,6 @@
     "@mui/system" "^6.3.1"
     "@mui/types" "^7.2.21"
     "@mui/utils" "^6.3.1"
-=======
-"@mui/core-downloads-tracker@^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-6.2.1.tgz"
-  integrity sha512-U/8vS1+1XiHBnnRRESSG1gvr6JDHdPjrpnW6KEebkAQWBn6wrpbSF/XSZ8/vJIRXH5NyDmMHi4Ro5Q70//JKhA==
-
-"@mui/material@^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.npmjs.org/@mui/material/-/material-6.2.1.tgz"
-  integrity sha512-7VlKGsRKsy1bOSOPaSNgpkzaL+0C7iWAVKd2KYyAvhR9fTLJtiAMpq+KuzgEh1so2mtvQERN0tZVIceWMiIesw==
-  dependencies:
-    "@babel/runtime" "^7.26.0"
-    "@mui/core-downloads-tracker" "^6.2.1"
-    "@mui/system" "^6.2.1"
-    "@mui/types" "^7.2.20"
-    "@mui/utils" "^6.2.1"
->>>>>>> origin/ramziddin
     "@popperjs/core" "^2.11.8"
     "@types/react-transition-group" "^4.4.12"
     clsx "^2.1.1"
@@ -364,7 +346,6 @@
     react-is "^19.0.0"
     react-transition-group "^4.4.5"
 
-<<<<<<< HEAD
 "@mui/private-theming@^6.3.1":
   version "6.3.1"
   resolved "https://registry.npmjs.org/@mui/private-theming/-/private-theming-6.3.1.tgz"
@@ -378,21 +359,6 @@
   version "6.3.1"
   resolved "https://registry.npmjs.org/@mui/styled-engine/-/styled-engine-6.3.1.tgz"
   integrity sha512-/7CC0d2fIeiUxN5kCCwYu4AWUDd9cCTxWCyo0v/Rnv6s8uk6hWgJC3VLZBoDENBHf/KjqDZuYJ2CR+7hD6QYww==
-=======
-"@mui/private-theming@^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.npmjs.org/@mui/private-theming/-/private-theming-6.2.1.tgz"
-  integrity sha512-u1y0gpcfrRRxCcIdVeU5eIvkinA82Q8ft178WUNYuoFQrsOrXdlBdZlRVi+eYuUFp1iXI55Cud7sMZZtETix5Q==
-  dependencies:
-    "@babel/runtime" "^7.26.0"
-    "@mui/utils" "^6.2.1"
-    prop-types "^15.8.1"
-
-"@mui/styled-engine@^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.npmjs.org/@mui/styled-engine/-/styled-engine-6.2.1.tgz"
-  integrity sha512-6R3OgYw6zgCZWFYYMfxDqpGfJA78mUTOIlUDmmJlr60ogVNCrM87X0pqx5TbZ2OwUyxlJxN9qFgRr+J9H6cOBg==
->>>>>>> origin/ramziddin
   dependencies:
     "@babel/runtime" "^7.26.0"
     "@emotion/cache" "^11.13.5"
@@ -401,7 +367,6 @@
     csstype "^3.1.3"
     prop-types "^15.8.1"
 
-<<<<<<< HEAD
 "@mui/system@^6.3.1":
   version "6.3.1"
   resolved "https://registry.npmjs.org/@mui/system/-/system-6.3.1.tgz"
@@ -412,23 +377,10 @@
     "@mui/styled-engine" "^6.3.1"
     "@mui/types" "^7.2.21"
     "@mui/utils" "^6.3.1"
-=======
-"@mui/system@^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.npmjs.org/@mui/system/-/system-6.2.1.tgz"
-  integrity sha512-0lc8CbBP4WAAF+SmGMFJI9bpIyQvW3zvwIDzLsb26FIB/4Z0pO7qGe8mkAl0RM63Vb37899qxnThhHKgAAdy6w==
-  dependencies:
-    "@babel/runtime" "^7.26.0"
-    "@mui/private-theming" "^6.2.1"
-    "@mui/styled-engine" "^6.2.1"
-    "@mui/types" "^7.2.20"
-    "@mui/utils" "^6.2.1"
->>>>>>> origin/ramziddin
     clsx "^2.1.1"
     csstype "^3.1.3"
     prop-types "^15.8.1"
 
-<<<<<<< HEAD
 "@mui/types@^7.2.21":
   version "7.2.21"
   resolved "https://registry.npmjs.org/@mui/types/-/types-7.2.21.tgz"
@@ -438,17 +390,6 @@
   version "6.3.1"
   resolved "https://registry.npmjs.org/@mui/utils/-/utils-6.3.1.tgz"
   integrity sha512-sjGjXAngoio6lniQZKJ5zGfjm+LD2wvLwco7FbKe1fu8A7VIFmz2SwkLb+MDPLNX1lE7IscvNNyh1pobtZg2tw==
-=======
-"@mui/types@^7.2.20":
-  version "7.2.20"
-  resolved "https://registry.npmjs.org/@mui/types/-/types-7.2.20.tgz"
-  integrity sha512-straFHD7L8v05l/N5vcWk+y7eL9JF0C2mtph/y4BPm3gn2Eh61dDwDB65pa8DLss3WJfDXYC7Kx5yjP0EmXpgw==
-
-"@mui/utils@^6.2.1":
-  version "6.2.1"
-  resolved "https://registry.npmjs.org/@mui/utils/-/utils-6.2.1.tgz"
-  integrity sha512-ubLqGIMhKUH2TF/Um+wRzYXgAooQw35th+DPemGrTpgrZHpOgcnUDIDbwsk1e8iQiuJ3mV/ErTtcQrecmlj5cg==
->>>>>>> origin/ramziddin
   dependencies:
     "@babel/runtime" "^7.26.0"
     "@mui/types" "^7.2.21"
@@ -1352,14 +1293,11 @@ globalthis@^1.0.4:
     define-properties "^1.2.1"
     gopd "^1.0.1"
 
-<<<<<<< HEAD
-=======
 goober@^2.1.16:
   version "2.1.16"
   resolved "https://registry.npmjs.org/goober/-/goober-2.1.16.tgz"
   integrity sha512-erjk19y1U33+XAMe1VTvIONHYoSqE4iS7BYUZfHaqeohLmnC0FdxEh7rQU+6MZ4OajItzjZFSRtVANrQwNq6/g==
 
->>>>>>> origin/ramziddin
 gopd@^1.0.1, gopd@^1.1.0, gopd@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz"
@@ -1989,11 +1927,7 @@ punycode@^2.1.0:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-<<<<<<< HEAD
-"react-dom@^16.12.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0", "react-dom@^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom@^18 || ^19", react-dom@^18.3.1, react-dom@>=16.6.0, react-dom@>=18:
-=======
 "react-dom@^16.12.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0", "react-dom@^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom@^18 || ^19", react-dom@^18.3.1, react-dom@>=16, react-dom@>=16.6.0, react-dom@>=18:
->>>>>>> origin/ramziddin
   version "18.3.1"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
@@ -2091,11 +2025,7 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-<<<<<<< HEAD
-react@*, "react@^16.12.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0", "react@^16.6.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^16.9.0 || ^17.0.0 || ^18 || ^19", "react@^17.0.0 || ^18.0.0 || ^19.0.0", "react@^18 || ^19", "react@^18.0 || ^19", react@^18.3.1, "react@>= 16.8.0", react@>=16.6.0, react@>=16.8.0, react@>=18:
-=======
 react@*, "react@^16.12.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0", "react@^16.6.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^16.9.0 || ^17.0.0 || ^18 || ^19", "react@^17.0.0 || ^18.0.0 || ^19.0.0", "react@^18 || ^19", "react@^18.0 || ^19", react@^18.3.1, "react@>= 16.8.0", react@>=16, react@>=16.6.0, react@>=16.8.0, react@>=18:
->>>>>>> origin/ramziddin
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
