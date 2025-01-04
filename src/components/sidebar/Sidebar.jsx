@@ -14,7 +14,14 @@ import { AiOutlineProfile } from "react-icons/ai";
 import { FaRegEdit } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import { jwtDecode } from "jwt-decode";
-import img from "../../assets/icons/curse.png";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import Groups2SharpIcon from "@mui/icons-material/Groups2Sharp";
+import AssignmentSharpIcon from "@mui/icons-material/AssignmentSharp";
+import PersonAddAltSharpIcon from "@mui/icons-material/PersonAddAltSharp";
+import PeopleIcon from "@mui/icons-material/People";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import Diversity2SharpIcon from "@mui/icons-material/Diversity2Sharp";
 
 import "./sidebar.scss";
 
@@ -45,49 +52,49 @@ function Sidebar() {
           <>
             <li className="sidebar__list">
               <NavLink to={"students"} className={"sidebar__left__text"}>
-                <FaRegUser />
+                <Groups2SharpIcon />
                 {t("O'quvchilar")}
               </NavLink>
             </li>
             <li className="sidebar__list">
               <NavLink to={"createStudents"} className={"sidebar__left__text"}>
-                <LuUserPlus />
+                <PersonAddAltSharpIcon />
                 {t("O'quvchi Yaratish")}
               </NavLink>
             </li>
             <li className="sidebar__list">
               <NavLink to={"teachers"} className={"sidebar__left__text"}>
-                <FaRegUser />
+                <PeopleIcon />
                 {t("O'qituvchilar")}
               </NavLink>
             </li>
             <li className="sidebar__list">
               <NavLink to={"createTeacher"} className={"sidebar__left__text"}>
-                <LuUserPlus />
+                <PersonAddAltSharpIcon />
                 {t("O'qituvchi yaratish")}
               </NavLink>
             </li>
             <li className="sidebar__list">
               <NavLink to={"group"} className={"sidebar__left__text"}>
-                <LuUserPlus />
+                <Diversity2SharpIcon />
                 {t("Gruhlar")}
               </NavLink>
             </li>
             <li className="sidebar__list">
               <NavLink to={"StudentRating"} className={"sidebar__left__text"}>
-                <LuUserPlus />
+                <EqualizerIcon />
                 {t("O'quvchilar reytingi")}
               </NavLink>
             </li>
             <li className="sidebar__list">
               <NavLink to={"homework"} className={"sidebar__left__text"}>
-                <LiaWarehouseSolid />
+                <AssignmentSharpIcon />
                 {t("Vazifalar")}
               </NavLink>
             </li>
             <li className="sidebar__list">
               <NavLink to={"course"} className={"sidebar__left__text"}>
-                <img src={img} alt="" width={27} height={30} />
+                <AccountTreeIcon />
                 {t("Kurslar royxati")}
               </NavLink>
             </li>
@@ -163,7 +170,7 @@ function Sidebar() {
           className="sidebar__btns__title"
           onClick={() => dispatch(logout())}
         >
-          <CiLogout />
+          <LogoutIcon />
           <p>{t("Chiqish")}</p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { TfiMenu } from "react-icons/tfi";
 import { FaBell } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
-import { FaRegCircleUser } from "react-icons/fa6";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useTranslation } from "react-i18next";
 import "./menu.scss";
 
@@ -21,7 +21,7 @@ function Menu({ setClose }) {
       </div>
 
       <div className="products__top__right">
-        <FaBell />
+        <NotificationsIcon />
         <select
           onChange={(e) => i18n.changeLanguage(e.target.value)}
           name=""
