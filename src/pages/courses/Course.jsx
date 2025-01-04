@@ -8,7 +8,7 @@ import {
   useUpdateCourseMutation,
 } from "../../context/api/courseApi";
 import { useGetValue } from "../../hooks/useGetValue";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const initialState = {
   name: "",

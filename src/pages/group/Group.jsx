@@ -12,7 +12,7 @@ import { useGetCoursesQuery } from "../../context/api/courseApi";
 import { useGetValue } from "../../hooks/useGetValue";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const initialState = {
   name: "",

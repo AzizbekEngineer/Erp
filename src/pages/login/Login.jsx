@@ -3,7 +3,7 @@ import { useSignInMutation } from "../../context/api/userApi";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../context/slices/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import "./login.scss";
 
 let initialState = {

@@ -13,6 +13,7 @@
     cursor: pointer;
   }
 
+  /* Left Section Styles */
   &__left {
     display: flex;
     align-items: center;
@@ -48,6 +49,7 @@
     }
   }
 
+  /* Right Section Styles */
   &__right {
     display: flex;
     align-items: center;
@@ -62,21 +64,42 @@
       font-size: 24px;
     }
 
-    select {
-      height: 28px;
-      width: 100px;
-      padding: 3px 6px;
-      outline: none;
-      background-color: #2980b9;
-      border: 1px solid #2980b9;
-      border-radius: 5px;
-      color: #fff;
-      cursor: pointer;
-    }
+    &__custom-select {
+      position: relative;
+      display: inline-block;
+      width: 120px;
 
-    option {
-      background-color: white;
-      color: #2980b9;
+      select {
+        width: 100%;
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: bold;
+        border: 2px solid #2980b9;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        color: #333;
+        outline: none;
+        appearance: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      option {
+        background: #ffffff;
+        color: #333;
+        padding: 10px;
+      }
+
+      &::after {
+        content: "▼";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 12px;
+        color: #2980b9;
+        pointer-events: none;
+      }
     }
 
     &__title {

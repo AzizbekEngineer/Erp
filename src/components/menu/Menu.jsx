@@ -16,7 +16,7 @@ function Menu({ setClose }) {
         </button>
         <div className="products__top__left-form">
           <CiSearch />
-          <input placeholder="Search" type="text" />
+          <input placeholder={t("Search")} type="text" />
         </div>
       </div>
 
@@ -30,6 +30,17 @@ function Menu({ setClose }) {
           <option value="uzb"> {t("Uzbek")}</option>
           <option value="rus">{t("Rus")}</option>
         </select>
+        <FaBell />
+        <div className="products__top__right__custom-select">
+          <select
+            onChange={(e) => i18n.changeLanguage(e.target.value)}
+            name="lang"
+            id="lang"
+          >
+            <option value="uzb">{t("Uzbek")}</option>
+            <option value="rus">{t("Rus")}</option>
+          </select>
+        </div>
       </div>
     </div>
   );
