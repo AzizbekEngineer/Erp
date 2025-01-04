@@ -12,12 +12,12 @@ import CreateStudents from "./pages/create/CreateStudents";
 import Homework from "./pages/admin/homework/Homework";
 import CreateTeacher from "./pages/admin/createTeacher/CreateTeacher";
 import Teachers from "./pages/admin/teachers/Teachers";
-// import Ranking from "./pages/teacher/rangking/Ranking";
 import Course from "./pages/courses/Course";
 import StudentRating from "./pages/admin/studentsRank/StudentsRank";
 import Group from "./pages/group/Group";
 import SingleGroup from "./pages/group/singleGroup/SingleGroup";
 import { Toaster } from "react-hot-toast";
+import Ranking from "./components/rangking/Ranking";
 
 const App = () => {
   return (
@@ -35,7 +35,7 @@ const App = () => {
             <Route path="customer/:id" element={<SingleCustomer />} />
             <Route path="teachers" element={<Teachers />} />
             <Route path="group" element={<Group />} />
-            {/* <Route path="ranking" element={<Ranking />} /> */}
+            <Route path="ranking" element={<Ranking />} />
             <Route path="profile" element={<Profile />} />
             <Route path="groups/:id" element={<SingleGroup />} />
             <Route path="createTeacher" element={<CreateTeacher />} />

@@ -127,15 +127,21 @@ function Sidebar() {
         return (
           <>
             <li className="sidebar__list">
-              <NavLink to={"ranking"} className={"sidebar__left__text"}>
-                <GiSilverBullet />
-                {t("O'quvchilar kunlik ball")}
+              <NavLink to={"StudentRating"} className={"sidebar__left__text"}>
+                <EqualizerIcon />
+                {t("O'quvchilar reytingi")}
               </NavLink>
             </li>
             <li className="sidebar__list">
-              <NavLink to={"course"} className={"sidebar__left__text"}>
-                <img src={img} alt="" width={27} height={30} />
-                {t("Kurslar royxati")}
+              <NavLink to={"ranking"} className={"sidebar__left__text"}>
+                <EqualizerIcon />
+                Kunlik ball
+              </NavLink>
+            </li>
+            <li className="sidebar__list">
+              <NavLink to={"homework"} className={"sidebar__left__text"}>
+                <LiaWarehouseSolid />
+                {t("Vazifalar")}
               </NavLink>
             </li>
           </>
