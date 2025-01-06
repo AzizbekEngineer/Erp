@@ -1,5 +1,5 @@
-import React, { Suspense, lazy } from "react";
-import ReactDOM from "react-dom/client";
+import React, { StrictMode, Suspense, lazy } from "react";
+import { createRoot } from "react-dom/client";
 const App = lazy(() => import("./App.jsx"));
 import "./index.scss";
 import { BrowserRouter } from "react-router-dom";
@@ -8,8 +8,8 @@ import { store } from "./context/index.js";
 import "./lang/i18n.js";
 import Lazy from "./components/lazy/Lazy.jsx";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
     <Suspense fallback={<Lazy />}>
       <Provider store={store}>
         <BrowserRouter>
@@ -17,5 +17,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </Provider>
     </Suspense>
-  </React.StrictMode>
+  </StrictMode>
 );

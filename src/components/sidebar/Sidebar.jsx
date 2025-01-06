@@ -170,14 +170,14 @@ function Sidebar() {
       <div className="sidebar__btns">
         <div className="sidebar__btns__title">
           <IoMdSettings />
-          <p>{t("Sozlamalar")}</p>
+          <p className="sidebar__btns-text">{t("Sozlamalar")}</p>
         </div>
         <div
           className="sidebar__btns__title"
           onClick={() => dispatch(logout())}
         >
           <LogoutIcon />
-          <p>{t("Chiqish")}</p>
+          <p className="sidebar__btns-text">{t("Chiqish")}</p>
         </div>
       </div>
     </section>

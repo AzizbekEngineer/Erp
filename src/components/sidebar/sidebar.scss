@@ -159,22 +159,23 @@
       font-size: 16px;
       font-family: Nunito Sans;
     }
-  }
 
-  &__btns__title {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    cursor: pointer;
+    &__title {
+      display: flex;
+      align-items: center !important;
+      gap: 20px;
+      cursor: pointer;
 
-    p {
-      text-wrap: nowrap;
-      font-family: Nunito Sans;
+      svg {
+        font-size: 20px;
+        width: 25px;
+      }
     }
 
-    svg {
-      font-size: 20px;
-      width: 25px;
+    &-text {
+      text-wrap: nowrap;
+      font-family: Nunito Sans;
+      // margin-bottom: 10px;
     }
   }
 }

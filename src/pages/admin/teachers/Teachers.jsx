@@ -9,6 +9,7 @@ import {
 import Module from "../../../components/Module/Module";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import toast from "react-hot-toast";
 
 const Teachers = () => {
   const { data } = useGetTeacherQuery();
@@ -33,9 +34,9 @@ const Teachers = () => {
       try {
         setIsLoading(true);
         await deleteTeacher(id);
-        alert("O'qituvchi o'chirildi!");
+        toast.success("O'qituvchi o'chirildi!");
       } catch (err) {
-        setError("O'qituvchini o'chirishda xatolik yuz berdi!");
+        toast.error("O'qituvchini o'chirishda xatolik yuz berdi!");
       } finally {
         setIsLoading(false);
       }
@@ -58,7 +59,7 @@ const Teachers = () => {
     e.preventDefault();
 
     if (!/^\+998[0-9]{9}$/.test(editFormData.phone)) {
-      return alert("Telefon raqami noto'g'ri formatda kiritilgan!");
+      return toast.custom("Telefon raqami noto'g'ri formatda kiritilgan!");
     }
 
     const updatedUser = {
@@ -75,9 +76,9 @@ const Teachers = () => {
     try {
       setIsLoading(true);
       await updateTeacher({ body: updatedUser, id: editFormData.id });
-      alert("O'qituvchi ma'lumotlari yangilandi!");
+      toast.success("O'qituvchi ma'lumotlari yangilandi!");
     } catch (err) {
-      setError("O'qituvchini yangilashda xatolik yuz berdi!");
+      toast.error("O'qituvchini yangilashda xatolik yuz berdi!");
     } finally {
       setIsLoading(false);
       setIsEditVisible(false);
