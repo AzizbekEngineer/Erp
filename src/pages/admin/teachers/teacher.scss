@@ -1,123 +1,134 @@
 .teachers {
-  font-family: Arial, sans-serif;
-  background-color: transparent;
   padding: 20px;
-
-  h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
-    color: #333;
-  }
 
   .teacher-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
   }
 
   .teacher-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    background: white;
+    border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
+    color: black;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
     &:hover {
-      .teacher-card-btns {
-        transition: .6s;
-        display: flex;
-        right: 10px;
+      transform: scale(1.05);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .teacher-info {
+      h3 {
+        margin-bottom: 10px;
+        font-size: 24px;
       }
-    }
 
-    h3 {
-      margin-bottom: 15px;
-      font-size: 22px;
-      color: #333;
-    }
-
-    p {
-      margin: 8px 0;
-      font-size: 16px;
-      color: #555;
-
-      strong {
-        color: #000;
+      p {
+        margin: 8px 0;
+        font-size: 16px;
       }
     }
 
     .teacher-card-btns {
-      display: flex;
-      gap: 10px;
       margin-top: 15px;
-      flex-direction: column;
-      position: absolute;
-      right: -100%;
-    }
-
-    .details-button {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 15px;
-      font-size: 14px;
-      font-weight: 500;
-      border: none;
-      border-radius: 5px;
+      justify-content: space-between;
+      gap: 10px;
 
-      &.details-button {
-        background-color: #2980b9;
+      .edit-button {
+        background-color: #ff9800;
+        border: none;
         color: #fff;
+        padding: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
 
         &:hover {
-          background-color: #2980b9;
+          background-color: #e68900;
         }
       }
 
-      .icon {
-        margin-right: 8px;
-        font-size: 18px;
+      .delete-button {
+        background-color: #e53935;
+        border: none;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #d32f2f;
+        }
       }
     }
   }
 
-  &__edit {
+  .teachers__edit {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 
     &-title {
       text-align: center;
-      font-size: 24px;
-      color: rgb(70, 67, 67);
+      color: #333;
     }
 
     label {
       display: flex;
       flex-direction: column;
       gap: 5px;
+    }
 
-      input {
-        padding: 10px;
-        border: 1px solid #aaa7;
-        border-radius: 4px;
-        outline: none;
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      outline: none;
+    }
+
+    .teachers__edit-btn {
+      background: #6a11cb;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background: #5e0fcf;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .teacher-card {
+      padding: 15px;
+
+      h3 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 14px;
       }
     }
 
-    &-btn {
-      padding: 10px;
-      background-color: #2980b9;
-      color: white;
-      border-radius: 4px;
-      border: 1px solid transparent;
+    .teachers__edit input {
+      padding: 8px;
     }
+
+    .teachers__edit-btn {
+      padding: 8px;
+    }
+  }
+
+  .error-message {
+    color: red;
+    text-align: center;
+    margin-top: 15px;
   }
 }

@@ -17,7 +17,7 @@ const Teachers = () => {
 
   const [isEditVisible, setIsEditVisible] = useState(false);
   const [editFormData, setEditFormData] = useState({
-    id:"",
+    id: "",
     firstName: "",
     lastName: "",
     phone: "",
@@ -25,12 +25,20 @@ const Teachers = () => {
     specialty: "",
   });
 
-  console.log("edit", editFormData);
-  
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("O'qituvchi o'chirilsinmi?")) {
-      deleteTeacher(id);
+      try {
+        setIsLoading(true);
+        await deleteTeacher(id);
+        alert("O'qituvchi o'chirildi!");
+      } catch (err) {
+        setError("O'qituvchini o'chirishda xatolik yuz berdi!");
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -46,19 +54,34 @@ const Teachers = () => {
     }));
   };
 
-  const handleEditSubmit = (e) => {
+  const handleEditSubmit = async (e) => {
     e.preventDefault();
-    let updatedUser = {
-        firstName: editFormData.firstName,
-        lastName: editFormData.lastName,
-        phone: editFormData.phone.length === 12 ? "+" + editFormData.phone : editFormData.phone,
-        address: editFormData.address,
-        specialty: editFormData.specialty
+
+    if (!/^\+998[0-9]{9}$/.test(editFormData.phone)) {
+      return alert("Telefon raqami noto'g'ri formatda kiritilgan!");
+    }
+
+    const updatedUser = {
+      firstName: editFormData.firstName,
+      lastName: editFormData.lastName,
+      phone:
+        editFormData.phone.length === 12
+          ? "+" + editFormData.phone
+          : editFormData.phone,
+      address: editFormData.address,
+      specialty: editFormData.specialty,
     };
-    updateTeacher({body:updatedUser, id:editFormData.id});
-    console.log("up",editFormData);
-    
-    setIsEditVisible(false);
+
+    try {
+      setIsLoading(true);
+      await updateTeacher({ body: updatedUser, id: editFormData.id });
+      alert("O'qituvchi ma'lumotlari yangilandi!");
+    } catch (err) {
+      setError("O'qituvchini yangilashda xatolik yuz berdi!");
+    } finally {
+      setIsLoading(false);
+      setIsEditVisible(false);
+    }
   };
 
   return (
@@ -66,7 +89,7 @@ const Teachers = () => {
       <div className="teacher-list">
         {data?.map((teacher) => (
           <div key={teacher.id} className="teacher-card">
-            <div>
+            <div className="teacher-info">
               <h3>
                 {teacher.firstName} {teacher.lastName}
               </h3>
@@ -81,18 +104,19 @@ const Teachers = () => {
               </p>
             </div>
             <div className="teacher-card-btns">
-              <button className="details-button">Batafsil</button>
               <button
                 onClick={() => handleEditClick(teacher)}
-                className="details-button edit-button"
+                className="edit-button"
               >
-                <AiOutlineEdit className="icon" /> Tahrirlash
+                <AiOutlineEdit className="icon" />
+                Tahrirlash
               </button>
               <button
                 onClick={() => handleDelete(teacher.id)}
-                className="details-button delete-button"
+                className="delete-button"
               >
-                <AiOutlineDelete className="icon" /> O'chirish
+                <AiOutlineDelete className="icon" />
+                O'chirish
               </button>
             </div>
           </div>
@@ -131,13 +155,9 @@ const Teachers = () => {
                 placeholder="Telefon raqamini kiriting"
                 inputStyle={{
                   width: "100%",
-                  padding: "20px 45px",
+                  paddingLeft: "43px",
                   fontSize: "14px",
-                  border: "1px solid #dcdfe3",
                   borderRadius: "8px",
-                }}
-                buttonStyle={{
-                  background: "#f9fafe",
                 }}
               />
             </label>
@@ -161,12 +181,17 @@ const Teachers = () => {
                 required
               />
             </label>
-            <button className="teachers__edit-btn" type="submit">
-              O'zgartirish
+            <button
+              className="teachers__edit-btn"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? "Yuklanmoqda..." : "O'zgartirish"}
             </button>
           </form>
         </Module>
       )}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 };
