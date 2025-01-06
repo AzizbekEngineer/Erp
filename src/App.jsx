@@ -1,23 +1,29 @@
-import React from "react";
+import React, { lazy } from "react";
 import Admin from "./pages/admin/Admin";
 import { Routes, Route, Navigate } from "react-router-dom";
-import SingleCustomer from "./pages/single-customer/SingleCustomer";
-// import Paymet from "./pages/paymet/Paymet";
-import Auth from "./pages/auth/Auth";
-import Login from "./pages/login/Login";
-import Register from "./pages/register/Register";
-import Profile from "./pages/profile/Profile";
-import Students from "./pages/admin/students/Students";
-import CreateStudents from "./pages/create/CreateStudents";
-import Homework from "./pages/admin/homework/Homework";
-import CreateTeacher from "./pages/admin/createTeacher/CreateTeacher";
-import Teachers from "./pages/admin/teachers/Teachers";
-import Course from "./pages/courses/Course";
-import StudentRating from "./pages/admin/studentsRank/StudentsRank";
-import Group from "./pages/group/Group";
-import SingleGroup from "./pages/group/singleGroup/SingleGroup";
+
+const Auth = lazy(() => import("./pages/auth/Auth"));
+const SingleCustomer = lazy(() =>
+  import("./pages/single-customer/SingleCustomer")
+);
+const Login = lazy(() => import("./pages/login/Login"));
+const Register = lazy(() => import("./pages/register/Register"));
+const Profile = lazy(() => import("./pages/profile/Profile"));
+const Students = lazy(() => import("./pages/admin/students/Students"));
+const CreateStudents = lazy(() => import("./pages/create/CreateStudents"));
+const Homework = lazy(() => import("./pages/admin/homework/Homework"));
+const CreateTeacher = lazy(() =>
+  import("./pages/admin/createTeacher/CreateTeacher")
+);
+const Teachers = lazy(() => import("./pages/admin/teachers/Teachers"));
+const Course = lazy(() => import("./pages/courses/Course"));
+const StudentRating = lazy(() =>
+  import("./pages/admin/studentsRank/StudentsRank")
+);
+const Group = lazy(() => import("./pages/group/Group"));
+const SingleGroup = lazy(() => import("./pages/group/singleGroup/SingleGroup"));
+const Ranking = lazy(() => import("./components/rangking/Ranking"));
 import { Toaster } from "react-hot-toast";
-import Ranking from "./components/rangking/Ranking";
 
 const App = () => {
   return (
