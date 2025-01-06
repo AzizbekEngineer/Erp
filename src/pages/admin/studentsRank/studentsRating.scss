@@ -1,46 +1,37 @@
-// StudentRating.scss
 .student-rating {
+  width: 100%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  .rating-table {
     width: 100%;
-    padding: 20px;
-    background-color: #f9f9f9;
-    font-family: Arial, sans-serif;
+    border-collapse: collapse;
 
-
-
-    .rating-table {
-        width: 100%;
-        border-collapse: collapse;
-
-        th,
-        td {
-            border-bottom: 1px solid #ddd;
-            padding: 12px;
-            text-align: center;
-        }
-
-        th {
-            background-color: #2980b9;
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        // tr:hover {
-        //     background-color: #f1c40f;
-        //     color: #fff;
-        // }
-
-        td {
-            font-size: 14px;
-            color: #333;
-        }
-
-        td:first-child {
-            width: 58px;
-        }
+    th,
+    td {
+      border-bottom: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
     }
+
+    th {
+      background-color: #2980b9;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    td {
+      font-size: 14px;
+      color: #333;
+    }
+
+    td:first-child {
+      width: 58px;
+    }
+  }
 }

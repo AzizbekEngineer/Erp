@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
-import Admin from "./pages/admin/Admin";
 import { Routes, Route, Navigate } from "react-router-dom";
 
+const Admin = lazy(() => import("./pages/admin/Admin"));
 const Auth = lazy(() => import("./pages/auth/Auth"));
 const SingleCustomer = lazy(() =>
   import("./pages/single-customer/SingleCustomer")
