@@ -111,3 +111,41 @@
     }
   }
 }
+
+.students__edit {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  &-title {
+    text-align: center;
+    color: #333;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    outline: none;
+  }
+
+  .students__edit-btn {
+    background: #2980b9;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background: #5e0fcf;
+    }
+  }
+}

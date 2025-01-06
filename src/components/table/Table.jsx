@@ -162,8 +162,8 @@ const Table = ({ data, loc }) => {
       {/* Edit Form */}
       {studentEdit && (
         <Module close={setStudentEdit} bg={"#aaa6"}>
-          <form className="teachers__edit" onSubmit={handleEditSubmit}>
-            <h3 className="teachers__edit-title">O'quvchinis taxrirlash</h3>
+          <form className="students__edit" onSubmit={handleEditSubmit}>
+            <h3 className="students__edit-title">O'quvchinis taxrirlash</h3>
             <label>
               Ism
               <input
@@ -228,7 +228,7 @@ const Table = ({ data, loc }) => {
               />
             </label>
 
-            <button className="teachers__edit-btn" type="submit">
+            <button className="students__edit-btn" type="submit">
               O'zgartirish
             </button>
           </form>
