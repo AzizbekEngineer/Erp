@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 const initialState = {
   firstName: "",
   lastName: "",
-  phone: "",
+  phone: "+998",
   address: "",
   courseId: "",
   groupId: "",
@@ -61,6 +61,7 @@ const CreateStudents = () => {
       .unwrap()
       .then(() => {
         toast.success("O'quvchi muvaffaqiyatli yaratildi!");
+        setFormData(initialState);
       })
       .catch((error) => {
         console.error("Error:", error);
