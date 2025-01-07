@@ -22,6 +22,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import Diversity2SharpIcon from "@mui/icons-material/Diversity2Sharp";
+import HomeIcon from "@mui/icons-material/Home";
 
 import "./sidebar.scss";
 
@@ -50,6 +51,12 @@ function Sidebar() {
       case "admin":
         return (
           <>
+            <li className="sidebar__list">
+              <NavLink to={"home"} className={"sidebar__left__text"}>
+                <HomeIcon />
+                {t("Bosh Sahifa")}
+              </NavLink>
+            </li>
             <li className="sidebar__list">
               <NavLink to={"students"} className={"sidebar__left__text"}>
                 <Groups2SharpIcon />

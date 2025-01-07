@@ -23,6 +23,7 @@ const StudentRating = lazy(() =>
 const Group = lazy(() => import("./pages/group/Group"));
 const SingleGroup = lazy(() => import("./pages/group/singleGroup/SingleGroup"));
 const Ranking = lazy(() => import("./components/rangking/Ranking"));
+const Home = lazy(() => import("./pages/home/Home"));
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<Auth />}>
           <Route path="admin/" element={<Admin />}>
+            <Route path="home" element={<Home />} />
             <Route path="students" element={<Students />} />
             <Route path="StudentRating" element={<StudentRating />} />
             <Route path="homework" element={<Homework />} />

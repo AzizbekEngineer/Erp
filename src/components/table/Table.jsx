@@ -15,6 +15,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { CiEdit } from "react-icons/ci";
 import { IoMdMore } from "react-icons/io";
 import { VscCodeReview } from "react-icons/vsc";
+import toast from "react-hot-toast";
 
 const Table = ({ data, loc }) => {
   const [tableClose, setTableClose] = useState(false);
@@ -45,6 +46,7 @@ const Table = ({ data, loc }) => {
   const handleDelete = (id) => {
     if (window.confirm("O'quvchi o'chirilsinmi?")) {
       deleteStudent(id);
+      toast.success("O'quvchi o'chirildi");
     }
   };
 
