@@ -43,7 +43,7 @@ const Home = () => {
             <ErrorOutlineIcon />
             <h4>Qarzdorlar</h4>
           </div>
-          <div className="home__card__info">10</div>
+          <div className="home__card__info">20</div>
         </div>
       </div>
 
