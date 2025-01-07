@@ -1,12 +1,12 @@
 .home {
-  padding: 2rem;
+  padding: 10px 20px;
   font-family: "Arial", sans-serif;
 
   h1 {
     font-size: 2rem;
     font-weight: bold;
     color: #222;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   &__cards {
@@ -50,6 +50,42 @@
       font-weight: bold;
       text-align: right;
       color: #2980b9;
+    }
+  }
+
+  &__gauge {
+    margin-top: 15px;
+    text-align: start;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #222;
+      margin-bottom: 1rem;
+    }
+    &__card {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      &-left {
+        width: 350px;
+        margin: 5px 20px;
+        &-text {
+          text-align: center;
+          padding-top: 20px;
+          font-size: 24px;
+        }
+      }
+      &-right {
+        width: 600px;
+        height: 400px;
+        padding-bottom: 30px;
+
+        &-title {
+          text-align: center;
+          font-size: 24px;
+        }
+      }
     }
   }
 }
