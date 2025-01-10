@@ -31,7 +31,7 @@ const Login = () => {
       localStorage.setItem("x-auth-token", data?.accessToken);
       dispatch(setToken(data?.accessToken));
       toast.success("Ro'yhatdan o'tdingiz");
-      navigate("/admin/students");
+      navigate("/admin/home");
     }
   }, [isSuccess]);
 

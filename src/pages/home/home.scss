@@ -63,22 +63,26 @@
       color: #222;
       margin-bottom: 1rem;
     }
+
     &__card {
-      display: flex;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 450px 1fr;
       gap: 60px;
+
       &-left {
-        width: 350px;
+        // width: 350px;
         margin: 5px 20px;
+
         &-text {
           text-align: center;
           padding-top: 20px;
           font-size: 24px;
         }
       }
+
       &-right {
-        width: 600px;
-        height: 400px;
+        // width: 600px;
+        height: 450px;
         padding-bottom: 30px;
 
         &-title {
