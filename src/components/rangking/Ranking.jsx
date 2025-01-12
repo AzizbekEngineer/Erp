@@ -50,7 +50,7 @@ const Ranking = ({ data, title }) => {
               className={`ranking-tab ${activeTab === "home" ? "active" : ""}`}
               onClick={() => handleTabChange("home")}
             >
-              {/* {data?.[0].name} */}
+              {data?.[0].name}
             </li>
             <li
               className={`ranking-tab ${
