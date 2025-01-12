@@ -26,7 +26,6 @@ const tasks = [
 const Homework = () => {
   return (
     <div className="tasks">
-      {/* <h1 className="title">Vazifalar Bo'limi</h1> */}
       <table className="tasks-table">
         <thead>
           <tr>
