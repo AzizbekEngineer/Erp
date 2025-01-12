@@ -1,14 +1,14 @@
 import { api } from ".";
 
-export const assigmentApi = api.injectEndpoints({
+export const assignmentApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getAssigment: build.query({
+    getAssignment: build.query({
       query: (id) => ({
         url: `assignments/lesson/${id}`,
       }),
       providesTags: ["Assigment"],
     }),
-    createAssigment: build.mutation({
+    createAssignment: build.mutation({
       query: (body) => ({
         url: "/assignments",
         method: "POST",
@@ -16,14 +16,14 @@ export const assigmentApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Assigment"],
     }),
-    deleteassigment: build.mutation({
+    deleteAssignment: build.mutation({
       query: (id) => ({
         url: `/assignments/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Assigment"],
     }),
-    updateAssigment: build.mutation({
+    updateAssignment: build.mutation({
       query: ({ id, body }) => ({
         url: `/assignments/${id}`,
         method: "PUT", // or "PATCH"
@@ -35,8 +35,8 @@ export const assigmentApi = api.injectEndpoints({
 });
 
 export const {
-  useGetAssigmentQuery,
-  useCreateAssigmentMutation,
-  useDeleteassigmentMutation,
-  useUpdateAssigmentMutation,
-} = assigmentApi;
+  useGetAssignmentQuery,
+  useCreateAssignmentMutation,
+  useDeleteAssignmentMutation,
+  useUpdateAssignmentMutation,
+} = assignmentApi;

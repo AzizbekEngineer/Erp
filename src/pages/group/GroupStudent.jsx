@@ -15,7 +15,6 @@ const GroupStudent = () => {
         {groups?.map((group) => (
           <li key={group.id} className="group__item">
             <Link to={`/admin/lessons/group/${group?.id}`}>
-              /lessons/group/35
               <div className="group__item-info">
                 <h3 className="group__name">{group.name}</h3>
               </div>
