@@ -28,6 +28,7 @@ import { Toaster } from "react-hot-toast";
 import GroupTeacher from "./pages/group/GroupTeacher";
 import GroupStudent from "./pages/group/GroupStudent";
 import Lesson from "./pages/lessons/teacher/Lesson";
+import LessonStudent from "./pages/lessons/student/LessonStudent";
 
 const App = () => {
   return (
@@ -52,6 +53,7 @@ const App = () => {
             <Route path="profile" element={<Profile />} />
             <Route path="groups/:id" element={<SingleGroup />} />
             <Route path="lessons/group/:id" element={<Lesson />} />
+            <Route path="lessonstudent/:id" element={<LessonStudent />} />
             <Route path="createTeacher" element={<CreateTeacher />} />
             <Route path="course" element={<Course />} />
           </Route>

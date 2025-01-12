@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const GroupStudent = () => {
   const { data: groups } = useGetGroupsStudentQuery();
-  // console.log(groups);
 
   return (
     <div className="group">
@@ -14,8 +13,7 @@ const GroupStudent = () => {
       <ul className="group__list">
         {groups?.map((group) => (
           <li key={group.id} className="group__item">
-            <Link to={`/admin/lessons/group/${group?.id}`}>
-              /lessons/group/35
+            <Link to={`/admin/lessonstudent/${group?.id}`}>
               <div className="group__item-info">
                 <h3 className="group__name">{group.name}</h3>
               </div>

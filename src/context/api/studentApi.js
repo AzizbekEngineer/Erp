@@ -9,6 +9,14 @@ export const studentApi = api.injectEndpoints({
       }),
       providesTags: ["Student"],
     }),
+    SearchStudent: build.query({
+      query: (params) => ({
+        url: "/students/search",
+        method: "GET",
+        params,
+      }),
+      invalidatesTags: ["Product"],
+    }),
     createStudent: build.mutation({
       query: (body) => ({
         url: "/students",
@@ -38,6 +46,7 @@ export const studentApi = api.injectEndpoints({
 export const {
   useGetStudentQuery,
   useCreateStudentMutation,
+  useSearchStudentQuery,
   useDeleteStudentMutation,
   useUpdateStudentMutation,
 } = studentApi;
