@@ -27,6 +27,7 @@ const Home = lazy(() => import("./pages/home/Home"));
 import { Toaster } from "react-hot-toast";
 import GroupTeacher from "./pages/group/GroupTeacher";
 import GroupStudent from "./pages/group/GroupStudent";
+import Lesson from "./pages/lessons/teacher/Lesson";
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
             <Route path="ranking" element={<Ranking />} />
             <Route path="profile" element={<Profile />} />
             <Route path="groups/:id" element={<SingleGroup />} />
+            <Route path="lessons/group/:id" element={<Lesson />} />
             <Route path="createTeacher" element={<CreateTeacher />} />
             <Route path="course" element={<Course />} />
           </Route>
