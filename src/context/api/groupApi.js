@@ -2,9 +2,30 @@ import { api } from ".";
 
 export const groupApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getGroups: build.query({
+    getGroupsAll: build.query({
       query: (params) => ({
         url: `/groups`,
+        params,
+      }),
+      providesTags: ["Group"],
+    }),
+    getGroupsTeacher: build.query({
+      query: (params) => ({
+        url: `/groups/my/teacher/groups`,
+        params,
+      }),
+      providesTags: ["Group"],
+    }),
+    getGroupsStudent: build.query({
+      query: (params) => ({
+        url: `/groups/my/student/groups`,
+        params,
+      }),
+      providesTags: ["Group"],
+    }),
+    getGroupsIdStudents: build.query({
+      query: (id) => ({
+        url: `/groups/${id}/students/list`,
         params,
       }),
       providesTags: ["Group"],
@@ -48,7 +69,9 @@ export const groupApi = api.injectEndpoints({
 });
 
 export const {
-  useGetGroupsQuery,
+  useGetGroupsAllQuery,
+  useGetGroupsStudentQuery,
+  useGetGroupsTeacherQuery,
   useGetGroupsCourseIdQuery,
   useGetGroupByIdQuery,
   useCreateGroupMutation,

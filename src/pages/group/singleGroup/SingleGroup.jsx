@@ -6,6 +6,8 @@ import Ranking from "../../../components/rangking/Ranking";
 const SingleGroup = () => {
   const { id } = useParams();
   const { data: groupId } = useGetGroupsCourseIdQuery(id);
+  console.log("groupId", groupId);
+
   return (
     <div>
       <Ranking data={groupId} id={id} />

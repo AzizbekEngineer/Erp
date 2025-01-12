@@ -21,7 +21,7 @@ const Ranking = ({ data, title }) => {
   const lessons = generateLessons(selectedMonth, 2024);
   const location = useLocation();
   const loc = location.pathname.split("/")[2];
-  console.log(loc);
+  console.log(data);
 
   const handleGradeChange = (studentId, day, value) => {
     setGrades((prevGrades) => ({
@@ -50,7 +50,7 @@ const Ranking = ({ data, title }) => {
               className={`ranking-tab ${activeTab === "home" ? "active" : ""}`}
               onClick={() => handleTabChange("home")}
             >
-              {data?.[0].name}
+              {/* {data?.[0].name} */}
             </li>
             <li
               className={`ranking-tab ${

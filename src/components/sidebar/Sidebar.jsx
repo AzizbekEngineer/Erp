@@ -4,15 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { logout } from "../../context/slices/authSlice";
-import { GiSilverBullet } from "react-icons/gi";
 import { IoMdSettings } from "react-icons/io";
-import { FaRegUser } from "react-icons/fa";
 import { LuUserPlus } from "react-icons/lu";
-import { CiMenuKebab } from "react-icons/ci";
 import { LiaWarehouseSolid } from "react-icons/lia";
-import { AiOutlineProfile } from "react-icons/ai";
-import { FaRegEdit } from "react-icons/fa";
-import { CiLogout } from "react-icons/ci";
 import { jwtDecode } from "jwt-decode";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import Groups2SharpIcon from "@mui/icons-material/Groups2Sharp";
@@ -31,7 +25,7 @@ function Sidebar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [profileHide, setProfileHide] = useState(null);
+  // const [profileHide, setProfileHide] = useState(null);
   const [role, setRole] = useState(null);
 
   useEffect(() => {
@@ -111,8 +105,8 @@ function Sidebar() {
         return (
           <>
             <li className="sidebar__list">
-              <NavLink to={"group"} className={"sidebar__left__text"}>
-                <LuUserPlus />
+              <NavLink to={"groupTeacher"} className={"sidebar__left__text"}>
+                <Diversity2SharpIcon />
                 {t("Gruhlar")}
               </NavLink>
             </li>
@@ -124,7 +118,7 @@ function Sidebar() {
             </li>
             <li className="sidebar__list">
               <NavLink to={"homework"} className={"sidebar__left__text"}>
-                <LiaWarehouseSolid />
+                <AssignmentSharpIcon />
                 {t("Vazifalar")}
               </NavLink>
             </li>
@@ -140,14 +134,20 @@ function Sidebar() {
               </NavLink>
             </li>
             <li className="sidebar__list">
+              <NavLink to={"groupStudent"} className={"sidebar__left__text"}>
+                <Diversity2SharpIcon />
+                {t("Gruhlar")}
+              </NavLink>
+            </li>
+            {/* <li className="sidebar__list">
               <NavLink to={"ranking"} className={"sidebar__left__text"}>
                 <EqualizerIcon />
                 Kunlik ball
               </NavLink>
-            </li>
+            </li> */}
             <li className="sidebar__list">
               <NavLink to={"homework"} className={"sidebar__left__text"}>
-                <LiaWarehouseSolid />
+                <AssignmentSharpIcon />
                 {t("Vazifalar")}
               </NavLink>
             </li>

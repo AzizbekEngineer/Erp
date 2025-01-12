@@ -4,10 +4,10 @@ import Module from "../../components/Module/Module";
 import {
   useCreateGroupMutation,
   useDeleteGroupMutation,
-  useGetGroupsQuery,
+  useGetGroupsAllQuery,
+  useGetGroupsTeacherQuery,
   useUpdateGroupMutation,
 } from "../../context/api/groupApi";
-import { useGetTeacherQuery } from "../../context/api/teacherApi";
 import { useGetCoursesQuery } from "../../context/api/courseApi";
 import { useGetValue } from "../../hooks/useGetValue";
 import { useState } from "react";
@@ -22,8 +22,7 @@ const initialState = {
 };
 
 const Group = () => {
-  const { data: groups } = useGetGroupsQuery();
-  const { data: teacherData } = useGetTeacherQuery();
+  const { data: groups } = useGetGroupsAllQuery();
   const { data: courseData } = useGetCoursesQuery();
   const { formData, setFormData, handleChange } = useGetValue(initialState);
   const [createGroup] = useCreateGroupMutation();
@@ -33,6 +32,7 @@ const Group = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentGroupId, setCurrentGroupId] = useState(null);
+  console.log("group", groups);
 
   const handleSelectChange = (e) => {
     const { name, value } = e.target;
@@ -135,11 +135,11 @@ const Group = () => {
                 <option value="" disabled>
                   O'qituvchi tanlash
                 </option>
-                {teacherData?.map((teacher) => (
+                {/* {teacherData?.map((teacher) => (
                   <option key={teacher.id} value={teacher.id}>
                     {teacher.firstName}
                   </option>
-                ))}
+                ))} */}
               </select>
             </div>
             <div className="group__field">
