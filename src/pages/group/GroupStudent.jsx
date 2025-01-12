@@ -1,6 +1,7 @@
 import React from "react";
 import { useGetGroupsStudentQuery } from "../../context/api/groupApi";
 import { Link } from "react-router-dom";
+import "./group.scss";
 
 const GroupStudent = () => {
   const { data: groups } = useGetGroupsStudentQuery();
