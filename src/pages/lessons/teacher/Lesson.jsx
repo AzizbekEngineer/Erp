@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 const Lesson = () => {
   const { id } = useParams();
   const { data } = useGetLessonByIdQuery(id);
-  console.log(data);
+  console.log("data", data);
 
   return <div>Lesson</div>;
 };
