@@ -6,24 +6,33 @@ import { useTranslation } from "react-i18next";
 import uzb from "../../assets/icons/uzb.webp";
 import rus from "../../assets/icons/rus.png";
 import "./menu.scss";
+import { useSearchStudentQuery } from "../../context/api/studentApi";
 
 function Menu({ setClose }) {
   const { t, i18n } = useTranslation();
   const [selectedLang, setSelectedLang] = useState("uzb");
-  const dropdownRef = useRef(null); // Ref for the dropdown
+  const dropdownRef = useRef(null);
+  const [value, setValue] = useState("");
+
+  const { data } = useSearchStudentQuery({ name: value.trim() });
+  console.log(data);
+
+  const searchData = data?.map((el) => <h2>{el?.groups[0]?.name}</h2>);
+
+  const handleClearSearch = () => {
+    setValue("");
+  };
 
   const handleLanguageChange = (lang) => {
     setSelectedLang(lang);
     i18n.changeLanguage(lang);
 
-    // Close the dropdown
     const dropdown = document.querySelector(".custom-dropdown-options");
     if (dropdown.classList.contains("show")) {
       dropdown.classList.remove("show");
     }
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -48,7 +57,32 @@ function Menu({ setClose }) {
         </button>
         <div className="products__top__left-form">
           <CiSearch />
-          <input placeholder={t("Search")} type="text" />
+          <input
+            placeholder={t("Search")}
+            onChange={(e) => setValue(e.target.value)}
+            className="search-results-form"
+            type="search"
+            value={value}
+          />
+          {value ? (
+            <>
+              <div
+                className={`search-results ${
+                  value && data?.length ? "show" : ""
+                }`}
+              >
+                {value &&
+                  data?.map((el, index) => (
+                    <div key={index} className="search-item">
+                      <h4>{el?.firstName}</h4>
+                      <h4>{el?.groups[0]?.name}</h4>
+                    </div>
+                  ))}
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
 

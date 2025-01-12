@@ -5,7 +5,6 @@ import "./group.scss";
 
 const GroupStudent = () => {
   const { data: groups } = useGetGroupsStudentQuery();
-  // console.log(groups);
 
   return (
     <div className="group">
