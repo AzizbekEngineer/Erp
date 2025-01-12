@@ -16,13 +16,13 @@ const baseQuery = async (args, api, extraOptions) => {
 
   const result = await rawBaseQuery(args, api, extraOptions);
 
-  if (result.error) {
-    const { status } = result.error;
-    if (status === 401 || status === 403) {
-      console.error("Unauthorized access - Redirecting to login...");
-      dispatch(logout());
-    }
-  }
+  // if (result.error) {
+  //   const { status } = result.error;
+  //   if (status === 401 || status === 403) {
+  //     console.error("Unauthorized access - Redirecting to login...");
+  //     dispatch(logout());
+  //   }
+  // }
   return result;
 };
 

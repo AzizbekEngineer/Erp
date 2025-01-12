@@ -55,7 +55,7 @@ function Menu({ setClose }) {
         <button onClick={() => setClose((p) => !p)}>
           <TfiMenu />
         </button>
-        <div className="products__top__left-form">
+        {/* <div className="products__top__left-form">
           <CiSearch />
           <input
             placeholder={t("Search")}
@@ -83,7 +83,7 @@ function Menu({ setClose }) {
           ) : (
             <></>
           )}
-        </div>
+        </div> */}
       </div>
 
       <div className="products__top__right">

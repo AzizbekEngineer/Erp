@@ -55,7 +55,7 @@ const App = () => {
             <Route path="profile" element={<Profile />} />
             <Route path="groups/:id" element={<SingleGroup />} />
             <Route path="lessons/group/:id" element={<Lesson />} />
-            <Route path="lessonstudent/:id" element={<LessonStudent />} />
+            <Route path="lessonStudent/:id" element={<LessonStudent />} />
             <Route path="createTeacher" element={<CreateTeacher />} />
             <Route path="course" element={<Course />} />
           </Route>

@@ -14,7 +14,7 @@ const GroupStudent = () => {
       <ul className="group__list">
         {groups?.map((group) => (
           <li key={group.id} className="group__item">
-            <Link to={`/admin/lessons/group/${group?.id}`}>
+            <Link to={`/admin/lessonStudent/${group?.id}`}>
               <div className="group__item-info">
                 <h3 className="group__name">{group.name}</h3>
               </div>
