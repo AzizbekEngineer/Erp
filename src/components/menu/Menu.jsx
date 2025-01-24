@@ -15,7 +15,7 @@ function Menu({ setClose }) {
   const [value, setValue] = useState("");
 
   const { data } = useSearchStudentQuery({ name: value.trim() });
-  console.log(data);
+  // console.log(data);
 
   const searchData = data?.map((el) => <h2>{el?.groups[0]?.name}</h2>);
 

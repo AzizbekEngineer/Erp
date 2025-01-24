@@ -25,8 +25,7 @@ export const groupApi = api.injectEndpoints({
     }),
     getGroupsIdStudents: build.query({
       query: (id) => ({
-        url: `/groups/${id}/students/list`,
-        params,
+        url: `groups/${id}/students`,
       }),
       providesTags: ["Group"],
     }),
@@ -72,6 +71,7 @@ export const {
   useGetGroupsAllQuery,
   useGetGroupsStudentQuery,
   useGetGroupsTeacherQuery,
+  useGetGroupsIdStudentsQuery,
   useGetGroupsCourseIdQuery,
   useGetGroupByIdQuery,
   useCreateGroupMutation,

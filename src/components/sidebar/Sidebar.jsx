@@ -5,8 +5,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { logout } from "../../context/slices/authSlice";
 import { IoMdSettings } from "react-icons/io";
-import { LuUserPlus } from "react-icons/lu";
-import { LiaWarehouseSolid } from "react-icons/lia";
 import { jwtDecode } from "jwt-decode";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import Groups2SharpIcon from "@mui/icons-material/Groups2Sharp";
