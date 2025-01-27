@@ -39,10 +39,14 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 30px;
+        justify-content: space-between;
         margin-bottom: 35px;
 
         .lesson-card {
             background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);

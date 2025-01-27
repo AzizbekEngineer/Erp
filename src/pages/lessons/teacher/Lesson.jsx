@@ -224,7 +224,29 @@ const Lesson = () => {
       )}
       {isModalTask && (
         <Module close={() => setIsModalTask(false)} width={800} bg={"#aaa6"}>
-          <h1>Task</h1>
+          <form onSubmit={createHandleLesson} className="lesson__edit">
+            <input
+              required
+              value={formData.assignment}
+              onChange={(e) =>
+                setFormData({ ...formData, assignment: e.target.value })
+              }
+              name="assignment"
+              type="text"
+              placeholder="Dars boyicha topshiriqni yozish"
+            />
+            <textarea
+              required
+              value={formData.assignment}
+              onChange={(e) =>
+                setFormData({ ...formData, assignment: e.target.value })
+              }
+              name="assignment"
+              type="text"
+              placeholder="Dars boyicha topshiriqni yozish"
+            ></textarea>
+            <button type="submit">Yaratish</button>
+          </form>
         </Module>
       )}
     </div>
