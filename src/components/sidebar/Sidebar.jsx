@@ -166,7 +166,7 @@ function Sidebar() {
             to={"profile"}
           >
             <button>A</button>
-            <h2>AKE FOREX</h2>
+            <h2>CENTRE</h2>
           </Link>
         </div>
 

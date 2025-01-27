@@ -260,6 +260,25 @@
             }
         }
     }
+
+    &__card__info__btn {
+        padding-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button {
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: transparent;
+            border: 1px solid black;
+            outline: none;
+            border-radius: 8px;
+            font-size: 20px;
+        }
+    }
 }
 
 @keyframes fadeIn {
