@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useCreatePaymetMutation } from "../../context/api/paymetApi";
-
 import "./paymeForm.scss";
 
 const PaymeForm = ({ id, close }) => {
