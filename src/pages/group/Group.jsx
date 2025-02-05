@@ -13,6 +13,7 @@ import { useGetValue } from "../../hooks/useGetValue";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useGetTeacherQuery } from "../../context/api/teacherApi";
 
 const initialState = {
   name: "",
@@ -28,7 +29,7 @@ const Group = () => {
   const [createGroup] = useCreateGroupMutation();
   const [deleteGroup, { data, isSuccess }] = useDeleteGroupMutation();
   const [updateGroup] = useUpdateGroupMutation();
-
+  const { data: teacherData } = useGetTeacherQuery();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [currentGroupId, setCurrentGroupId] = useState(null);
@@ -105,7 +106,7 @@ const Group = () => {
               <div className="group__item-info">
                 <h3 className="group__name">{group.name}</h3>
                 <p className="group__details">
-                  O'qituvchi: {group.teacher?.firstName || "Not Assigned"}
+                  O'qituvchi: {group?.teacher?.firstName || "Not Assigned"}
                 </p>
                 <p className="group__details">
                   Kurs: {group.course?.name || "Not Assigned"}
@@ -125,6 +126,24 @@ const Group = () => {
           <form className="group__form" onSubmit={handleSubmit}>
             <h3>{isEditing ? "Grux o'zgartirish" : "Grux yaratish"}</h3>
             <div className="group__field">
+              <div className="group__field">
+                <label htmlFor="course">Kurs:</label>
+                <select
+                  id="course"
+                  name="courseId"
+                  value={formData.courseId}
+                  onChange={handleSelectChange}
+                >
+                  <option value="" disabled>
+                    Kurs tanlash
+                  </option>
+                  {courseData?.map((course) => (
+                    <option key={course.id} value={course.id}>
+                      {course.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <label htmlFor="teacher">O'qituvchi:</label>
               <select
                 id="teacher"
@@ -135,31 +154,14 @@ const Group = () => {
                 <option value="" disabled>
                   O'qituvchi tanlash
                 </option>
-                {/* {teacherData?.map((teacher) => (
+                {teacherData?.map((teacher) => (
                   <option key={teacher.id} value={teacher.id}>
                     {teacher.firstName}
-                  </option>
-                ))} */}
-              </select>
-            </div>
-            <div className="group__field">
-              <label htmlFor="course">Kurs:</label>
-              <select
-                id="course"
-                name="courseId"
-                value={formData.courseId}
-                onChange={handleSelectChange}
-              >
-                <option value="" disabled>
-                  Kurs tanlash
-                </option>
-                {courseData?.map((course) => (
-                  <option key={course.id} value={course.id}>
-                    {course.name}
                   </option>
                 ))}
               </select>
             </div>
+
             <div className="group__field">
               <label htmlFor="groupName">Grux nomi:</label>
               <input

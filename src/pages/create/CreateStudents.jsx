@@ -18,6 +18,8 @@ const initialState = {
   address: "",
   courseId: "",
   groupId: "",
+  username: "",
+  password: "",
 };
 
 const CreateStudents = () => {
@@ -120,6 +122,30 @@ const CreateStudents = () => {
               }}
             />
           </div>
+        </label>
+        <label htmlFor="username">
+          Username
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username kiriting"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label htmlFor="password">
+          Parol
+          <input
+            type="text"
+            id="password"
+            name="password"
+            placeholder="Parol kiriting"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
         </label>
         <label htmlFor="address">
           Manzil

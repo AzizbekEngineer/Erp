@@ -15,6 +15,7 @@ const Teachers = () => {
   const { data } = useGetTeacherQuery();
   const [deleteTeacher] = useDeleteTeacherMutation();
   const [updateTeacher] = useUpdateTeacherMutation();
+  console.log(data);
 
   const [isEditVisible, setIsEditVisible] = useState(false);
   const [editFormData, setEditFormData] = useState({
