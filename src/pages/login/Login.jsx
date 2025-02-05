@@ -7,8 +7,8 @@ import toast from "react-hot-toast";
 import "./login.scss";
 
 let initialState = {
-  username: "ramziddin717",
-  password: "rmz1234",
+  username: "vali88",
+  password: "1234",
 };
 
 const Login = () => {

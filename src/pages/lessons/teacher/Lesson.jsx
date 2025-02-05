@@ -224,17 +224,8 @@ const Lesson = () => {
       )}
       {isModalTask && (
         <Module close={() => setIsModalTask(false)} width={800} bg={"#aaa6"}>
-          <form onSubmit={createHandleLesson} className="lesson__edit">
-            <input
-              required
-              value={formData.assignment}
-              onChange={(e) =>
-                setFormData({ ...formData, assignment: e.target.value })
-              }
-              name="assignment"
-              type="text"
-              placeholder="Dars boyicha topshiriqni yozish"
-            />
+          <h2>Dars boyicha topshiriqni yozish</h2>
+          <form onSubmit={createHandleLesson} className="lesson__tasks">
             <textarea
               required
               value={formData.assignment}

@@ -283,6 +283,16 @@
             font-size: 20px;
         }
     }
+
+    &__tasks {
+        textarea {
+            width: 100%;
+            min-height: 80px;
+            border: 1px solid black;
+            border-radius: 8px;
+            padding: 10px;
+        }
+    }
 }
 
 @keyframes fadeIn {
