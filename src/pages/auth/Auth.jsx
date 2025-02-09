@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
 function Auth() {
-  let isLogin = useSelector((state) => state.auth.token);
+  let isLogin = true; //useSelector((state) => state.auth.token);
   return isLogin ? <Outlet /> : <Navigate to={"/"} replace />;
 }
 

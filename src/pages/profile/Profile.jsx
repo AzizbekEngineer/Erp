@@ -38,12 +38,12 @@ const Profile = () => {
 
             <div className="profile__info-item">
               <h4>Telefon raqam</h4>
-              <p>{profile.contactNumber}</p>
+              <p>{profile.phone}</p>
             </div>
 
             <div className="profile__info-item">
-              <h4>Yoshi</h4>
-              <p>{profile.age}</p>
+              <h4>Tug'ilgan sana</h4>
+              <p>22.04.2003</p>
             </div>
 
             <div className="profile__info-item">
@@ -53,7 +53,7 @@ const Profile = () => {
 
             <div className="profile__info-item">
               <h4>HH ID</h4>
-              <p>20641</p>
+              <p>{profile.username}</p>
             </div>
           </div>
         </div>

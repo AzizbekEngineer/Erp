@@ -22,23 +22,70 @@ const initialState = {
 };
 
 const initialStateAssignment = {
-  group_id: 35,
-  lesson_id: 8,
-  assignment: "javascriptda masalalar yechish",
-  dueDate: 5,
+  group_id: null, // Initialize to null
+  lesson_id: null, // Initialize to null
+  assignment: "", // Initialize to empty string
+  dueDate: "", // Initialize dueDate
 };
 
 const Lesson = () => {
   const { id } = useParams();
   const { data: lessonsData } = useGetLessonByIdQuery(id);
   const [createLesson] = useCreateLessonMutation();
-  const [createAssignment] = useCreateAssignmentMutation();
+  const [createAssignment] = useCreateAssignmentMutation(
+    initialStateAssignment
+  );
   const { data: groupStudents } = useGetGroupsIdStudentsQuery(id);
   const [deleteLesson] = useDeleteLessonMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalTask, setIsModalTask] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState(initialState);
+  const [assignmentFormData, setAssignmentFormData] = useState(
+    initialStateAssignment
+  ); // Separate state for assignment form
+  const [selectedLessonId, setSelectedLessonId] = useState(null); // Store the ID of the lesson for assignment
+
+  useEffect(() => {
+    if (lessonsData && selectedLessonId) {
+      const selectedLesson = lessonsData.find(
+        (lesson) => lesson.id === selectedLessonId
+      );
+      if (selectedLesson) {
+        setAssignmentFormData((prev) => ({
+          ...prev,
+          lesson_id: Number(selectedLesson.id), // Explicitly convert to Number
+          group_id: Number(id), // Explicitly convert to Number
+        }));
+      }
+    }
+  }, [lessonsData, selectedLessonId, id]);
+
+  const createHandleAssignment = async (e) => {
+    e.preventDefault();
+
+    // ... validation
+
+    try {
+      console.log("Sending assignment data:", assignmentFormData); // Debugging: Check data *before* sending
+
+      const response = await createAssignment(assignmentFormData).unwrap(); // Unwrap for better error handling
+      console.log("Assignment created successfully:", response);
+
+      setAssignmentFormData(initialStateAssignment);
+      setIsModalTask(false);
+    } catch (error) {
+      console.error("Error creating assignment:", error);
+      if (error.status === 400 && error.data && error.data.message) {
+        console.error("Backend validation errors:", error.data.message);
+        setErrorMessage(error.data.message.join("\n")); // Display all error messages
+      } else if (error.status === 400) {
+        setErrorMessage("Bad Request. Please check your input.");
+      } else {
+        setErrorMessage("An error occurred. Please try again later.");
+      }
+    }
+  };
 
   // Dars boshlanganda barcha o'quvchilarni default true qilish
   useEffect(() => {
@@ -153,7 +200,7 @@ const Lesson = () => {
                 </button>
                 <button>
                   <RiFileInfoLine />
-                  <span>Malumot</span>
+                  <span>Baxolash</span>
                 </button>
               </div>
             </div>
@@ -225,17 +272,34 @@ const Lesson = () => {
       {isModalTask && (
         <Module close={() => setIsModalTask(false)} width={800} bg={"#aaa6"}>
           <h2>Dars boyicha topshiriqni yozish</h2>
-          <form onSubmit={createHandleLesson} className="lesson__tasks">
+          <form onSubmit={createHandleAssignment} className="lesson__tasks">
             <textarea
               required
-              value={formData.assignment}
+              value={assignmentFormData.assignment}
               onChange={(e) =>
-                setFormData({ ...formData, assignment: e.target.value })
+                setAssignmentFormData({
+                  ...assignmentFormData,
+                  assignment: e.target.value,
+                })
               }
               name="assignment"
               type="text"
               placeholder="Dars boyicha topshiriqni yozish"
-            ></textarea>
+            />
+            <input
+              required
+              type="datetime-local"
+              value={assignmentFormData.dueDate}
+              onChange={(e) =>
+                setAssignmentFormData({
+                  ...assignmentFormData,
+                  dueDate: e.target.value,
+                })
+              }
+              name="dueDate"
+              placeholder="Topshiriq tugash vaqtini tanlang"
+            />
+            {errorMessage && <p className="error">{errorMessage}</p>}
             <button type="submit">Yaratish</button>
           </form>
         </Module>
