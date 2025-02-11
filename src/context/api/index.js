@@ -4,7 +4,7 @@ import { logout } from "../slices/authSlice";
 const baseQuery = async (args, api, extraOptions) => {
   const { dispatch } = api;
   const rawBaseQuery = fetchBaseQuery({
-    baseUrl: "https://erp-2o0i.onrender.com",
+    baseUrl: "https://erp-production-37bd.up.railway.app",
     prepareHeaders: (headers) => {
       const token = localStorage.getItem("x-auth-token");
       if (token) {
