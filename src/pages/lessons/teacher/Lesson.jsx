@@ -4,7 +4,7 @@ import {
   useDeleteLessonMutation,
   useGetLessonByIdQuery,
 } from "../../../context/api/lessonApi";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./lesson.scss";
 import Module from "../../../components/Module/Module";
 import { useGetGroupsIdStudentsQuery } from "../../../context/api/groupApi";
@@ -54,8 +54,8 @@ const Lesson = () => {
       if (selectedLesson) {
         setAssignmentFormData((prev) => ({
           ...prev,
-          lesson_id: Number(selectedLesson.id), // Explicitly convert to Number
-          group_id: Number(id), // Explicitly convert to Number
+          lesson_id: Number(selectedLesson.id), // Ensure it’s a number
+          group_id: Number(id), // Ensure it matches the group from useParams()
         }));
       }
     }
@@ -64,13 +64,30 @@ const Lesson = () => {
   const createHandleAssignment = async (e) => {
     e.preventDefault();
 
-    // ... validation
+    // Agar `assignmentFormData.dueDate` bo'sh bo'lsa, xatolik chiqaramiz
+    if (!assignmentFormData.dueDate) {
+      setErrorMessage("Due date ni kiriting!");
+      return;
+    }
+
+    // `dueDate` formatini to'g'ri UTC formatda olish
+    const adjustedDueDate = new Date(assignmentFormData.dueDate).toISOString(); // To'g'ri ISO 8601 formatga aylantirish
+
+    const updatedAssignmentFormData = {
+      ...assignmentFormData,
+      dueDate: adjustedDueDate, // ISO formatda yuborish
+      group_id: Number(assignmentFormData.group_id), // Raqam turiga aylantirish
+      lesson_id: Number(assignmentFormData.lesson_id), // Raqam turiga aylantirish
+    };
 
     try {
-      console.log("Sending assignment data:", assignmentFormData); // Debugging: Check data *before* sending
+      console.log("Sending assignment data:", updatedAssignmentFormData); // Debug uchun
 
-      const response = await createAssignment(assignmentFormData).unwrap(); // Unwrap for better error handling
+      const response = await createAssignment(
+        updatedAssignmentFormData
+      ).unwrap(); // Ma'lumot yuborish
       console.log("Assignment created successfully:", response);
+      console.log(updatedAssignmentFormData);
 
       setAssignmentFormData(initialStateAssignment);
       setIsModalTask(false);
@@ -78,7 +95,7 @@ const Lesson = () => {
       console.error("Error creating assignment:", error);
       if (error.status === 400 && error.data && error.data.message) {
         console.error("Backend validation errors:", error.data.message);
-        setErrorMessage(error.data.message.join("\n")); // Display all error messages
+        setErrorMessage(error.data.message.join("\n")); // Xatoliklarni chiqarish
       } else if (error.status === 400) {
         setErrorMessage("Bad Request. Please check your input.");
       } else {
@@ -171,15 +188,19 @@ const Lesson = () => {
         {lessonsData?.map(
           ({ id, lessonName, lessonNumber, lessonDate, endDate }) => (
             <div className="lesson-card" key={id}>
-              <h3>{lessonNumber}</h3>
-              <h3 className="lesson__theme__name">{lessonName}</h3>
-              <div className="lesson-card__btns">
-                <button>
-                  <EditIcon />
-                </button>
-                <button onClick={() => handleDelete(id)}>
-                  <DeleteForeverIcon />
-                </button>
+              <div className="lesson-card__top">
+                <div>
+                  <h3>{lessonNumber}</h3>
+                  <h3 className="lesson__theme__name">{lessonName}</h3>
+                </div>
+                <div className="lesson-card__btns">
+                  <button>
+                    <EditIcon />
+                  </button>
+                  <button onClick={() => handleDelete(id)}>
+                    <DeleteForeverIcon />
+                  </button>
+                </div>
               </div>
               <p>
                 <strong>Dars boshlanishi:</strong>
@@ -191,16 +212,23 @@ const Lesson = () => {
               </p>
               <div className="lesson__card__info__btn">
                 <button
+                  className="lesson__card__btn"
                   onClick={() => {
                     setIsModalTask(true);
+                    setSelectedLessonId(id); // Set the selected lesson ID for assignment
                   }}
                 >
                   <GoTasklist />
                   <span>Vazifa</span>
                 </button>
-                <button>
-                  <RiFileInfoLine />
-                  <span>Baxolash</span>
+                <button className="lesson__card__btn">
+                  <Link
+                    className="lesson__card__btn__link"
+                    to={`/admin/task/${id}`}
+                  >
+                    <RiFileInfoLine />
+                    <span>Baxolash</span>
+                  </Link>
                 </button>
               </div>
             </div>
@@ -289,15 +317,19 @@ const Lesson = () => {
             <input
               required
               type="datetime-local"
-              value={assignmentFormData.dueDate}
+              value={
+                assignmentFormData.dueDate
+                  ? new Date(assignmentFormData.dueDate)
+                      .toISOString()
+                      .slice(0, 16)
+                  : ""
+              }
               onChange={(e) =>
                 setAssignmentFormData({
                   ...assignmentFormData,
-                  dueDate: e.target.value,
+                  dueDate: e.target.value, // Bu joyda faqat inputdan qiymatni o'qiymiz
                 })
               }
-              name="dueDate"
-              placeholder="Topshiriq tugash vaqtini tanlang"
             />
             {errorMessage && <p className="error">{errorMessage}</p>}
             <button type="submit">Yaratish</button>

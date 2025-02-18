@@ -17,7 +17,7 @@ const Tasks = () => {
             <strong>Due Date:</strong> {new Date(dueDate).toLocaleString()}
           </p>
           <p>
-            <strong>Last Updated:</strong>{" "}
+            <strong>Last Updated:</strong>
             {new Date(updatedAt).toLocaleString()}
           </p>
           <p>
