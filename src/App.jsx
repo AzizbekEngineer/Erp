@@ -30,6 +30,7 @@ import GroupStudent from "./pages/group/GroupStudent";
 import Lesson from "./pages/lessons/teacher/Lesson";
 import Tasks from "./pages/lessons/teacher/Tasks";
 import LessonStudent from "./pages/lessons/student/LessonStudent";
+import TaskStudent from "./pages/lessons/student/TaskStudnet";
 
 const App = () => {
   return (
@@ -52,6 +53,7 @@ const App = () => {
             <Route path="groupStudent" element={<GroupStudent />} />
             <Route path="ranking" element={<Ranking />} />
             <Route path="task/:id" element={<Tasks />} />
+            <Route path="taskStudent/:id" element={<TaskStudent />} />
             <Route path="profile" element={<Profile />} />
             <Route path="groups/:id" element={<SingleGroup />} />
             <Route path="lessons/group/:id" element={<Lesson />} />

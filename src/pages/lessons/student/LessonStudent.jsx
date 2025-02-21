@@ -75,41 +75,10 @@ import React, { useState } from "react";
 import { useGetLessonByIdQuery } from "../../../context/api/lessonApi";
 import { Link, useParams } from "react-router-dom";
 import { GoTasklist } from "react-icons/go";
-import { RiFileInfoLine } from "react-icons/ri";
-import Module from "../../../components/Module/Module";
-import { useCreateSubmissionMutation } from "../../../context/api/submissionApi";
 
 const LessonStudent = () => {
   const { id } = useParams();
   const { data } = useGetLessonByIdQuery(id);
-  const [selectedLessonId, setSelectedLessonId] = useState(null);
-  const [isModalSubmit, setIsModalSubmit] = useState(false);
-  const [answerContent, setAnswerContent] = useState(""); // Javob uchun input state
-
-  const [submitAnswer] = useCreateSubmissionMutation();
-
-  // Formani yuborish funksiyasi
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    // Tekshirish: Javob bo‘sh bo‘lmasligi kerak
-    if (typeof answerContent !== "string" || !answerContent.trim()) {
-      alert("Iltimos, javob kiriting!"); // Xabar ko‘rsatish
-      return;
-    }
-
-    try {
-      const response = await submitAnswer({
-        lessonId: selectedLessonId,
-        content: answerContent.trim(), // Bo‘sh joylardan tozalangan qiymat
-      });
-      console.log("Yuborilgan javob:", response);
-      setIsModalSubmit(false); // Modalni yopish
-      setAnswerContent(""); // Inputni tozalash
-    } catch (error) {
-      console.error("Xatolik yuz berdi:", error);
-    }
-  };
 
   return (
     <div className="lesson">
@@ -126,45 +95,18 @@ const LessonStudent = () => {
               <strong>Dars tugashi:</strong>
               {new Date(endDate).toLocaleString()}
             </p>
+
             <div className="lesson__card__info__btn">
-              <button
-                className="lesson__card__btn"
-                onClick={() => {
-                  setIsModalSubmit(true);
-                  setSelectedLessonId(id);
-                }}
-              >
-                <GoTasklist />
-                <span>Vazifa</span>
-              </button>
-              <button className="lesson__card__btn">
-                <Link
-                  className="lesson__card__btn__link"
-                  to={`/admin/task/${id}`}
-                >
-                  <RiFileInfoLine />
-                  <span>Yuklash</span>
-                </Link>
-              </button>
+              <Link to={`/admin/taskStudent/${id}`}>
+                <button className="lesson__card__btn">
+                  <GoTasklist />
+                  <span>Vazifani ko'rish</span>
+                </button>
+              </Link>
             </div>
           </div>
         ))}
       </div>
-
-      {isModalSubmit && (
-        <Module close={() => setIsModalSubmit(false)} width={800} bg={"#aaa6"}>
-          <h1>Javob</h1>
-          <form onSubmit={handleFormSubmit}>
-            <input
-              type="text"
-              value={answerContent}
-              onChange={(e) => setAnswerContent(e.target.value)}
-              placeholder="Javobni kiriting"
-            />
-            <button type="submit">Yuborish</button>
-          </form>
-        </Module>
-      )}
     </div>
   );
 };

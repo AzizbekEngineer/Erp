@@ -299,7 +299,7 @@ const Lesson = () => {
       )}
       {isModalTask && (
         <Module close={() => setIsModalTask(false)} width={800} bg={"#aaa6"}>
-          <h2>Dars boyicha topshiriqni yozish</h2>
+          <h2>Dars boyicha topshiriqni yuklash</h2>
           <form onSubmit={createHandleAssignment} className="lesson__tasks">
             <textarea
               required

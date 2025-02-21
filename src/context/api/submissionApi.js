@@ -15,6 +15,12 @@ export const submissionApi = api.injectEndpoints({
       }),
       providesTags: ["Submission"],
     }),
+    getLessonIdSubmission: build.query({
+      query: (id) => ({
+        url: `/submissions/lesson/${id}`,
+      }),
+      providesTags: ["Submission"],
+    }),
     getSubmissionTotal: build.query({
       query: (id) => ({
         url: `/submissions/total-scores/${id}`,
@@ -22,9 +28,10 @@ export const submissionApi = api.injectEndpoints({
       providesTags: ["Submission"],
     }),
     createSubmission: build.mutation({
-      query: ({ id, body }) => ({
+      query: ({ id, content }) => ({
         url: `/submissions/${id}/submit`,
         method: "POST",
+        body: { content },
       }),
       invalidatesTags: ["Submission"],
     }),
@@ -52,5 +59,6 @@ export const {
   useDeleteSubmissionMutation,
   useUpdateSubmissionMutation,
   useGetSubmissionWorkQuery,
+  useGetLessonIdSubmissionQuery,
   useGetSubmissionTotalQuery,
 } = submissionApi;
